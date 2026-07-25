@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWENT HISTÓRICO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="turno-indicador" class="turno jugador">
+    ⭐ Turno del jugador
+  </div>
+  <div id="oro-hud">
+    Oro jugador: <span id="oro-j">0</span> | Oro IA: <span id="oro-i">0</span>
+  </div>
+  <div class="tablero">
+    <div id="campo-ia" class="campo">
+      <div id="mano-ia" class="mano-ia">
+      </div>
+      <div id="campo-ia" class="campo">
+        <div id="zona-recoleccion-ia" class="zona"></div>
+        <div id="zona-defensa-ia" class="zona"></div>
+        <div id="zona-atacante-ia" class="zona"></div>
+      </div>
+      
+    </div>
+    <div id="campo-jugador" class="campo">
+      <div id="zona-atacante" class="zona" ondragover="event.preventDefault()" ondrop="soltarCarta(event)">
+      
+      </div>
+
+      <div id="zona-defensiva" class="zona" ondragover="event.preventDefault()" ondrop="soltarCarta(event)">
+          
+      </div>
+
+      <div id="zona-recolectora" class="zona" ondragover="event.preventDefault()" ondrop="soltarCarta(event)">
+          
+      </div>
+    </div>
+    <div id="resultado"></div>
+  </div>
+  <div id="mano-jugador" class="mano"></div>
+
+    
+      
+    
+      
+
+  </body>
+</html>
+
+<script type="text/javascript" src="/vanilla-tilt.min.js"></script>
+<script src="script.js"></script>
+

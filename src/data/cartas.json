@@ -1,0 +1,245 @@
+{
+  "sapiens": {
+    "puntaje": "10",
+    "rareza": "oro",
+    "origen": -4000000,
+    "colorCarta": "punto-dorado",
+    "imgSobre": "url(/img/prehistoria/sobreprehistoria.webp)",
+    "titulo": "HOMO SAPIENS",
+    "color": "var(--prehistoria)",
+    "especialidad": "Agricultor",
+    "categoria": [
+      { "nombre": "Prehistoria", "clase": "etiqueta-prehistoria", "periodo": 0 }
+    ],
+    "imagen": "/img/prehistoria/humano.webp",
+    "fondoFrontal": "/img/prehistoria/neolitico.webp",
+    "fondoTrasera": "/img/prehistoria/dawnofman.jpeg",
+    "personalidad": [
+      {
+        "nombre": "Pensador",
+        "clase": "punto-dorado",
+        "img": "/assets/icons/cerebro.svg"
+      },
+      {
+        "nombre": "Agricultor",
+        "clase": "punto-dorado",
+        "img": "/assets/icons/trigo.svg"
+      },
+      {
+        "nombre": "Intrépido",
+        "clase": "punto-bronce",
+        "img": "/assets/icons/prehistoria/stone-tablet.svg"
+      }
+    ],
+    "descripcion": "El Homo Sapiens es nuestra especie, caracterizada por su capacidad de pensamiento abstracto, comunicación avanzada y desarrollo de herramientas complejas.",
+    "habilidades": [{ "fuerza": 2 }, { "defensa": 2 }, { "recoleccion": 3 }]
+  },
+  "neandertal": {
+    "puntaje": "3",
+    "rareza": "plata",
+    "colorCarta": "punto-plata",
+    "imgSobre": "url(/img/prehistoria/sobreprehistoria.webp)",
+    "titulo": "NEANDERTAL",
+    "color": "var(--prehistoria)",
+    "especialidad": "Intrépido",
+    "categoria": [
+      { "nombre": "Prehistoria", "clase": "etiqueta-prehistoria", "periodo": 0 }
+    ],
+    "imagen": "/img/prehistoria/Neandertal.png",
+    "fondoFrontal": "/img/prehistoria/pixelcut-export (6).jpeg",
+    "fondoTrasera": "/img/prehistoria/pixelcut-export (6).jpeg",
+    "personalidad": [
+      { "nombre": "Agresivo", "clase": "punto-bronce" },
+      {
+        "nombre": "Cazador",
+        "clase": "punto-dorado",
+        "img": "/assets/icons/prehistoria/stone-spear.svg"
+      },
+      { "nombre": "Resistente", "clase": "punto-bronce" }
+    ],
+    "descripcion": "El Homo Sapiens es nuestra especie, caracterizada por su capacidad de pensamiento abstracto, comunicación avanzada y desarrollo de herramientas complejas.",
+    "habilidades": [{ "fuerza": 3 }, { "defensa": 1 }, { "recoleccion": 1 }]
+  },
+
+  "aymara": {
+    "puntaje": "5",
+    "rareza": "bronce",
+    "colorCarta": "punto-bronce",
+    "imgSobre": "url(/img/moderna/descubrimiento-chile/ONOFRE-JARPA_Araucarias-min.jpg)",
+    "titulo": "PUEBLO AYMARA",
+    "color": "var(--red)",
+    "especialidad": "Pensador",
+    "categoria": [
+      { "nombre": "Edad Medieval", "clase": "etiqueta-medieval", "periodo": 3 }
+    ],
+    "imagen": "/img/moderna/descubrimiento-chile/personaje-aymara.webp",
+    "fondoFrontal": "/img/moderna/descubrimiento-chile/parque-lauca.webp",
+    "fondoTrasera": "/img/moderna/descubrimiento-chile/parque-lauca.webp",
+    "personalidad": [
+      { "nombre": "Agricultor", "clase": "punto-dorado" },
+      { "nombre": "Cultista", "clase": "punto-dorado" },
+      { "nombre": "Andino", "clase": "punto-bronce" }
+    ],
+    "descripcion": "El Homo Sapiens es nuestra especie, caracterizada por su capacidad de pensamiento abstracto, comunicación avanzada y desarrollo de herramientas complejas.",
+    "habilidades": [{ "fuerza": 1 }, { "defensa": 1 }, { "recoleccion": 2 }]
+  },
+  "colon": {
+    "puntaje": "8",
+    "rareza": "oro",
+    "colorCarta": "punto-dorado",
+    "imgSobre": "url(/img/moderna/fondo.webp)",
+    "titulo": "CRISTÓBAL COLÓN",
+    "color": "var(--moderna)",
+    "especialidad": "Pensador",
+    "lugar": "Genovés de nacimiento, pero navegó para españa",
+    "reconocimiento": [
+      "Lideró el primer intento de dar la vuelta al mundo",
+      "Descubrió América"
+    ],
+    "tiempo": "Nació en 1421 - Murió en 1506",
+    "categoria": [
+      { "nombre": "Edad Moderna", "clase": "etiqueta-moderna", "periodo": 4 }
+    ],
+    "imagen": "/img/otros/personajes-cartas/cristobal-colon2.webp",
+    "imgClass": "CristobalColon",
+    "fondoFrontal": "/img/moderna/fondo.webp",
+    "fondoTrasera": "/img/moderna/fondo.webp",
+    "personalidad": [
+      {
+        "nombre": "Navegante",
+        "clase": "punto-plata",
+        "img": "/assets/icons/brujula.svg"
+      },
+      {
+        "nombre": "Explorador",
+        "clase": "punto-plata",
+        "img": "/assets/icons/mapa.svg"
+      },
+      {
+        "nombre": "Visionario",
+        "clase": "punto-dorado",
+        "img": "/assets/icons/telescopio.svg"
+      }
+    ],
+    "descripcion": "Cristóbal Colón fue un navegante genovés conocido por realizar el viaje que llevó al descubrimiento de América en 1492, bajo el auspicio de los Reyes Católicos de España.",
+    "habilidades": [{ "fuerza": 1 }, { "defensa": 2 }, { "recoleccion": 2 }]
+  },
+  "magallanes": {
+    "puntaje": "5",
+    "rareza": "plata",
+    "colorCarta": "punto-plata",
+    "imgSobre": "url(/img/moderna/fondo.webp)",
+    "titulo": "FERNANDO MAGALLANES",
+    "color": "var(--moderna)",
+    "especialidad": "Intrépido",
+    "bandera": "/img/banderas/Flag_of_Portugal_(1578).svg",
+    "lugar": "Portugués de nacimiento, navegó para España",
+    "reconocimiento": [
+      "Comandó la primera circunnavegación del globo",
+      "Descubrió el Estrecho de Magallanes"
+    ],
+    "tiempo": "Nació en 1480 - Murió en 1521",
+    "categoria": [
+      { "nombre": "Edad Moderna", "clase": "etiqueta-moderna", "periodo": 4 }
+    ],
+    "imagen": "/img/moderna/descubrimiento-chile/fernandomagallanes.webp",
+    "blink": "/img/moderna/descubrimiento-chile/fernandomagallanes(blink).webp",
+    "fondoFrontal": "/img/moderna/descubrimiento-chile/expedicionmagallanesyelcano.webp",
+    "fondoTrasera": "/img/moderna/descubrimiento-chile/expedicionmagallanesyelcano.webp",
+    "personalidad": [
+      {
+        "nombre": "Navegante",
+        "clase": "punto-plata",
+        "img": "/assets/icons/brujula.svg"
+      },
+      {
+        "nombre": "Explorador",
+        "clase": "punto-basico",
+        "img": "/assets/icons/mapa.svg"
+      },
+      {
+        "nombre": "Visionario",
+        "clase": "punto-bronce",
+        "img": "/assets/icons/telescopio.svg"
+      }
+    ],
+    "descripcion": "Fue un navegante y explorador portugués al servicio de España, comandó la primera expedición en circunnavegar el globo y descubrió el Estrecho de Magallanes.",
+    "habilidades": [{ "fuerza": 2 }, { "defensa": 1 }, { "recoleccion": 1 }]
+  },
+  "soldado": {
+    "puntaje": "6",
+    "rareza": "plata",
+    "colorCarta": "punto-plata",
+    "imgSobre": "url(/img/moderna/fondo.webp)",
+    "titulo": "SOLDADO DE SEGUNDA GUERRA MUNDIAL",
+    "color": "var(--contemporanea)",
+    "especialidad": "Defensor",
+    "categoria": [
+      {
+        "nombre": "Contemporánea",
+        "clase": "etiqueta-contemporanea",
+        "periodo": 5
+      }
+    ],
+    "imagen": "/img/contemporanea/soldado-ww2.png",
+    "fondoFrontal": "/img/contemporanea/soldado-ww2.jpg",
+    "fondoTrasera": "/img/contemporanea/soldado-ww2.jpg",
+    "personalidad": [
+      {
+        "nombre": "Luchador",
+        "clase": "punto-plata",
+        "img": "/assets/icons/brujula.svg"
+      },
+      {
+        "nombre": "Defensor",
+        "clase": "punto-dorado",
+        "img": "/assets/icons/defensor.svg"
+      },
+      {
+        "nombre": "Disciplinado",
+        "clase": "punto-plata",
+        "img": "/assets/icons/disciplina.svg"
+      }
+    ],
+    "descripcion": "Soldado de la Segunda Guerra Mundial, conocido por su participación en batallas clave y su compromiso con la defensa nacional.",
+    "habilidades": [{ "fuerza": 3 }, { "defensa": 2 }, { "recoleccion": 1 }]
+  },
+  "primeraGuerraMundialSoldado": {
+    "puntaje": "5",
+    "rareza": "plata",
+    "colorCarta": "punto-plata",
+    "imgSobre": "url(/img/moderna/fondo.webp)",
+    "titulo": "SOLDADO DE PRIMERA GUERRA MUNDIAL",
+    "color": "var(--contemporanea)",
+    "especialidad": "Luchador",
+    "categoria": [
+      {
+        "nombre": "Contemporánea",
+        "clase": "etiqueta-contemporanea",
+        "periodo": 5
+      }
+    ],
+    "imagen": "/img/contemporanea/soldado-guerra-mundial.jpg",
+    "fondoFrontal": "/img/contemporanea/guerra-primera-batalla.webp",
+    "fondoTrasera": "/img/contemporanea/frente-trinchera.jpg",
+    "personalidad": [
+      {
+        "nombre": "Guerrero",
+        "clase": "punto-dorado",
+        "img": "/assets/icons/hacha.svg"
+      },
+      {
+        "nombre": "Defensor",
+        "clase": "punto-plata",
+        "img": "/assets/icons/defensor.svg"
+      },
+      {
+        "nombre": "Disciplinado",
+        "clase": "punto-bronce",
+        "img": "/assets/icons/disciplina.svg"
+      }
+    ],
+    "descripcion": "Soldado de la Primera Guerra Mundial, conocido por su participación en las trincheras y batallas del frente occidental.",
+    "habilidades": [{ "fuerza": 2 }, { "defensa": 3 }, { "recoleccion": 1 }]
+  }
+}

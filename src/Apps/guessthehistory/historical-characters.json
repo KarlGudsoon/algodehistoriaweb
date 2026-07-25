@@ -1,0 +1,170 @@
+[
+    {
+        "name": "Albert Einstein",
+        "clues": [
+            {
+                "text": "Estuvo involucrado en la revolución científica del siglo XX."
+            },
+            {
+                "text": "Vivió 76 años."
+            },
+            {
+                "text": "Nació en Alemania 🚩."
+            },
+            {
+                "text": "Desarrolló la teoría de la relatividad."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/albert-einstein.webp"
+    },
+    {
+        "name": "Napoleón Bonaparte",
+        "clues": [
+            {
+                "text": "Fue una figura clave en las guerras napoleónicas."
+            },
+            {
+                "text": "Vivió 51 años."
+            },
+            {
+                "text": "Nació en Córcega, Francia 🇫🇷."
+            },
+            {
+                "text": "Se coronó a sí mismo emperador de Francia en 1804."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/napoleon-bonaparte.webp"
+    },
+    {
+        "name": "Cleopatra",
+        "clues": [
+            {
+                "text": "Fue una gobernante de Egipto en la antigüedad."
+            },
+            {
+                "text": "Vivió aproximadamente 39 años."
+            },
+            {
+                "text": "Nació en Egipto 🇪🇬."
+            },
+            {
+                "text": "Fue la última faraona de Egipto y tuvo relaciones con Julio César y Marco Antonio."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/cleopatra.webp"
+    },
+    {
+        "name": "Leonardo da Vinci",
+        "clues": [
+            {
+                "text": "Fue un polímata del Renacimiento con conocimientos en múltiples áreas."
+            },
+            {
+                "text": "Vivió 67 años."
+            },
+            {
+                "text": "Nació en Italia 🇮🇹."
+            },
+            {
+                "text": "Pintó la Mona Lisa y realizó estudios en anatomía e ingeniería."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/leonardo-da-vinci.webp"
+    },
+    {
+        "name": "George Washington",
+        "clues": [
+            {
+                "text": "Lideró la Revolución Americana contra el dominio británico."
+            },
+            {
+                "text": "Vivió 67 años."
+            },
+            {
+                "text": "Nació en las Trece Colonias (hoy EE.UU.) 🇺🇸."
+            },
+            {
+                "text": "Fue el primer presidente de los Estados Unidos en 1789."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/george-washington.webp"
+    },
+    {
+        "name": "Marie Curie",
+        "clues": [
+            {
+                "text": "Hizo avances revolucionarios en la radiactividad."
+            },
+            {
+                "text": "Vivió 66 años."
+            },
+            {
+                "text": "Nació en Polonia 🇵🇱."
+            },
+            {
+                "text": "Fue la primera persona en ganar dos Premios Nobel en distintas disciplinas."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/marie-curie.webp"
+    },
+    {
+        "name": "Mahatma Gandhi",
+        "clues": [
+            {
+                "text": "Lideró un movimiento de resistencia pacífica."
+            },
+            {
+                "text": "Vivió 78 años."
+            },
+            {
+                "text": "Nació en la India 🇮🇳."
+            },
+            {
+                "text": "Luchó por la independencia de la India a través de la no violencia."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/mahatma-gandhi.webp"
+    },
+    {
+        "name": "Isaac Newton",
+        "clues": [
+            {
+                "text": "Revolucionó la física con sus estudios sobre la gravedad."
+            },
+            {
+                "text": "Vivió 84 años."
+            },
+            {
+                "text": "Nació en Inglaterra 🇬🇧."
+            },
+            {
+                "text": "Formuló las leyes del movimiento y la gravitación universal."
+            },
+            {
+                "text": "Este es su retrato."
+            }
+        ],
+        "image": "/img/otros/personajes/isaac-newton.webp"
+    }
+]
