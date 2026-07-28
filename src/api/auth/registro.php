@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../config/session_config.php';
 require __DIR__ . '/../config/db.php';
+require __DIR__ . '/../config/csrf.php';
 
 header('Content-Type: application/json');
 
@@ -58,9 +59,12 @@ $_SESSION['user_id'] = $userId;
 $_SESSION['email'] = $email;
 $_SESSION['name'] = $name;
 
+$csrfToken = generarCSRFToken();
+
 http_response_code(201);
 echo json_encode([
     'message' => 'Cuenta creada exitosamente',
+    'csrf_token' => $csrfToken,
     'user' => [
         'id' => $userId,
         'email' => $email,

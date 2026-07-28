@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../config/session_config.php';
 require __DIR__ . '/../config/db.php';
+require __DIR__ . '/../config/csrf.php';
 require __DIR__ . '/../middlewares/auth_check.php';
 require __DIR__ . '/../includes/xp_helper.php';
 
@@ -10,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     die(json_encode(['error' => 'Método no permitido']));
 }
+
+validarCSRFToken();
 
 $data = json_decode(file_get_contents('php://input'), true);
 $slug = trim($data['slug'] ?? '');

@@ -1,14 +1,16 @@
 async function otorgarCarta(slug) {
   const res = await fetch("/api/cartas/otorgar_carta.php", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": window.csrfToken || "",
+    },
     credentials: "include",
     body: JSON.stringify({ slug }),
   });
 
-  if (res.status === 401) {
-    throw new Error("No autenticado");
-  }
+  if (res.status === 401) throw new Error("No autenticado");
+  if (res.status === 403) throw new Error("Token CSRF inválido");
 
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Error al obtener la carta");
@@ -42,11 +44,15 @@ async function obtenerMiColeccionCartasArticulo(slugsDelArticulo) {
 async function otorgarPais(slug) {
   const res = await fetch("/api/paises/otorgar_pais.php", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": window.csrfToken || "",
+    },
     credentials: "include",
     body: JSON.stringify({ slug }),
   });
   if (res.status === 401) throw new Error("No autenticado");
+  if (res.status === 403) throw new Error("Token CSRF inválido");
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Error al obtener el país");
   return data;
