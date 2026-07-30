@@ -1,0 +1,143 @@
+.card-contenido {
+  color: white;
+  scale: 0;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    scale 0.5s ease;
+  width: 250px;
+  height: 300px;
+  background-color: var(--primary-color);
+  border-radius: 2rem;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  outline: 2px solid transparent;
+}
+
+.card-contenido:hover {
+  transition: all 0s linear;
+  outline: 3px solid rgba(255, 255, 255, 0.65);
+}
+
+.card-contenido.active {
+  scale: 1;
+  opacity: 1;
+}
+
+.card-contenido-etiqueta {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  pointer-events: none;
+  transition: 0.3s ease;
+  transform: translateZ(30px);
+  z-index: 0;
+}
+
+.card-contenido-etiqueta h1 {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+  font: 900 2rem BreeSerif;
+  line-height: 1;
+  margin: 0;
+}
+
+.card-contenido-descripcion {
+  font: 300 0.8rem Roboto;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  z-index: 9;
+  text-align: center;
+  transform: translateZ(30px);
+  margin-bottom: 1rem;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card-contenido-etiqueta span {
+  opacity: 0;
+  transition: 0.3s ease;
+  font: 1rem Roboto;
+}
+
+.card-contenido:hover .card-contenido-etiqueta {
+  bottom: 35%;
+}
+
+.card-contenido:hover span {
+  opacity: 1;
+}
+
+.card-contenido:hover .card-contenido-descripcion {
+  opacity: 1;
+}
+
+@keyframes scale-infinite {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.25);
+  }
+}
+
+.card-contenido-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.card-contenido-img img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-position: center;
+  animation: scale-infinite 10s infinite linear alternate;
+  animation-play-state: paused;
+}
+
+.card-contenido:hover .card-contenido-img img {
+  animation-play-state: running;
+}
+#gif-humo {
+  position: absolute;
+  width: 150%;
+  opacity: 0;
+  z-index: 9;
+  pointer-events: none;
+  transition: 0.2s ease;
+  transform: translateZ(15px);
+  filter: drop-shadow(0.5vw 0.5vw 1vw black);
+}
+
+#revolucion-industrial:hover #gif-humo {
+  opacity: 0.25;
+}
+
+.personaje-img {
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  opacity: 0;
+  z-index: 9;
+  transition: 0.3s ease;
+  transform: translateZ(0px);
+  filter: drop-shadow(0.1vw 0.1vw 0.5vw rgb(0, 0, 0, 50%));
+}
+
+.card-contenido:hover .personaje-img {
+  height: 105%;
+  opacity: 1;
+  scale: 1;
+  transform: translateZ(15px) translateY(0%);
+}

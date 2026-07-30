@@ -11,11 +11,13 @@ async function inicializarEstadisticas() {
     const datosUsuario = await obtenerDatosUsuario();
     const datos = await obtenerEstadisticasDashboard();
     const nivelInfo = await obtenerNivelUsuario();
+    const articulosC = await obtenerArticulosCompletados();
 
     renderizarUsuario(datosUsuario);
     renderizarNivel(nivelInfo);
     renderizarResumenProgreso(datos.progreso, totalCartas, totalPaises);
-    renderizarHistorialArticulos(datos.historial_articulos);
+    renderizarArticuloReciente(articulosC[0]);
+    // renderizarHistorialArticulos(datos.historial_articulos);
   } catch (error) {
     if (error.message === "No autenticado") {
       window.location.href = "/login.html";
@@ -40,6 +42,8 @@ function renderizarNivel(nivelInfo) {
 
   const barra = document.getElementById("barraNivel");
   if (barra) barra.style.width = `${nivelInfo.porcentaje_nivel}%`;
+
+  document.getElementById("xpTotal").textContent = nivelInfo.xp_total;
 }
 
 function renderizarResumenProgreso(progreso, totalCartas, totalPaises) {
@@ -69,6 +73,31 @@ function renderizarResumenProgreso(progreso, totalCartas, totalPaises) {
   });
 }
 
+function renderizarArticuloReciente(articulo) {
+  const contenedor = document.getElementById("articuloReciente");
+  if (!contenedor) return;
+
+  console.log(articulo);
+
+  const personajeArticulo = document.getElementById("personajeArtReciente");
+
+  if (articulo.personaje) {
+    personajeArticulo.src = articulo.personaje;
+  }
+
+  if (articulo.fondo) {
+    contenedor.style.backgroundImage = `url(${articulo.fondo})`;
+  }
+
+  document.getElementById("urlArtReciente").href = articulo.url;
+
+  el("tituloArtReciente", articulo.titulo);
+  el("descArtReciente", articulo.descripcion);
+
+  const nuevasCartas = document.querySelectorAll("[data-tilt]");
+  VanillaTilt.init(nuevasCartas);
+}
+
 function renderizarHistorialArticulos(historial) {
   const contenedor = document.getElementById("historialArticulos");
 
@@ -87,4 +116,70 @@ function renderizarHistorialArticulos(historial) {
   `,
     )
     .join("");
+}
+
+function el(elemento, contenido) {
+  document.getElementById(elemento).textContent = contenido;
+}
+
+function renderizarArticulos(articulo) {
+  const contenedor = document.getElementById("articuloReciente");
+  if (!contenedor) return;
+
+  contenedor.innerHTML = "";
+
+  console.log(articulo);
+
+  const Articulo = document.createElement("a");
+  const InnerArticulo = document.createElement("div");
+  InnerArticulo.classList.add("card-contenido", "active");
+  InnerArticulo.setAttribute("data-tilt", "");
+
+  const PersonajeImagen = document.createElement("img");
+  PersonajeImagen.classList.add("personaje-img");
+
+  const ContenidoImagen = document.createElement("div");
+  ContenidoImagen.classList.add("card-contenido-img");
+  const imgContenidoImagen = document.createElement("img");
+
+  const ContenidoEtiqueta = document.createElement("div");
+  ContenidoEtiqueta.classList.add("card-contenido-etiqueta");
+  const ContenidoTitulo = document.createElement("h1");
+  const ArticuloDescripcion = document.createElement("p");
+  ArticuloDescripcion.classList.add("card-contenido-descripcion");
+  const ArticuloFecha = document.createElement("span");
+  Articulo.classList.add("art");
+
+  contenedor.appendChild(Articulo);
+  Articulo.appendChild(InnerArticulo);
+  InnerArticulo.appendChild(PersonajeImagen);
+  InnerArticulo.appendChild(ContenidoImagen);
+  ContenidoImagen.appendChild(imgContenidoImagen);
+  InnerArticulo.appendChild(ContenidoEtiqueta);
+  ContenidoEtiqueta.appendChild(ContenidoTitulo);
+  InnerArticulo.appendChild(ArticuloDescripcion);
+  ContenidoEtiqueta.appendChild(ArticuloFecha);
+
+  if (articulo.titulo) ContenidoTitulo.textContent = articulo.titulo;
+  if (articulo.resumen) ArticuloDescripcion.textContent = articulo.resumen;
+  if (articulo.fecha_exacta) ArticuloFecha.textContent = articulo.fecha_exacta;
+  if (articulo.url) Articulo.href = articulo.url;
+
+  if (articulo.fondo) {
+    imgContenidoImagen.src = articulo.fondo;
+  } else {
+    imgContenidoImagen.style.display = "none";
+  }
+
+  if (articulo.personaje) {
+    PersonajeImagen.src = articulo.personaje;
+  } else {
+    PersonajeImagen.style.display = "none";
+  }
+
+  el("tituloArtReciente", articulo.titulo);
+  el("descArtReciente", articulo.descripcion);
+
+  const nuevasCartas = document.querySelectorAll("[data-tilt]");
+  VanillaTilt.init(nuevasCartas);
 }

@@ -48,3 +48,13 @@ async function obtenerPerfilDashboard() {
   if (!res.ok) throw new Error(data.error || "Error al obtener perfil");
   return data.usuario;
 }
+
+async function obtenerArticulosCompletados() {
+  const res = await fetch("/api/dashboard/articulos_completados.php", {
+    credentials: "include",
+  });
+  if (res.status === 401) throw new Error("No autenticado");
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Error al obtener artículos completados");
+  return data.completados;
+}

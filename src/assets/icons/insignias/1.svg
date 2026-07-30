@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+
+    <!-- Color principal -->
+    <defs>
+        <style>
+            .gold{
+                fill:none;
+                stroke:#F4B400;
+                stroke-width:10;
+                stroke-linecap:round;
+                stroke-linejoin:round;
+            }
+
+            .gold-fill{
+                fill:#F4B400;
+            }
+        </style>
+    </defs>
+
+    <!-- Hexágono -->
+    <polygon class="gold" points="
+        128,24
+        208,70
+        208,186
+        128,232
+        48,186
+        48,70"></polygon>
+
+    <!-- Estrella -->
+    <path class="gold-fill" d="
+        M128 72
+        L141 109
+        L180 109
+        L148 132
+        L160 170
+        L128 148
+        L96 170
+        L108 132
+        L76 109
+        L115 109
+        Z"></path>
+</svg>

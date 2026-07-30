@@ -1,22 +1,52 @@
-<div class="header">
-  <div class="usuarioAvatar"></div>
+<div class="header flex-wrap">
   <div class="bienvenida">
-    <h2>¡Hola, <span id="nombreUsuario"></span>!</h2>
-    <span class="nombreNivel">Explorador histórico</span>
-    <p>Sigue aprendiendo sobre historia y ve tus estadisticas</p>
+    <div class="usuarioAvatar"></div>
+    <div class="flex flex-col gap-2 justify-center">
+      <h2>¡Hola, <span id="nombreUsuario"></span>!</h2>
+      <span class="nombreNivel">Explorador histórico</span>
+      <p>Sigue aprendiendo sobre historia y ve tus estadisticas</p>
+    </div>
   </div>
-  <div class="contenedor-nivel">
-    <div></div>
-    <div class="info-nivel">
-      <div class="texto-nivel">
-        <span id="nivelUsuario"></span>
-        <div class="xp">
-          <span id="xpActual"></span>/<span id="xpSiguiente"></span>
+  <div class="flex flex-1 gap-2 justify-around flex-wrap">
+    <div class="contenedor-nivel">
+      <div class="h-[100px]" id="insignia-nivel">
+        <img
+          class="h-full drop-shadow-md"
+          src="/assets/icons/insignias/1.svg"
+          alt=""
+        />
+      </div>
+      <div class="info-nivel w-full flex flex-col gap-2">
+        <div class="texto-nivel">
+          <span
+            class="font-bold px-3 py-1 rounded-2xl bg-black bg-opacity-10"
+            id="nivelUsuario"
+          ></span>
+          <div class="xp">
+            <span id="xpActual"></span> / <span id="xpSiguiente"></span> XP
+          </div>
+        </div>
+        <div class="progreso-nivel shadow-sm">
+          <div class="shadow-md" id="barraNivel"></div>
         </div>
       </div>
-      <div class="progreso-nivel">
-        <div id="barraNivel"></div>
+    </div>
+    <div class="flex flex-col gap-2 items-center justify-center">
+      <div class="flex gap-2 items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#fde047"
+            d="M4 20h16v2H4zM21 5a1 1 0 0 0-1 1a.9.9 0 0 0 .064.332a1.1 1.1 0 0 0 .167.283l-2.12 1.692L15.994 10L14.24 6.927l-1.752-3.072a1.05 1.05 0 0 0 .369-.353A.95.95 0 0 0 13 3a1 1 0 1 0-2 0a.95.95 0 0 0 .143.502a1.05 1.05 0 0 0 .369.353L9.757 6.927L8.002 10L5.886 8.308L3.769 6.615a1.1 1.1 0 0 0 .167-.283A.9.9 0 0 0 4 6a1 1 0 1 0-1 1a.2.2 0 0 0 .041-.007a.2.2 0 0 1 .041-.01l.459 5.509L4 18h16l.459-5.508l.459-5.509a.2.2 0 0 1 .04.01A.2.2 0 0 0 21 7a1 1 0 1 0 0-2"
+          />
+        </svg>
+        <h3 class="m-0">Puntos</h3>
       </div>
+      <span class="text-3xl font-extrabold text-yellow-300" id="xpTotal"></span>
     </div>
   </div>
 </div>
@@ -60,7 +90,39 @@
   </div>
   <div class="infocards skeleton"></div>
 </div>
-<div class="vista-estadisticas">
-  <div id="resumenProgreso"></div>
-  <div id="historialArticulos"></div>
+<div class="contenedor-infocards flex-1 flex">
+  <div
+    id="articuloReciente"
+    class="infocards relative bg-cover !gap-0 !p-0 !flex-none flex-col !items-start !w-fit"
+  >
+    <div
+      class="flex gap-2 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
+    >
+      <img src="/assets/icons/articulo.svg" alt="" />
+      <h2 class="m-0">Artículo reciente</h2>
+    </div>
+    <div class="flex gap-4 flex-1 p-4">
+      <div class="flex justify-center w-full max-w-40">
+        <img
+          class="relative w-full overflow-visible h-auto object-cover bottom-[-25px] left-0"
+          id="personajeArtReciente"
+          src=""
+          alt=""
+        />
+      </div>
+      <div class="p-6 bg-black bg-opacity-35 rounded-xl">
+        <span id="badgeArticulo"></span>
+        <h2 class="mt-0 text-white" id="tituloArtReciente"></h2>
+        <p class="max-w-80 text-white" id="descArtReciente"></p>
+        <a id="urlArtReciente" href="">Ver articulo</a>
+      </div>
+    </div>
+  </div>
+  <div class="infocards flex-1"></div>
+  <div class="infocards flex-1"></div>
 </div>
+<div class="contenedor-infocards flex-1 flex">
+  <div class="infocards flex-1"></div>
+</div>
+
+<div id="historialArticulos"></div>

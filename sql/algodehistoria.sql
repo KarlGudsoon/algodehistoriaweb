@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2026 a las 01:56:22
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: db
+-- Tiempo de generación: 30-07-2026 a las 02:34:00
+-- Versión del servidor: 8.0.46
+-- Versión de PHP: 8.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,22 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `articulos` (
-  `id` int(11) NOT NULL,
-  `slug` varchar(100) NOT NULL,
-  `titulo` varchar(255) NOT NULL,
-  `periodo_historico` varchar(100) DEFAULT NULL,
-  `fecha_exacta` varchar(100) DEFAULT NULL,
-  `fondo` varchar(255) DEFAULT NULL,
-  `personaje` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `titulo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `resumen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `periodo_historico` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fecha_exacta` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fondo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `personaje` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `articulos`
 --
 
-INSERT INTO `articulos` (`id`, `slug`, `titulo`, `periodo_historico`, `fecha_exacta`, `fondo`, `personaje`, `created_at`) VALUES
-(1, 'conquistadechile', 'Conquista de Chile', 'Edad Moderna', '1520 - 1541', 'x', 'x', '2026-07-15 01:11:00');
+INSERT INTO `articulos` (`id`, `slug`, `titulo`, `resumen`, `descripcion`, `url`, `periodo_historico`, `fecha_exacta`, `fondo`, `personaje`, `created_at`) VALUES
+(1, 'conquistadechile', 'Conquista de Chile', 'Desde el primer avistamiento de Chile hasta la fundación de Santiago', 'La conquista de Chile fue un proceso histórico que se inició en 1536 con la expedición de Diego de Almagro y culminó con la fundación de Santiago por Pedro de Valdivia en 1541.', '/articulos/moderna/origenes-chile/', 'Edad Moderna', '1520 - 1541', '/img/moderna/descubrimiento-chile/ONOFRE-JARPA_Araucarias-min.jpg', '/img/moderna/descubrimiento-chile/pedro-valdivia.png', '2026-07-15 01:11:00');
 
 -- --------------------------------------------------------
 
@@ -52,13 +55,20 @@ INSERT INTO `articulos` (`id`, `slug`, `titulo`, `periodo_historico`, `fecha_exa
 --
 
 CREATE TABLE `articulo_completado` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `articulo_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `articulo_id` int NOT NULL,
   `nota` decimal(3,1) NOT NULL,
-  `aprobado` tinyint(1) NOT NULL DEFAULT 0,
-  `fecha_completado` timestamp NOT NULL DEFAULT current_timestamp()
+  `aprobado` tinyint(1) NOT NULL DEFAULT '0',
+  `fecha_completado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `articulo_completado`
+--
+
+INSERT INTO `articulo_completado` (`id`, `user_id`, `articulo_id`, `nota`, `aprobado`, `fecha_completado`) VALUES
+(5, 1, 1, 5.5, 1, '2026-07-28 06:21:54');
 
 -- --------------------------------------------------------
 
@@ -67,15 +77,15 @@ CREATE TABLE `articulo_completado` (
 --
 
 CREATE TABLE `cuestionario_preguntas` (
-  `id` int(11) NOT NULL,
-  `articulo_id` int(11) NOT NULL,
-  `orden` int(11) NOT NULL,
-  `pregunta` text NOT NULL,
-  `opcion_1` varchar(255) NOT NULL,
-  `opcion_2` varchar(255) NOT NULL,
-  `opcion_3` varchar(255) NOT NULL,
-  `opcion_4` varchar(255) NOT NULL,
-  `respuesta_correcta` tinyint(4) NOT NULL
+  `id` int NOT NULL,
+  `articulo_id` int NOT NULL,
+  `orden` int NOT NULL,
+  `pregunta` text COLLATE utf8mb4_general_ci NOT NULL,
+  `opcion_1` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `opcion_2` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `opcion_3` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `opcion_4` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `respuesta_correcta` tinyint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -96,11 +106,11 @@ INSERT INTO `cuestionario_preguntas` (`id`, `articulo_id`, `orden`, `pregunta`, 
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -117,10 +127,10 @@ INSERT INTO `usuarios` (`id`, `email`, `password_hash`, `name`, `created_at`) VA
 --
 
 CREATE TABLE `usuario_cartas` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `carta_slug` varchar(100) NOT NULL,
-  `fecha_obtenida` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `carta_slug` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `fecha_obtenida` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -141,8 +151,8 @@ INSERT INTO `usuario_cartas` (`id`, `user_id`, `carta_slug`, `fecha_obtenida`) V
 --
 
 CREATE TABLE `usuario_experiencia` (
-  `user_id` int(11) NOT NULL,
-  `xp_total` int(11) NOT NULL DEFAULT 0
+  `user_id` int NOT NULL,
+  `xp_total` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -150,7 +160,7 @@ CREATE TABLE `usuario_experiencia` (
 --
 
 INSERT INTO `usuario_experiencia` (`user_id`, `xp_total`) VALUES
-(1, 220);
+(1, 350);
 
 -- --------------------------------------------------------
 
@@ -159,10 +169,10 @@ INSERT INTO `usuario_experiencia` (`user_id`, `xp_total`) VALUES
 --
 
 CREATE TABLE `usuario_paises` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `pais_slug` varchar(100) NOT NULL,
-  `fecha_obtenida` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `pais_slug` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `fecha_obtenida` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -171,7 +181,8 @@ CREATE TABLE `usuario_paises` (
 
 INSERT INTO `usuario_paises` (`id`, `user_id`, `pais_slug`, `fecha_obtenida`) VALUES
 (13, 1, 'imperioespañol', '2026-07-22 18:34:46'),
-(14, 1, 'reinochile', '2026-07-22 19:20:45');
+(14, 1, 'reinochile', '2026-07-22 19:20:45'),
+(15, 1, 'imperioinca', '2026-07-28 05:19:54');
 
 -- --------------------------------------------------------
 
@@ -180,8 +191,8 @@ INSERT INTO `usuario_paises` (`id`, `user_id`, `pais_slug`, `fecha_obtenida`) VA
 --
 
 CREATE TABLE `xp_configuracion` (
-  `accion` varchar(50) NOT NULL,
-  `xp_otorgado` int(11) NOT NULL
+  `accion` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `xp_otorgado` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -204,12 +215,12 @@ INSERT INTO `xp_configuracion` (`accion`, `xp_otorgado`) VALUES
 --
 
 CREATE TABLE `xp_historial` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `accion` varchar(50) NOT NULL,
-  `referencia` varchar(100) NOT NULL,
-  `xp_otorgado` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `accion` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `referencia` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `xp_otorgado` int NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -223,7 +234,10 @@ INSERT INTO `xp_historial` (`id`, `user_id`, `accion`, `referencia`, `xp_otorgad
 (40, 1, 'pais_obtenido', 'imperioespañol', 30, '2026-07-22 18:34:46'),
 (41, 1, 'carta_obtenida_oro', 'colon', 40, '2026-07-22 18:41:14'),
 (42, 1, 'carta_obtenida_plata', 'magallanes', 30, '2026-07-22 18:41:24'),
-(43, 1, 'pais_obtenido', 'reinochile', 30, '2026-07-22 19:20:45');
+(43, 1, 'pais_obtenido', 'reinochile', 30, '2026-07-22 19:20:45'),
+(44, 1, 'pais_obtenido', 'imperioinca', 30, '2026-07-28 05:19:54'),
+(45, 1, 'articulo_completado', '1', 75, '2026-07-28 05:20:30'),
+(46, 1, 'articulo_completado_nota_perfecta', '1', 25, '2026-07-28 05:20:31');
 
 --
 -- Índices para tablas volcadas
@@ -299,43 +313,43 @@ ALTER TABLE `xp_historial`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `articulo_completado`
 --
 ALTER TABLE `articulo_completado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `cuestionario_preguntas`
 --
 ALTER TABLE `cuestionario_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_cartas`
 --
 ALTER TABLE `usuario_cartas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_paises`
 --
 ALTER TABLE `usuario_paises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `xp_historial`
 --
 ALTER TABLE `xp_historial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Restricciones para tablas volcadas

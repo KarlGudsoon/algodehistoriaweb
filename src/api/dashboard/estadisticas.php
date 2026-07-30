@@ -17,7 +17,7 @@ $completados = $stmt->fetch()['completados'];
 
 // Historial completo: notas por artículo, con título y slug
 $stmt = $pdo->prepare('
-    SELECT a.slug, a.titulo, ac.nota, ac.aprobado, ac.fecha_completado
+    SELECT a.slug, a.titulo, a.resumen, a.descripcion, a.url, ac.nota, ac.aprobado, ac.fecha_completado
     FROM articulo_completado ac
     JOIN articulos a ON a.id = ac.articulo_id
     WHERE ac.user_id = ?
