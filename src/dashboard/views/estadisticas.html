@@ -93,7 +93,7 @@
 <div class="contenedor-infocards flex-1 flex">
   <div
     id="articuloReciente"
-    class="infocards skeleton relative bg-cover !gap-0 !p-0 !flex-none flex-col !items-start max-w-[600px] w-full"
+    class="infocards skeleton relative bg-cover !gap-0 !p-0  flex-col items-center"
   >
     <div
       class="flex gap-2 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
@@ -119,16 +119,16 @@
     </div>
   </div>
   <div
-    class="infocards flex-col bg-cover relative !p-0 w-full max-w-[600px] !gap-0"
+    class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
     id="contenedorCartaDestacada"
   >
     <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
       <img src="/assets/icons/colorcards.svg" alt="" />
       <h2 class="m-0 text-white">Carta destacada</h2>
     </div>
-    <div class="flex z-10 gap-2 flex-1 p-4 items-center">
-      <div class="flex-1 text-white" id="cartaNuevaDatos">
-        <span class="bg-[--primary-color] px-2 rounded-xl">Nueva</span>
+    <div class="flex mx-6 z-10 gap-2 flex-1 p-4 items-center">
+      <div class="flex-1 text-white max-w-80" id="cartaNuevaDatos">
+        <span class="bg-green-600 mb-2 px-2 rounded-xl" id="badgeCartaDestacada"></span>
         <h2 class="mt-0" id="cartaDestacadaTitulo"></h2>
         <span id="cartaDestacadaTiempo"></span>
         <p id="cartaDestacadaDesc"></p>
@@ -139,7 +139,7 @@
       ></div>
     </div>
   </div>
-  <div class="infocards flex-1"></div>
+  <div class="infocards"></div>
 </div>
 <div class="contenedor-infocards flex-1 flex">
   <div class="infocards flex-1"></div>

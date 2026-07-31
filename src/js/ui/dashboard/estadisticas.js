@@ -109,7 +109,12 @@ async function renderizarCartaDestacada() {
 
   const carta = await obtenerCartaDestacada();
 
-  console.log(carta);
+  if (!carta) {
+    contenedorCarta.innerHTML = `
+      <div class="carta-placeholder"></div>
+    `
+    el("cartaDestacadaDesc", "Todavía no has desbloqueado ninguna carta de personaje, descúbrelas en cada artículo interactivo");
+  }
 
   const esp = carta.especialidad.toLowerCase();
   let especialidadImg = "";
@@ -185,6 +190,7 @@ async function renderizarCartaDestacada() {
   </div>
   `;
 
+  el("badgeCartaDestacada", "Nueva")
   el("cartaDestacadaTitulo", carta.titulo);
   el("cartaDestacadaTiempo", carta.tiempo);
   el("cartaDestacadaDesc", carta.descripcion);
