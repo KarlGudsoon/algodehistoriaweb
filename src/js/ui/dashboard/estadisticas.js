@@ -1,12 +1,11 @@
 async function inicializarEstadisticas() {
   try {
-    const catalogoCartas = await fetch("/data/cartas.json").then((r) =>
-      r.json(),
-    );
+    const { cantidad: totalCartas } = await fetch(
+      "/api/cartas/cantidad_cartas.php",
+    ).then((r) => r.json());
     const catalogoPaises = await fetch("/data/paises.json").then((r) =>
       r.json(),
     );
-    const totalCartas = Object.keys(catalogoCartas).length;
     const totalPaises = Object.keys(catalogoPaises).length;
     const datosUsuario = await obtenerDatosUsuario();
     const datos = await obtenerEstadisticasDashboard();
@@ -17,6 +16,7 @@ async function inicializarEstadisticas() {
     renderizarNivel(nivelInfo);
     renderizarResumenProgreso(datos.progreso, totalCartas, totalPaises);
     renderizarArticuloReciente(articulosC[0]);
+    renderizarCartaDestacada();
     // renderizarHistorialArticulos(datos.historial_articulos);
   } catch (error) {
     if (error.message === "No autenticado") {
@@ -96,6 +96,102 @@ function renderizarArticuloReciente(articulo) {
 
   const nuevasCartas = document.querySelectorAll("[data-tilt]");
   VanillaTilt.init(nuevasCartas);
+
+  document.querySelectorAll(".infocards").forEach((card) => {
+    card.classList.remove("skeleton");
+  });
+}
+
+async function renderizarCartaDestacada() {
+  const contenedor = document.getElementById("contenedorCartaDestacada");
+
+  const contenedorCarta = document.getElementById("cartaDestacada");
+
+  const carta = await obtenerCartaDestacada();
+
+  console.log(carta);
+
+  const esp = carta.especialidad.toLowerCase();
+  let especialidadImg = "";
+
+  if (esp === "agricultor") {
+    especialidadImg = "/assets/icons/trigo.svg";
+  } else if (esp === "intrepido" || esp === "intrépido") {
+    especialidadImg = "/assets/icons/game-icons--angry-eyes.svg";
+  } else if (esp === "pensador") {
+    especialidadImg = "/assets/icons/cerebro.svg";
+  }
+
+  contenedorCarta.innerHTML = "";
+
+  contenedor.style.backgroundImage = `url(${carta.fondoFrontal})`;
+
+  contenedorCarta.innerHTML = `
+  <div class="carta-placeholder">
+    <div class="item " id="personaje-historico" data-tilt>
+      <div id="carta-expandir">«»</div>
+      <div class="etiqueta">
+          <span>Personaje Histórico</span>
+          <h1 id="nombre-personaje">${carta.titulo}</h1>
+          <span id="categoria-personaje" class="${carta.categoria[0].clase}">${carta.categoria[0].nombre}</span>
+      </div>
+      <div class="contenedor-caracteristicas">
+          <span id="puntaje-carta-personaje">${carta.puntaje}</span>
+          <span class="conector"></span>
+          <span class="caracteristicas-personaje-frontal ${carta.personalidad[0]?.clase || "punto-basico"}" data-content="${carta.personalidad[0]?.nombre || ""}"><img src="${carta.personalidad[0]?.img || ""}"></span>
+          <span class="conector"></span>
+          <span class="caracteristicas-personaje-frontal ${carta.personalidad[1]?.clase || "punto-basico"}" data-content="${carta.personalidad[1]?.nombre || ""}"><img src="${carta.personalidad[1]?.img || ""}"></span>
+          <span class="conector"></span>
+          <span class="caracteristicas-personaje-frontal ${carta.personalidad[2]?.clase || "punto-basico"}" data-content="${carta.personalidad[2]?.nombre || ""}"><img src="${carta.personalidad[2]?.img || ""}"></span>
+      </div>
+      <div class="contenedor-especialidad">
+          <div class="especialidad-personaje">
+              <img src="${especialidadImg}">
+          </div>
+          <span class="especialidad-nombre">${carta.especialidad}</span>
+      </div>
+      <div class="img-personaje-frontal">
+          <img id="imagen-personaje" class="personaje-historico-item" src="${carta.imagen}" draggable="false">
+      </div>
+      <div id="face-frontal" class="face frontal ${carta.rareza}">
+          <div class="fondo-frontal">
+              <h1 class="etiqueta-fondo" id="etiqueta-fondo-frontal">${carta.categoria[0].nombre}</h1>
+              <img id="fondo-frontal" src="${carta.fondoFrontal}" draggable="false">      
+          </div>
+      </div>
+      <div class="descripcion-personaje-trasera">
+          <div class="carta-personalidad" id="personalidad-personaje">
+              <span class="${carta.personalidad[0]?.clase || ""}">${carta.personalidad[0]?.nombre || ""}</span>
+              <span class="${carta.personalidad[1]?.clase || ""}">${carta.personalidad[1]?.nombre || ""}</span>
+              <span class="${carta.personalidad[2]?.clase || ""}">${carta.personalidad[2]?.nombre || ""}</span>
+          </div>
+          <div class="descripcion-personaje-texto ${carta.colorCarta}" id="descripcion-personaje-texto">
+              <p id="descripcion-personaje">${carta.descripcion}</p>
+          </div>
+          <div class="descripcion-personaje-caracteristicas" id="iconos-personaje">
+              <span class="lugar-personaje ${carta.colorCarta}" data-tippy-content="${carta.lugar ? carta.lugar : "Sin información"}"><img src="/svg/mundo.svg"><img src="${carta.bandera}" id="img-lugar-personaje"></span>
+              <span class="reconocimiento-personaje ${carta.colorCarta}" data-reconocimiento='${JSON.stringify(carta.reconocimiento || [])}'><img src="/svg/ribbon.svg"></span>
+              <span class="tiempo-personaje ${carta.colorCarta}" data-tippy-content="${carta.tiempo ? carta.tiempo : "Sin información"}"><img draggable="false" src="/svg/tiempo.svg"></span>
+          </div>
+      </div>
+      <img id="imagen-personaje-trasera" class="personaje-historico-item-trasera" src="${carta.imagen}" draggable="false">
+      <div id="face-trasera" class="face trasera ${carta.rareza}">
+          <div class="img-personaje-trasera">
+              <h1 class="etiqueta-fondo" id="etiqueta-fondo-trasera">${carta.titulo}</h1>
+              <img id="fondo-trasera" src="${carta.fondoTrasera}">
+          </div>
+      </div>
+  </div>
+  </div>
+  `;
+
+  el("cartaDestacadaTitulo", carta.titulo);
+  el("cartaDestacadaTiempo", carta.tiempo);
+  el("cartaDestacadaDesc", carta.descripcion);
+
+  activarTiltEnNuevasCartas();
+  activarTippyEnNuevasCartas();
+  activarExpandirEnNuevasCartas();
 }
 
 function renderizarHistorialArticulos(historial) {

@@ -3,7 +3,6 @@ require __DIR__ . '/../config/session_config.php';
 require __DIR__ . '/../config/db.php';
 require __DIR__ . '/../middlewares/auth_check.php';
 
-// Recibe los slugs vía query string, ej: ?slugs=sapiens,neandertal,colon
 $slugsParam = $_GET['slugs'] ?? '';
 $slugs = array_filter(array_map('trim', explode(',', $slugsParam)));
 
@@ -12,13 +11,13 @@ if (empty($slugs)) {
     exit;
 }
 
-// Genera los placeholders (?, ?, ?) según la cantidad de slugs recibidos
 $placeholders = implode(',', array_fill(0, count($slugs), '?'));
 
 $stmt = $pdo->prepare("
-    SELECT carta_slug 
-    FROM usuario_cartas 
-    WHERE user_id = ? AND carta_slug IN ($placeholders)
+    SELECT c.slug AS carta_slug
+    FROM usuario_cartas uc
+    JOIN cartas c ON c.id = uc.carta_id
+    WHERE uc.user_id = ? AND c.slug IN ($placeholders)
 ");
 
 $stmt->execute([$_SESSION['user_id'], ...$slugs]);

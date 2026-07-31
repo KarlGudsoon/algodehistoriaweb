@@ -49,12 +49,33 @@ async function obtenerPerfilDashboard() {
   return data.usuario;
 }
 
+async function obtenerCatalogoCartas() {
+  const res = await fetch("/api/cartas/catalogo.php", {
+    credentials: "include",
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Error al obtener catálogo");
+  return data;
+}
+
+async function obtenerCartaDestacada() {
+  const res = await fetch("/api/dashboard/carta_destacada.php", {
+    credentials: "include",
+  });
+  if (res.status === 401) throw new Error("No autenticado");
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data.error || "Error al obtener carta destacada");
+  return data.carta;
+}
+
 async function obtenerArticulosCompletados() {
   const res = await fetch("/api/dashboard/articulos_completados.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
   const data = await res.json();
-  if (!res.ok) throw new Error(data.error || "Error al obtener artículos completados");
+  if (!res.ok)
+    throw new Error(data.error || "Error al obtener artículos completados");
   return data.completados;
 }

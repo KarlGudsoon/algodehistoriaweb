@@ -17,28 +17,33 @@ validarCSRFToken();
 $data = json_decode(file_get_contents('php://input'), true);
 $slug = trim($data['slug'] ?? '');
 
-$rutaCatalogo = __DIR__ . '/../../data/cartas.json';
-$catalogo = json_decode(file_get_contents($rutaCatalogo), true);
-
 if (empty($slug)) {
     http_response_code(400);
     die(json_encode(['error' => 'Falta el slug de la carta']));
 }
 
-$rareza = strtolower($catalogo[$slug]['rareza'] ?? 'comun');
+$stmt = $pdo->prepare('SELECT id, rareza FROM cartas WHERE slug = ?');
+$stmt->execute([$slug]);
+$carta = $stmt->fetch();
 
-// Verificar si el usuario ya tiene esta carta
-$stmt = $pdo->prepare('SELECT id FROM usuario_cartas WHERE user_id = ? AND carta_slug = ?');
-$stmt->execute([$_SESSION['user_id'], $slug]);
+if (!$carta) {
+    http_response_code(404);
+    die(json_encode(['error' => 'Carta no encontrada']));
+}
+
+$cartaId = (int) $carta['id'];
+$rareza = strtolower($carta['rareza']);
+
+$stmt = $pdo->prepare('SELECT id FROM usuario_cartas WHERE user_id = ? AND carta_id = ?');
+$stmt->execute([$_SESSION['user_id'], $cartaId]);
 
 if ($stmt->fetch()) {
     echo json_encode(['message' => 'Ya tienes esta carta', 'nueva' => false]);
     exit;
 }
 
-// Otorgar la carta
-$stmt = $pdo->prepare('INSERT INTO usuario_cartas (user_id, carta_slug) VALUES (?, ?)');
-$stmt->execute([$_SESSION['user_id'], $slug]);
+$stmt = $pdo->prepare('INSERT INTO usuario_cartas (user_id, carta_id) VALUES (?, ?)');
+$stmt->execute([$_SESSION['user_id'], $cartaId]);
 
 $accionXP = "carta_obtenida_{$rareza}";
 $xpGanado = otorgarXP($pdo, $_SESSION['user_id'], $accionXP, $slug);

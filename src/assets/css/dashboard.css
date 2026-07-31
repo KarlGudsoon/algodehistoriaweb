@@ -318,7 +318,6 @@ h1 {
   box-shadow: 1px 2px 5px rgba(233, 42, 65, 0.15);
   border-radius: 1rem;
   display: flex;
-  align-items: center;
   padding: 1rem;
   gap: 1rem;
   position: relative;
@@ -401,6 +400,17 @@ h1 {
   background-size: 100% 100%;
   background-position: center;
   animation: movimiento-fondo 20s infinite ease alternate;
+}
+
+#contenedorCartaDestacada::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color) 0%, transparent 75%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 @keyframes movimiento-fondo {

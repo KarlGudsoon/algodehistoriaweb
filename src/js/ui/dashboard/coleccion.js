@@ -5,7 +5,7 @@ let slugsObtenidosActual = [];
 async function inicializarColeccion() {
   try {
     const datos = await obtenerColeccionDashboard();
-    const catalogoCartas = await fetch("/data/cartas.json").then((r) =>
+    const catalogoCartas = await fetch("/api/cartas/catalogo.php").then((r) =>
       r.json(),
     );
 
@@ -136,9 +136,7 @@ function renderizarColeccionPaises(paisesUsuario) {
 }
 
 function activarTiltEnNuevasCartas() {
-  const nuevasCartas = document.querySelectorAll(
-    "#coleccionCartas [data-tilt]",
-  );
+  const nuevasCartas = document.querySelectorAll("[data-tilt]");
   VanillaTilt.init(nuevasCartas);
 }
 
@@ -178,7 +176,7 @@ function activarTippyEnNuevasCartas() {
 }
 
 function activarExpandirEnNuevasCartas() {
-  const cardCarousel = document.querySelectorAll("#coleccionCartas .item");
+  const cardCarousel = document.querySelectorAll(".item");
 
   cardCarousel.forEach((card) => {
     if (card.dataset.expandirListo === "true") return;

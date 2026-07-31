@@ -1,20 +1,24 @@
 async function otorgarCarta(slug) {
-  const res = await fetch("/api/cartas/otorgar_carta.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRF-Token": window.csrfToken || "",
-    },
-    credentials: "include",
-    body: JSON.stringify({ slug }),
-  });
+  const slugsCartasArticulo = Array.from(Cartas).map((el) => el.dataset.carta);
+  if (slugsCartasArticulo.includes(slug)) {
+    const res = await fetch("/api/cartas/otorgar_carta.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": window.csrfToken || "",
+      },
+      credentials: "include",
+      body: JSON.stringify({ slug }),
+    });
+    if (res.status === 401) throw new Error("No autenticado");
+    if (res.status === 403) throw new Error("Token CSRF inválido");
 
-  if (res.status === 401) throw new Error("No autenticado");
-  if (res.status === 403) throw new Error("Token CSRF inválido");
-
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || "Error al obtener la carta");
-  return data;
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Error al obtener la carta");
+    return data;
+  } else {
+    throw new Error("La carta no esta en el artículo");
+  }
 }
 
 async function obtenerMiColeccionCartas() {

@@ -139,6 +139,7 @@ Paises.forEach((element) => {
 Cartas.forEach((element) => {
   element.addEventListener("click", async () => {
     const slug = element.dataset.carta;
+
     if (!slug || element.classList.contains("open")) return;
 
     try {

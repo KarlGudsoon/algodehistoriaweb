@@ -52,7 +52,7 @@
 </div>
 
 <div class="contenedor-infocards">
-  <div class="infocards skeleton">
+  <div class="infocards items-center skeleton">
     <img class="icon" src="/assets/icons/cards.svg" alt="" />
     <div class="contenido">
       <h3>Articulos</h3>
@@ -64,7 +64,7 @@
       <small>Completados</small>
     </div>
   </div>
-  <div class="infocards skeleton">
+  <div class="infocards items-center skeleton">
     <img class="icon" src="/assets/icons/cards.svg" alt="" />
     <div class="contenido">
       <h3>Cartas</h3>
@@ -76,7 +76,7 @@
       <small>Obtenidas</small>
     </div>
   </div>
-  <div class="infocards skeleton">
+  <div class="infocards items-center skeleton">
     <img class="icon" src="/assets/icons/cards.svg" alt="" />
     <div class="contenido">
       <h3>Países</h3>
@@ -88,12 +88,12 @@
       <small>Descubiertos</small>
     </div>
   </div>
-  <div class="infocards skeleton"></div>
+  <div class="infocards items-center skeleton"></div>
 </div>
 <div class="contenedor-infocards flex-1 flex">
   <div
     id="articuloReciente"
-    class="infocards relative bg-cover !gap-0 !p-0 !flex-none flex-col !items-start !w-fit"
+    class="infocards skeleton relative bg-cover !gap-0 !p-0 !flex-none flex-col !items-start max-w-[600px] w-full"
   >
     <div
       class="flex gap-2 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
@@ -118,7 +118,27 @@
       </div>
     </div>
   </div>
-  <div class="infocards flex-1"></div>
+  <div
+    class="infocards flex-col bg-cover relative !p-0 w-full max-w-[600px] !gap-0"
+    id="contenedorCartaDestacada"
+  >
+    <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
+      <img src="/assets/icons/colorcards.svg" alt="" />
+      <h2 class="m-0 text-white">Carta destacada</h2>
+    </div>
+    <div class="flex z-10 gap-2 flex-1 p-4 items-center">
+      <div class="flex-1 text-white" id="cartaNuevaDatos">
+        <span class="bg-[--primary-color] px-2 rounded-xl">Nueva</span>
+        <h2 class="mt-0" id="cartaDestacadaTitulo"></h2>
+        <span id="cartaDestacadaTiempo"></span>
+        <p id="cartaDestacadaDesc"></p>
+      </div>
+      <div
+        class="flex-1 flex justify-center items-center"
+        id="cartaDestacada"
+      ></div>
+    </div>
+  </div>
   <div class="infocards flex-1"></div>
 </div>
 <div class="contenedor-infocards flex-1 flex">
