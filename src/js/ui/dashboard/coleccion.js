@@ -132,7 +132,7 @@ function renderizarCartaHtml(slug, carta, slugsObtenidos) {
 function renderizarColeccionPaises(paisesUsuario) {
   const contenedor = document.getElementById("coleccionPaises");
   contenedor.innerHTML = `<p>Países obtenidos: ${paisesUsuario.length}</p>`;
-  // Ajusta esto cuando definas el catálogo de países, igual que hicimos con cartas.json
+  // La cápsula de países vive en la vista "paises" (js/ui/dashboard/paises.js)
 }
 
 function activarTiltEnNuevasCartas() {

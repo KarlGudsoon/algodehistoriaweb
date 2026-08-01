@@ -1,0 +1,149 @@
+:root {
+  --red: #e92a41;
+  --yellow: #ffa218;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(
+    ellipse at center,
+    #0b1a2a 0%,
+    #050a12 55%,
+    #020408 100%
+  );
+}
+
+#globoViz {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.volver {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 10;
+  background: rgba(233, 42, 65, 0.85);
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+  transition: 0.2s ease;
+}
+
+.volver:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+.titulo-globo {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+  color: white;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.titulo-globo h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.titulo-globo p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.controles-globo {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.boton-rotacion {
+  background: rgba(233, 42, 65, 0.85);
+  color: white;
+  border: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 24px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.boton-rotacion:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+.selector-mapa {
+  background: rgba(233, 42, 65, 0.85);
+  color: white;
+  border: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 15px;
+  padding: 10px 14px;
+  border-radius: 24px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.selector-mapa:focus {
+  outline: none;
+  background: var(--red);
+}
+
+.selector-mapa option {
+  background: #1b1621;
+  color: white;
+}
+
+.scene-tooltip {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 13px;
+  background: rgba(233, 42, 65, 0.95);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 640px) {
+  .titulo-globo h1 {
+    font-size: 20px;
+  }
+
+  .titulo-globo p {
+    font-size: 11px;
+    padding: 0 60px;
+  }
+}

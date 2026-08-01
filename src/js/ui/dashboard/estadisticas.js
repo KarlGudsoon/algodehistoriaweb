@@ -3,7 +3,7 @@ async function inicializarEstadisticas() {
     const { cantidad: totalCartas } = await fetch(
       "/api/cartas/cantidad_cartas.php",
     ).then((r) => r.json());
-    const catalogoPaises = await fetch("/data/paises.json").then((r) =>
+    const catalogoPaises = await fetch("/api/paises/catalogo.php").then((r) =>
       r.json(),
     );
     const totalPaises = Object.keys(catalogoPaises).length;

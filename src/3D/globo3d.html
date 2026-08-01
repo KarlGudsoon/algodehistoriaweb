@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Globo 3D — Algo de Historia</title>
+    <link rel="stylesheet" href="/3D/globo3d.css" />
+  </head>
+  <body>
+    <a class="volver" href="/3D/menu3D.html">← Volver</a>
+
+    <div class="titulo-globo">
+      <h1>Planeta Tierra</h1>
+      <p>
+        Arrastra para girar · Usa la rueda para hacer zoom · Pasa el mouse por un
+        país para explorarlo
+      </p>
+    </div>
+
+    <div id="globoViz"></div>
+
+    <div class="controles-globo">
+      <select id="selectorMapa" class="selector-mapa" aria-label="Elegir mapa">
+        <option>Cargando mapas…</option>
+      </select>
+      <button id="botonRotacion" class="boton-rotacion" type="button">
+        Detener rotación
+      </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.32.1/dist/globe.gl.min.js"></script>
+    <script src="/3D/globo3d.js"></script>
+  </body>
+</html>

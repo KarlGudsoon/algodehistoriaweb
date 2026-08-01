@@ -338,6 +338,93 @@ INSERT INTO `personalidades` (`id`, `nombre`, `icono`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `paises`
+--
+
+CREATE TABLE `paises` (
+  `id` int NOT NULL,
+  `slug` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `color_fondo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `etiqueta_texto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `etiqueta_clase` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bandera` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `economia` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `politica` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `territorio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `tiempo_inicio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tiempo_fin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `personaje` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fondo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `paises`
+--
+
+INSERT INTO `paises` (`id`, `slug`, `nombre`, `color_fondo`, `descripcion`, `etiqueta_texto`, `etiqueta_clase`, `bandera`, `economia`, `politica`, `territorio`, `tiempo_inicio`, `tiempo_fin`, `personaje`, `fondo`) VALUES
+(1, 'imperioinca', 'Imperio Inca', 'rgba(32, 102, 5, 0.6)', 'El Imperio Inca, llamado Tahuantinsuyo, fue el imperio más grande de la América precolombina, que se extendió desde Ecuador hasta Chile y Argentina entre los siglos XV y XVI, con su centro en la ciudad de Cusco.', 'Imperio Precolombino', 'etiqueta-precolombino', '/img/banderas/estandarte-inca.svg', 'Economía basada en la agricultura, el comercio y el tributo.', 'Sistema de gobierno centralizado con un emperador (Sapa Inca)', 'Ubicación: Región andina de América del Sur, principalmente en Perú, Ecuador, Bolivia y partes de Chile y Argentina.', 'Siglo XV', '1533', NULL, '/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp'),
+(2, 'imperioespañol', 'Imperio Español', 'rgba(188, 22, 42, 0.6)', 'El Imperio Español fue uno de los imperios más grandes de la historia, abarcando territorios en Europa, América, Asia y África desde el siglo XV hasta el siglo XIX.', 'Imperio Colonial', 'etiqueta-moderna', '/img/banderas/bandera-imperio-español.webp', 'Economía basada en la explotación de metales preciosos como oro y plata, el comercio transatlántico, la agricultura de plantación en América y el sistema de encomiendas.', 'Monarquía absoluta con un sistema de virreinatos y gobernadores para administrar los territorios coloniales.', 'Territorios en Europa (España, Portugal por unión dinástica), gran parte de América (desde México hasta el Cono Sur, además del Caribe), Filipinas y otras islas en Asia, así como enclaves en África.', '1492', '1898', NULL, '/img/moderna/fondo.webp'),
+(3, 'reinochile', 'Reino de Chile', 'rgba(0, 80, 158, 0.6)', 'El Reino de Chile fue una entidad territorial del Imperio Español en América del Sur, establecida tras la conquista y consolidación de Pedro de Valdivia, gobernada por la Corona española desde la fundación de Santiago en 1541 hasta el proceso de independencia de Chile.', 'Reino Colonial', 'etiqueta-moderna', '/img/banderas/bandera-imperio-español.webp', 'Economía colonial basada en la agricultura, la ganadería, el trabajo de los indígenas en encomiendas y la extracción de oro y plata.', 'Colonia gobernada por un Gobernador y Capitán General nombrado por la Corona española, con la Real Audiencia como tribunal superior.', 'Territorio de la Capitanía General de Chile, que se extendía desde el desierto de Atacama hasta la frontera del río Biobío, limitando al sur con el territorio mapuche independiente.', '1541', '1818', '/img/moderna/descubrimiento-chile/pedro-valdivia.png', '/img/moderna/descubrimiento-chile/fundacionsantiago.webp');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `paises_logros`
+--
+
+CREATE TABLE `paises_logros` (
+  `id` int NOT NULL,
+  `pais_id` int NOT NULL,
+  `orden` tinyint NOT NULL,
+  `texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `icono` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `paises_logros`
+--
+
+INSERT INTO `paises_logros` (`id`, `pais_id`, `orden`, `texto`, `icono`, `imagen`) VALUES
+(1, 1, 1, 'Construcción de una vasta red de caminos y puentes.', '/assets/icons/recorrido.svg', NULL),
+(2, 1, 2, 'Desarrollo de técnicas agrícolas avanzadas, como las terrazas.', '/assets/icons/trigo.svg', NULL),
+(3, 1, 3, 'Sistema de administración eficiente y centralizada.', '/assets/icons/inca.svg', NULL),
+(4, 2, 1, 'Primer imperio global con territorios en los cinco continentes.', '/assets/icons/subway--world-1.svg', '/img/moderna/1423px-F0087_Louvre_Gellee_port_au_soleil_couchant-_INV4715_rwk.webp'),
+(5, 2, 2, 'Desarrollo del comercio transatlántico y la ruta de Manila-Acapulco.', '/assets/icons/moneda.svg', '/img/moderna/fondo.webp'),
+(6, 2, 3, 'Difusión de la lengua española, el cristianismo y la cultura europea en América y Asia.', '/assets/icons/corona.png', '/img/moderna/Lorrain.seaport.webp'),
+(7, 3, 1, 'Fundación de Santiago del Nuevo Extremo en 1541 y consolidación de la conquista.', '/assets/icons/bandera.svg', NULL),
+(8, 3, 2, 'Organización colonial con instituciones como la Real Audiencia y el sistema de encomiendas.', '/assets/icons/gobierno.svg', NULL),
+(9, 3, 3, 'Resistencia en la Guerra de Arauco y defensa de la frontera del río Biobío frente al territorio mapuche.', '/assets/icons/arma.svg', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `paises_acontecimientos`
+--
+
+CREATE TABLE `paises_acontecimientos` (
+  `id` int NOT NULL,
+  `pais_id` int NOT NULL,
+  `orden` tinyint NOT NULL,
+  `texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `paises_acontecimientos`
+--
+
+INSERT INTO `paises_acontecimientos` (`id`, `pais_id`, `orden`, `texto`) VALUES
+(1, 2, 0, 'Origen'),
+(2, 2, 1, 'Termino'),
+(3, 3, 0, 'Fundación de Santiago del Nuevo Extremo'),
+(4, 3, 1, 'Proceso de independencia de Chile');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -396,7 +483,7 @@ INSERT INTO `usuario_experiencia` (`user_id`, `xp_total`) VALUES
 CREATE TABLE `usuario_paises` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
-  `pais_slug` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pais_id` int NOT NULL,
   `fecha_obtenida` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -404,10 +491,10 @@ CREATE TABLE `usuario_paises` (
 -- Volcado de datos para la tabla `usuario_paises`
 --
 
-INSERT INTO `usuario_paises` (`id`, `user_id`, `pais_slug`, `fecha_obtenida`) VALUES
-(13, 1, 'imperioespañol', '2026-07-22 18:34:46'),
-(14, 1, 'reinochile', '2026-07-22 19:20:45'),
-(15, 1, 'imperioinca', '2026-07-28 05:19:54');
+INSERT INTO `usuario_paises` (`id`, `user_id`, `pais_id`, `fecha_obtenida`) VALUES
+(13, 1, 2, '2026-07-22 18:34:46'),
+(14, 1, 3, '2026-07-22 19:20:45'),
+(15, 1, 1, '2026-07-28 05:19:54');
 
 -- --------------------------------------------------------
 
@@ -517,6 +604,27 @@ ALTER TABLE `personalidades`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `paises`
+--
+ALTER TABLE `paises`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
+
+--
+-- Indices de la tabla `paises_acontecimientos`
+--
+ALTER TABLE `paises_acontecimientos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pais_id` (`pais_id`);
+
+--
+-- Indices de la tabla `paises_logros`
+--
+ALTER TABLE `paises_logros`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pais_id` (`pais_id`);
+
+--
 -- Indices de la tabla `articulos`
 --
 ALTER TABLE `articulos`
@@ -563,7 +671,8 @@ ALTER TABLE `usuario_experiencia`
 --
 ALTER TABLE `usuario_paises`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `pais_id` (`pais_id`);
 
 --
 -- Indices de la tabla `xp_configuracion`
@@ -611,6 +720,24 @@ ALTER TABLE `periodos_historicos`
 --
 ALTER TABLE `personalidades`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `paises`
+--
+ALTER TABLE `paises`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `paises_acontecimientos`
+--
+ALTER TABLE `paises_acontecimientos`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `paises_logros`
+--
+ALTER TABLE `paises_logros`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
@@ -715,7 +842,20 @@ ALTER TABLE `usuario_experiencia`
 -- Filtros para la tabla `usuario_paises`
 --
 ALTER TABLE `usuario_paises`
-  ADD CONSTRAINT `usuario_paises_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `usuario_paises_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `usuario_paises_ibfk_2` FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `paises_acontecimientos`
+--
+ALTER TABLE `paises_acontecimientos`
+  ADD CONSTRAINT `paises_acontecimientos_ibfk_1` FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `paises_logros`
+--
+ALTER TABLE `paises_logros`
+  ADD CONSTRAINT `paises_logros_ibfk_1` FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `xp_historial`

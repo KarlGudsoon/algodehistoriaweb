@@ -17,16 +17,27 @@ if (empty($slug)) {
     die(json_encode(['error' => 'Falta el slug del país']));
 }
 
-$stmt = $pdo->prepare('SELECT id FROM usuario_paises WHERE user_id = ? AND pais_slug = ?');
-$stmt->execute([$_SESSION['user_id'], $slug]);
+$stmt = $pdo->prepare('SELECT id FROM paises WHERE slug = ?');
+$stmt->execute([$slug]);
+$pais = $stmt->fetch();
+
+if (!$pais) {
+    http_response_code(404);
+    die(json_encode(['error' => 'País no encontrado']));
+}
+
+$paisId = (int) $pais['id'];
+
+$stmt = $pdo->prepare('SELECT id FROM usuario_paises WHERE user_id = ? AND pais_id = ?');
+$stmt->execute([$_SESSION['user_id'], $paisId]);
 
 if ($stmt->fetch()) {
     echo json_encode(['message' => 'Ya tienes este país', 'nueva' => false]);
     exit;
 }
 
-$stmt = $pdo->prepare('INSERT INTO usuario_paises (user_id, pais_slug) VALUES (?, ?)');
-$stmt->execute([$_SESSION['user_id'], $slug]);
+$stmt = $pdo->prepare('INSERT INTO usuario_paises (user_id, pais_id) VALUES (?, ?)');
+$stmt->execute([$_SESSION['user_id'], $paisId]);
 
 $xpGanado = otorgarXP($pdo, $_SESSION['user_id'], 'pais_obtenido', $slug);
 

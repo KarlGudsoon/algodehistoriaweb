@@ -16,7 +16,12 @@ $stmt = $pdo->prepare('
 $stmt->execute([$userId]);
 $cartas = $stmt->fetchAll();
 
-$stmt = $pdo->prepare('SELECT pais_slug, fecha_obtenida FROM usuario_paises WHERE user_id = ?');
+$stmt = $pdo->prepare('
+    SELECT p.slug AS pais_slug, up.fecha_obtenida
+    FROM usuario_paises up
+    JOIN paises p ON p.id = up.pais_id
+    WHERE up.user_id = ?
+');
 $stmt->execute([$userId]);
 $paises = $stmt->fetchAll();
 

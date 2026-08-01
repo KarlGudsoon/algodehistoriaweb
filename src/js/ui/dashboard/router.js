@@ -8,6 +8,10 @@ const rutasDashboard = {
     html: "/dashboard/views/coleccion.html",
     init: () => inicializarColeccion(),
   },
+  paises: {
+    html: "/dashboard/views/paises.html",
+    init: () => inicializarPaises(),
+  },
   perfil: {
     html: "/dashboard/views/perfil.html",
     init: () => inicializarPerfil(),

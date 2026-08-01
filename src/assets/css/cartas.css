@@ -1414,6 +1414,7 @@
   height: 300px;
   bottom: -400px;
   opacity: 1;
+  color: white;
   background-color: rgba(105, 105, 105, 0.562);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
@@ -1422,7 +1423,6 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  align-items: center;
   box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5);
   pointer-events: all;
   transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -1433,8 +1433,9 @@
   opacity: 1;
 }
 
-.capsula-pais h1 {
+.capsula-pais h2 {
   font: 900 2rem BreeSerif;
+  margin: 0;
 }
 
 #capsula-pais-nombre {
@@ -1450,6 +1451,14 @@
   height: 2rem;
 }
 
+.capsula-pais .skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  color: transparent;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -1461,8 +1470,7 @@
 
 .descripcion-pais {
   width: 100%;
-  height: 100%;
-  flex: 1;
+  flex: 1 auto;
   padding: 2rem;
   position: relative;
   margin: 0;
@@ -1472,13 +1480,13 @@
   display: flex;
 }
 
-.capsula-pais .fecha-periodo h1 {
+.capsula-pais .fecha-periodo h3 {
   font-size: 2rem;
   width: max-content;
 }
 
-.capsula-pais .fecha-periodo h1::before,
-.capsula-pais .fecha-periodo h1::after {
+.capsula-pais .fecha-periodo h3::before,
+.capsula-pais .fecha-periodo h3::after {
   opacity: 1;
   top: -12px;
 }
@@ -1567,6 +1575,7 @@
   margin-right: 0.5rem;
   background-color: rgb(0 0 0 / 0.2);
   padding: 5px;
+  box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
@@ -1618,6 +1627,7 @@
   width: 100%;
   height: 100%;
   padding: 1rem;
+  box-sizing: border-box;
   background-color: rgb(0 0 0 / 0.35);
 }
 
@@ -1685,6 +1695,116 @@
   align-items: center;
   cursor: pointer;
   transition: 0.3s ease;
+}
+
+.contenedor-fecha-periodo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 2rem;
+  max-width: 400px;
+}
+
+.fecha-periodo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  transition: 0.2s ease;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.fecha-periodo h3 {
+  font: 900 3rem BreeSerif !important;
+  width: fit-content;
+  color: white;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.fecha-inicio {
+  transition: 0.5s ease;
+}
+
+.fecha-termino {
+  transition: 0.5s ease;
+}
+
+.fecha-inicio:hover::before {
+  opacity: 0.5;
+}
+
+.fecha-termino:hover::before {
+  opacity: 0.5;
+}
+
+.fecha-periodo[simple="true"] .fecha-inicio::before,
+.fecha-periodo[simple="true"] .fecha-termino::before {
+  display: none;
+}
+
+.fecha-inicio::before {
+  content: "Inicio";
+  width: fit-content;
+  height: fit-content;
+  font: 300 0.8rem Roboto;
+  padding: 0 0.5rem;
+  color: white;
+  background-color: rgb(0 0 0 / 35%);
+  position: absolute;
+  border-radius: 1rem;
+  z-index: -1;
+  top: -5%;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.fecha-termino::before {
+  content: "Termino";
+  width: fit-content;
+  height: fit-content;
+  font: 300 0.8rem Roboto;
+  padding: 0 0.5rem;
+  color: white;
+  background-color: rgb(0 0 0 / 35%);
+  position: absolute;
+  border-radius: 1rem;
+  z-index: -1;
+  top: -5%;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.fecha-periodo p {
+  position: relative;
+  margin: 0;
+  font-size: 0.8rem;
+  max-width: 200px;
+}
+
+.fecha-periodo span {
+  content: "";
+  width: 0.5rem;
+  position: relative;
+  height: 1rem;
+  background-color: white;
+  clip-path: polygon(100% 0, 100% 100%, 0% 50%);
+}
+
+.fecha-periodo:hover {
+  opacity: 1;
+}
+
+.separador-periodo {
+  height: 0;
+  width: 100%;
+  background-color: transparent;
+  border-top: dotted 0.35rem white;
 }
 
 /* Carta civilización/pais/nacion/imperio */
