@@ -5,6 +5,7 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
+  overflow: hidden;
 }
 
 main {
@@ -13,6 +14,7 @@ main {
   flex-direction: column;
   gap: 0.75rem;
   background-color: #fefefe;
+  overflow: auto;
 }
 
 h1 {
@@ -218,11 +220,34 @@ h1 {
 
 #contenedor-principal {
   flex: 1;
-  padding: 1rem 2rem;
   flex-direction: column;
   overflow: auto;
   display: flex;
   gap: 1rem;
+}
+
+.vista-paises {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#globoPaises {
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+#globoPaises canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 #coleccionCartas {
@@ -425,10 +450,11 @@ h1 {
 @media screen and (max-width: 768px) {
   body {
     flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
   }
   main {
     margin: 0 0 0 0;
-    padding: 0.5rem;
   }
 
   .contenedor-logo {

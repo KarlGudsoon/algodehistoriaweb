@@ -1,174 +1,179 @@
-<div class="header flex-wrap">
-  <div class="bienvenida">
-    <div class="usuarioAvatar"></div>
-    <div class="flex flex-col gap-2 justify-center">
-      <h2>¡Hola, <span id="nombreUsuario"></span>!</h2>
-      <span class="nombreNivel">Explorador histórico</span>
-      <p>Sigue aprendiendo sobre historia y ve tus estadisticas</p>
-    </div>
-  </div>
-  <div class="flex flex-1 gap-2 justify-around flex-wrap">
-    <div class="contenedor-nivel">
-      <div class="h-[100px]" id="insignia-nivel">
-        <img
-          class="h-full drop-shadow-md"
-          src="/assets/icons/insignias/1.svg"
-          alt=""
-        />
+<div class="px-8 py-4 flex flex-col flex-1 gap-4">
+  <div class="header flex-wrap">
+    <div class="bienvenida">
+      <div class="usuarioAvatar"></div>
+      <div class="flex flex-col gap-2 justify-center">
+        <h2>¡Hola, <span id="nombreUsuario"></span>!</h2>
+        <span class="nombreNivel">Explorador histórico</span>
+        <p>Sigue aprendiendo sobre historia y ve tus estadisticas</p>
       </div>
-      <div class="info-nivel w-full flex flex-col gap-2">
-        <div class="texto-nivel">
-          <span
-            class="font-bold px-3 py-1 rounded-2xl bg-black bg-opacity-10"
-            id="nivelUsuario"
-          ></span>
-          <div class="xp">
-            <span id="xpActual"></span> / <span id="xpSiguiente"></span> XP
+    </div>
+    <div class="flex flex-1 gap-2 justify-around flex-wrap">
+      <div class="contenedor-nivel">
+        <div class="h-[100px]" id="insignia-nivel">
+          <img
+            class="h-full drop-shadow-md"
+            src="/assets/icons/insignias/1.svg"
+            alt=""
+          />
+        </div>
+        <div class="info-nivel w-full flex flex-col gap-2">
+          <div class="texto-nivel">
+            <span
+              class="font-bold px-3 py-1 rounded-2xl bg-black bg-opacity-10"
+              id="nivelUsuario"
+            ></span>
+            <div class="xp">
+              <span id="xpActual"></span> / <span id="xpSiguiente"></span> XP
+            </div>
+          </div>
+          <div class="progreso-nivel shadow-sm">
+            <div class="shadow-md" id="barraNivel"></div>
           </div>
         </div>
-        <div class="progreso-nivel shadow-sm">
-          <div class="shadow-md" id="barraNivel"></div>
+      </div>
+      <div class="flex flex-col gap-2 items-center justify-center">
+        <div class="flex gap-2 items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.5rem"
+            height="1.5rem"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="#fde047"
+              d="M4 20h16v2H4zM21 5a1 1 0 0 0-1 1a.9.9 0 0 0 .064.332a1.1 1.1 0 0 0 .167.283l-2.12 1.692L15.994 10L14.24 6.927l-1.752-3.072a1.05 1.05 0 0 0 .369-.353A.95.95 0 0 0 13 3a1 1 0 1 0-2 0a.95.95 0 0 0 .143.502a1.05 1.05 0 0 0 .369.353L9.757 6.927L8.002 10L5.886 8.308L3.769 6.615a1.1 1.1 0 0 0 .167-.283A.9.9 0 0 0 4 6a1 1 0 1 0-1 1a.2.2 0 0 0 .041-.007a.2.2 0 0 1 .041-.01l.459 5.509L4 18h16l.459-5.508l.459-5.509a.2.2 0 0 1 .04.01A.2.2 0 0 0 21 7a1 1 0 1 0 0-2"
+            />
+          </svg>
+          <h3 class="m-0">Puntos</h3>
+        </div>
+        <span
+          class="text-3xl font-extrabold text-yellow-300"
+          id="xpTotal"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor-infocards">
+    <div class="infocards items-center skeleton">
+      <img class="icon" src="/assets/icons/cards.svg" alt="" />
+      <div class="contenido">
+        <h3>Articulos</h3>
+        <div class="infocards-progreso">
+          <span id="articulosCompletados" class="bold"></span>/<span
+            id="articulosTotales"
+          ></span>
+        </div>
+        <small>Completados</small>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <img class="icon" src="/assets/icons/cards.svg" alt="" />
+      <div class="contenido">
+        <h3>Cartas</h3>
+        <div class="infocards-progreso">
+          <span id="cartasObtenidas" class="bold"></span>/<span
+            id="cartasTotales"
+          ></span>
+        </div>
+        <small>Obtenidas</small>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <img class="icon" src="/assets/icons/cards.svg" alt="" />
+      <div class="contenido">
+        <h3>Países</h3>
+        <div class="infocards-progreso">
+          <span id="paisesDescubiertos" class="bold"></span>/<span
+            id="paisesTotales"
+          ></span>
+        </div>
+        <small>Descubiertos</small>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton"></div>
+  </div>
+  <div class="contenedor-infocards flex-1 flex">
+    <div
+      id="articuloReciente"
+      class="infocards skeleton relative bg-cover !gap-0 !p-0 flex-col items-center"
+    >
+      <div
+        class="flex gap-2 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
+      >
+        <img src="/assets/icons/articulo.svg" alt="" />
+        <h2 class="m-0">Artículo reciente</h2>
+      </div>
+      <div class="flex gap-4 flex-1 p-4">
+        <div class="flex justify-center w-full max-w-40">
+          <img
+            class="relative w-full overflow-visible h-auto object-cover bottom-[-25px] left-0"
+            id="personajeArtReciente"
+            src=""
+            alt=""
+          />
+        </div>
+        <div class="p-6 bg-black bg-opacity-35 rounded-xl">
+          <span id="badgeArticulo"></span>
+          <h2 class="mt-0 text-white" id="tituloArtReciente"></h2>
+          <p class="max-w-80 text-white" id="descArtReciente"></p>
+          <a id="urlArtReciente" href="">Ver articulo</a>
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-2 items-center justify-center">
-      <div class="flex gap-2 items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1.5rem"
-          height="1.5rem"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="#fde047"
-            d="M4 20h16v2H4zM21 5a1 1 0 0 0-1 1a.9.9 0 0 0 .064.332a1.1 1.1 0 0 0 .167.283l-2.12 1.692L15.994 10L14.24 6.927l-1.752-3.072a1.05 1.05 0 0 0 .369-.353A.95.95 0 0 0 13 3a1 1 0 1 0-2 0a.95.95 0 0 0 .143.502a1.05 1.05 0 0 0 .369.353L9.757 6.927L8.002 10L5.886 8.308L3.769 6.615a1.1 1.1 0 0 0 .167-.283A.9.9 0 0 0 4 6a1 1 0 1 0-1 1a.2.2 0 0 0 .041-.007a.2.2 0 0 1 .041-.01l.459 5.509L4 18h16l.459-5.508l.459-5.509a.2.2 0 0 1 .04.01A.2.2 0 0 0 21 7a1 1 0 1 0 0-2"
-          />
-        </svg>
-        <h3 class="m-0">Puntos</h3>
-      </div>
-      <span class="text-3xl font-extrabold text-yellow-300" id="xpTotal"></span>
-    </div>
-  </div>
-</div>
-
-<div class="contenedor-infocards">
-  <div class="infocards items-center skeleton">
-    <img class="icon" src="/assets/icons/cards.svg" alt="" />
-    <div class="contenido">
-      <h3>Articulos</h3>
-      <div class="infocards-progreso">
-        <span id="articulosCompletados" class="bold"></span>/<span
-          id="articulosTotales"
-        ></span>
-      </div>
-      <small>Completados</small>
-    </div>
-  </div>
-  <div class="infocards items-center skeleton">
-    <img class="icon" src="/assets/icons/cards.svg" alt="" />
-    <div class="contenido">
-      <h3>Cartas</h3>
-      <div class="infocards-progreso">
-        <span id="cartasObtenidas" class="bold"></span>/<span
-          id="cartasTotales"
-        ></span>
-      </div>
-      <small>Obtenidas</small>
-    </div>
-  </div>
-  <div class="infocards items-center skeleton">
-    <img class="icon" src="/assets/icons/cards.svg" alt="" />
-    <div class="contenido">
-      <h3>Países</h3>
-      <div class="infocards-progreso">
-        <span id="paisesDescubiertos" class="bold"></span>/<span
-          id="paisesTotales"
-        ></span>
-      </div>
-      <small>Descubiertos</small>
-    </div>
-  </div>
-  <div class="infocards items-center skeleton"></div>
-</div>
-<div class="contenedor-infocards flex-1 flex">
-  <div
-    id="articuloReciente"
-    class="infocards skeleton relative bg-cover !gap-0 !p-0 flex-col items-center"
-  >
     <div
-      class="flex gap-2 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
+      class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
+      id="contenedorCartaDestacada"
     >
-      <img src="/assets/icons/articulo.svg" alt="" />
-      <h2 class="m-0">Artículo reciente</h2>
-    </div>
-    <div class="flex gap-4 flex-1 p-4">
-      <div class="flex justify-center w-full max-w-40">
-        <img
-          class="relative w-full overflow-visible h-auto object-cover bottom-[-25px] left-0"
-          id="personajeArtReciente"
-          src=""
-          alt=""
-        />
+      <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
+        <img src="/assets/icons/colorcards.svg" alt="" />
+        <h2 class="m-0 text-white">Carta destacada</h2>
       </div>
-      <div class="p-6 bg-black bg-opacity-35 rounded-xl">
-        <span id="badgeArticulo"></span>
-        <h2 class="mt-0 text-white" id="tituloArtReciente"></h2>
-        <p class="max-w-80 text-white" id="descArtReciente"></p>
-        <a id="urlArtReciente" href="">Ver articulo</a>
+      <div class="flex mx-6 z-10 gap-2 flex-1 p-4 items-center">
+        <div class="flex-1 text-white max-w-80" id="cartaNuevaDatos">
+          <span
+            class="bg-green-600 mb-2 px-2 rounded-xl"
+            id="badgeCartaDestacada"
+          ></span>
+          <h2 class="mt-0" id="cartaDestacadaTitulo"></h2>
+          <span id="cartaDestacadaTiempo"></span>
+          <p id="cartaDestacadaDesc"></p>
+        </div>
+        <div
+          class="flex-1 flex justify-center items-center"
+          id="cartaDestacada"
+        ></div>
+      </div>
+    </div>
+    <div
+      class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
+      id="contenedorPaisDestacada"
+    >
+      <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
+        <img src="/assets/icons/colorcards.svg" alt="" />
+        <h2 class="m-0 text-white">País descubierto</h2>
+      </div>
+      <div class="flex mx-6 z-10 gap-2 flex-1 p-4 items-center">
+        <div class="flex-1 text-white max-w-80" id="cartaNuevaDatos">
+          <span
+            class="bg-green-600 mb-2 px-2 rounded-xl"
+            id="badgeCartaDestacada"
+          ></span>
+          <h2 class="mt-0" id="paisDestacadoTitulo"></h2>
+          <span id="paisDestacadoTiempo"></span>
+          <p id="paisDestacadoDesc"></p>
+        </div>
+        <div
+          class="flex-1 flex justify-center items-center"
+          id="paisDestacado"
+        ></div>
       </div>
     </div>
   </div>
-  <div
-    class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
-    id="contenedorCartaDestacada"
-  >
-    <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
-      <img src="/assets/icons/colorcards.svg" alt="" />
-      <h2 class="m-0 text-white">Carta destacada</h2>
-    </div>
-    <div class="flex mx-6 z-10 gap-2 flex-1 p-4 items-center">
-      <div class="flex-1 text-white max-w-80" id="cartaNuevaDatos">
-        <span
-          class="bg-green-600 mb-2 px-2 rounded-xl"
-          id="badgeCartaDestacada"
-        ></span>
-        <h2 class="mt-0" id="cartaDestacadaTitulo"></h2>
-        <span id="cartaDestacadaTiempo"></span>
-        <p id="cartaDestacadaDesc"></p>
-      </div>
-      <div
-        class="flex-1 flex justify-center items-center"
-        id="cartaDestacada"
-      ></div>
-    </div>
+  <div class="contenedor-infocards flex-1 flex">
+    <div class="infocards flex-1"></div>
   </div>
-  <div
-    class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
-    id="contenedorPaisDestacada"
-  >
-    <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
-      <img src="/assets/icons/colorcards.svg" alt="" />
-      <h2 class="m-0 text-white">País descubierto</h2>
-    </div>
-    <div class="flex mx-6 z-10 gap-2 flex-1 p-4 items-center">
-      <div class="flex-1 text-white max-w-80" id="cartaNuevaDatos">
-        <span
-          class="bg-green-600 mb-2 px-2 rounded-xl"
-          id="badgeCartaDestacada"
-        ></span>
-        <h2 class="mt-0" id="paisDestacadoTitulo"></h2>
-        <span id="paisDestacadoTiempo"></span>
-        <p id="paisDestacadoDesc"></p>
-      </div>
-      <div
-        class="flex-1 flex justify-center items-center"
-        id="paisDestacado"
-      ></div>
-    </div>
-  </div>
-</div>
-<div class="contenedor-infocards flex-1 flex">
-  <div class="infocards flex-1"></div>
-</div>
 
-<div id="historialArticulos"></div>
+  <div id="historialArticulos"></div>
+</div>

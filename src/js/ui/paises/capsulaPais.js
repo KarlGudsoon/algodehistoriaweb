@@ -7,6 +7,9 @@
   let economiaPais = null;
   let politicaPais = null;
   let territorioPais = null;
+  let evolucionesNavegacion = null;
+  let indiceEvolucion = 0;
+  let paisActual = null;
 
   if (typeof window.sonidoSeleccion !== "function") {
     window.sonidoSeleccion = function () {
@@ -30,13 +33,17 @@
   }
 
   function crearTippyInstancias() {
-    [fechaInicio, fechaTermino, economiaPais, politicaPais, territorioPais].forEach(
-      (instancia) => {
-        if (instancia) {
-          instancia[0] && instancia[0].destroy();
-        }
-      },
-    );
+    [
+      fechaInicio,
+      fechaTermino,
+      economiaPais,
+      politicaPais,
+      territorioPais,
+    ].forEach((instancia) => {
+      if (instancia) {
+        instancia[0] && instancia[0].destroy();
+      }
+    });
 
     const existeElemento = (id) => document.getElementById(id);
 
@@ -102,24 +109,92 @@
 
       elemento.addEventListener("click", () => {
         const idPais = elemento.getAttribute("data-pais");
-
-        if (paises[idPais]) {
-          mostrarSkeletonPais();
-          actualizarPais(paises[idPais], idPais);
-          document
-            .querySelector(".contenedor-capsula-pais")
-            .classList.add("active");
-          document.querySelector(".capsula-pais").classList.add("active");
-          vincularSkeletonImagenes();
-          sonidoSeleccion();
-        } else {
-          console.error("Pais no encontrado en catálogo:", idPais);
-        }
+        abrirCapsulaPais(idPais);
       });
     });
   }
 
+  async function abrirCapsula(slug) {
+    const catalogo = await cargarCatalogoPaises();
+    const pais = catalogo[slug];
+
+    if (!pais) {
+      console.error("Pais no encontrado en catálogo:", slug);
+      return;
+    }
+
+    mostrarSkeletonPais();
+    actualizarPais(pais, slug);
+    document
+      .querySelector(".contenedor-capsula-pais")
+      .classList.add("active");
+    document.querySelector(".capsula-pais").classList.add("active");
+    vincularSkeletonImagenes();
+    sonidoSeleccion();
+
+    if (typeof window.onCapsulaPaisAbierta === "function") {
+      window.onCapsulaPaisAbierta(pais, slug);
+    }
+  }
+
+  function abrirCapsulaPais(slug) {
+    evolucionesNavegacion = null;
+    indiceEvolucion = 0;
+    actualizarVisibilidadFlechas();
+    abrirCapsula(slug);
+  }
+
+  function abrirCapsulaConEvoluciones(slugs, indice) {
+    if (!slugs || !slugs.length) return;
+    evolucionesNavegacion = slugs;
+    indiceEvolucion = Math.max(0, Math.min(indice, slugs.length - 1));
+    renderEvolucionActual();
+  }
+
+  async function renderEvolucionActual() {
+    if (!evolucionesNavegacion || !evolucionesNavegacion.length) return;
+    const slug = evolucionesNavegacion[indiceEvolucion];
+    await abrirCapsula(slug);
+    actualizarVisibilidadFlechas();
+  }
+
+  function navegarEvolucion(direccion) {
+    if (!evolucionesNavegacion || !evolucionesNavegacion.length) return;
+    const nuevo = indiceEvolucion + direccion;
+    if (nuevo < 0 || nuevo >= evolucionesNavegacion.length) return;
+    indiceEvolucion = nuevo;
+    renderEvolucionActual();
+  }
+
+  function actualizarVisibilidadFlechas() {
+    const anterior = document.getElementById("capsula-pais-anterior");
+    const siguiente = document.getElementById("capsula-pais-siguiente");
+    if (!anterior || !siguiente) return;
+
+    const mostrar =
+      evolucionesNavegacion && evolucionesNavegacion.length > 1;
+    anterior.classList.toggle("oculto", !mostrar);
+    siguiente.classList.toggle("oculto", !mostrar);
+  }
+
+  function vincularNavegacion() {
+    const anterior = document.getElementById("capsula-pais-anterior");
+    const siguiente = document.getElementById("capsula-pais-siguiente");
+
+    if (anterior && anterior.dataset.capsulaNavBindeado !== "true") {
+      anterior.dataset.capsulaNavBindeado = "true";
+      anterior.addEventListener("click", () => navegarEvolucion(-1));
+    }
+
+    if (siguiente && siguiente.dataset.capsulaNavBindeado !== "true") {
+      siguiente.dataset.capsulaNavBindeado = "true";
+      siguiente.addEventListener("click", () => navegarEvolucion(1));
+    }
+  }
+
   function actualizarPais(pais, idPais) {
+    paisActual = pais;
+
     document.querySelector(".capsula-pais").style.backgroundColor =
       pais.colorFondo || "rgba(105, 105, 105, 0.562)";
     document.getElementById("capsula-pais-nombre").textContent = pais.nombre;
@@ -256,11 +331,7 @@
     if (botonCerrar && botonCerrar.dataset.capsulaCerrarBindeado !== "true") {
       botonCerrar.dataset.capsulaCerrarBindeado = "true";
       botonCerrar.addEventListener("click", () => {
-        document
-          .querySelector(".contenedor-capsula-pais")
-          .classList.remove("active");
-        document.querySelector(".capsula-pais").classList.remove("active");
-        sonidoSeleccion();
+        cerrarCapsulaPais();
       });
     }
 
@@ -269,12 +340,41 @@
       contenedor.dataset.capsulaFondoBindeado = "true";
       contenedor.addEventListener("click", function (e) {
         if (e.target === this) {
-          this.classList.remove("active");
-          document.querySelector(".capsula-pais").classList.remove("active");
-          sonidoSeleccion();
+          cerrarCapsulaPais();
         }
       });
     }
+
+    const botonTerritorio = document.getElementById("capsula-pais-territorio");
+    if (botonTerritorio) {
+      const hayGlobo = typeof window.onMostrarTerritorios === "function";
+      botonTerritorio.style.display = hayGlobo ? "" : "none";
+      if (
+        hayGlobo &&
+        botonTerritorio.dataset.capsulaTerritorioBindeado !== "true"
+      ) {
+        botonTerritorio.dataset.capsulaTerritorioBindeado = "true";
+        botonTerritorio.addEventListener("click", () => {
+          if (
+            typeof window.onMostrarTerritorios === "function" &&
+            paisActual
+          ) {
+            window.onMostrarTerritorios(paisActual);
+          }
+        });
+      }
+    }
+  }
+
+  function cerrarCapsulaPais() {
+    document
+      .querySelector(".contenedor-capsula-pais")
+      .classList.remove("active");
+    document.querySelector(".capsula-pais").classList.remove("active");
+    if (typeof window.onCapsulaPaisCerrada === "function") {
+      window.onCapsulaPaisCerrada();
+    }
+    sonidoSeleccion();
   }
 
   function mostrarSkeletonPais() {
@@ -311,9 +411,12 @@
     crearTippyInstancias();
     vincularHoverLogros();
     vincularCierre();
+    vincularNavegacion();
   }
 
   window.inicializarCapsulaPais = inicializarCapsulaPais;
+  window.abrirCapsulaPais = abrirCapsulaPais;
+  window.abrirCapsulaConEvoluciones = abrirCapsulaConEvoluciones;
 
   document.addEventListener("DOMContentLoaded", inicializarCapsulaPais);
 })();

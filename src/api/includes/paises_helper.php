@@ -27,6 +27,9 @@ function obtenerFilasPaises(PDO $pdo, array $paisIds = []): array
       p.tiempo_fin       AS tiempoFin,
       p.personaje,
       p.fondo,
+      p.anio_inicio   AS anioInicio,
+      p.foco_lat      AS focoLat,
+      p.foco_lng      AS focoLng,
       (SELECT GROUP_CONCAT(pl.texto ORDER BY pl.orden SEPARATOR '||')
        FROM paises_logros pl WHERE pl.pais_id = p.id
       ) AS logros_texto,
@@ -38,7 +41,13 @@ function obtenerFilasPaises(PDO $pdo, array $paisIds = []): array
       ) AS logros_imagen,
       (SELECT GROUP_CONCAT(pa.texto ORDER BY pa.orden SEPARATOR '||')
        FROM paises_acontecimientos pa WHERE pa.pais_id = p.id
-      ) AS acontecimientos
+      ) AS acontecimientos,
+      (SELECT GROUP_CONCAT(pt.iso ORDER BY pt.orden SEPARATOR '||')
+       FROM paises_territorios pt WHERE pt.pais_id = p.id
+      ) AS territorios,
+      (SELECT pt.iso FROM paises_territorios pt
+       WHERE pt.pais_id = p.id ORDER BY pt.orden LIMIT 1
+      ) AS territorio_central
     FROM paises p
     $filtro
     ORDER BY p.id
@@ -89,6 +98,18 @@ function construirPaisDesdeFila(array $row): array
   if ($row['acontecimientos'] !== null) {
     $pais['acontecimientos'] = explode('||', $row['acontecimientos']);
   }
+
+  $pais['anioInicio'] = $row['anioInicio'] !== null ? (int) $row['anioInicio'] : null;
+
+  $pais['foco'] = [
+    'lat' => $row['focoLat'] !== null ? (float) $row['focoLat'] : null,
+    'lng' => $row['focoLng'] !== null ? (float) $row['focoLng'] : null,
+  ];
+
+  $pais['territorios'] =
+    $row['territorios'] !== null ? explode('||', $row['territorios']) : [];
+
+  $pais['territorioCentral'] = $row['territorio_central'] ?? null;
 
   return $pais;
 }

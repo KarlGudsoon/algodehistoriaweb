@@ -1478,6 +1478,40 @@
 
 .titulo-pais {
   display: flex;
+  align-items: center;
+}
+
+.capsula-pais-flecha {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.75rem;
+  user-select: none;
+}
+
+.capsula-pais-flecha.oculto {
+  display: none;
+}
+
+.capsula-pais-territorio {
+  margin-top: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  color: white;
+  font: 600 0.9rem Roboto;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.capsula-pais-territorio:hover {
+  background-color: rgba(255, 255, 255, 0.28);
 }
 
 .capsula-pais .fecha-periodo h3 {
@@ -1887,4 +1921,43 @@
   height: 100%;
   object-fit: cover;
   border-radius: 2rem;
+}
+
+@media screen and (max-width: 700px) {
+  * {
+    box-sizing: border-box;
+  }
+  .contenedor-capsula-pais {
+    align-items: center;
+  }
+
+  .contenedor-capsula-pais.active {
+    backdrop-filter: blur(15px);
+    background-color: rgb(0 0 0 / 0.2);
+  }
+
+  .capsula-pais {
+    width: 95%;
+    height: 90%;
+    flex-direction: column;
+    bottom: -100%;
+  }
+
+  .capsula-pais.active {
+    bottom: 0;
+  }
+
+  .capsula-pais .descripcion-pais {
+    height: auto;
+    padding: 1rem;
+    flex: 1;
+  }
+
+  #capsula-pais-fondo {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+  }
+
+  .capsula-pais-img img {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+  }
 }

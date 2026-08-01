@@ -357,6 +357,9 @@ CREATE TABLE `paises` (
   `tiempo_fin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `personaje` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `fondo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `anio_inicio` int DEFAULT NULL,
+  `foco_lat` decimal(9,6) DEFAULT NULL,
+  `foco_lng` decimal(9,6) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -364,10 +367,17 @@ CREATE TABLE `paises` (
 -- Volcado de datos para la tabla `paises`
 --
 
-INSERT INTO `paises` (`id`, `slug`, `nombre`, `color_fondo`, `descripcion`, `etiqueta_texto`, `etiqueta_clase`, `bandera`, `economia`, `politica`, `territorio`, `tiempo_inicio`, `tiempo_fin`, `personaje`, `fondo`) VALUES
-(1, 'imperioinca', 'Imperio Inca', 'rgba(32, 102, 5, 0.6)', 'El Imperio Inca, llamado Tahuantinsuyo, fue el imperio más grande de la América precolombina, que se extendió desde Ecuador hasta Chile y Argentina entre los siglos XV y XVI, con su centro en la ciudad de Cusco.', 'Imperio Precolombino', 'etiqueta-precolombino', '/img/banderas/estandarte-inca.svg', 'Economía basada en la agricultura, el comercio y el tributo.', 'Sistema de gobierno centralizado con un emperador (Sapa Inca)', 'Ubicación: Región andina de América del Sur, principalmente en Perú, Ecuador, Bolivia y partes de Chile y Argentina.', 'Siglo XV', '1533', NULL, '/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp'),
-(2, 'imperioespañol', 'Imperio Español', 'rgba(188, 22, 42, 0.6)', 'El Imperio Español fue uno de los imperios más grandes de la historia, abarcando territorios en Europa, América, Asia y África desde el siglo XV hasta el siglo XIX.', 'Imperio Colonial', 'etiqueta-moderna', '/img/banderas/bandera-imperio-español.webp', 'Economía basada en la explotación de metales preciosos como oro y plata, el comercio transatlántico, la agricultura de plantación en América y el sistema de encomiendas.', 'Monarquía absoluta con un sistema de virreinatos y gobernadores para administrar los territorios coloniales.', 'Territorios en Europa (España, Portugal por unión dinástica), gran parte de América (desde México hasta el Cono Sur, además del Caribe), Filipinas y otras islas en Asia, así como enclaves en África.', '1492', '1898', NULL, '/img/moderna/fondo.webp'),
-(3, 'reinochile', 'Reino de Chile', 'rgba(0, 80, 158, 0.6)', 'El Reino de Chile fue una entidad territorial del Imperio Español en América del Sur, establecida tras la conquista y consolidación de Pedro de Valdivia, gobernada por la Corona española desde la fundación de Santiago en 1541 hasta el proceso de independencia de Chile.', 'Reino Colonial', 'etiqueta-moderna', '/img/banderas/bandera-imperio-español.webp', 'Economía colonial basada en la agricultura, la ganadería, el trabajo de los indígenas en encomiendas y la extracción de oro y plata.', 'Colonia gobernada por un Gobernador y Capitán General nombrado por la Corona española, con la Real Audiencia como tribunal superior.', 'Territorio de la Capitanía General de Chile, que se extendía desde el desierto de Atacama hasta la frontera del río Biobío, limitando al sur con el territorio mapuche independiente.', '1541', '1818', '/img/moderna/descubrimiento-chile/pedro-valdivia.png', '/img/moderna/descubrimiento-chile/fundacionsantiago.webp');
+INSERT INTO `paises` (`id`, `slug`, `nombre`, `color_fondo`, `descripcion`, `etiqueta_texto`, `etiqueta_clase`, `bandera`, `economia`, `politica`, `territorio`, `tiempo_inicio`, `tiempo_fin`, `personaje`, `fondo`, `anio_inicio`, `foco_lat`, `foco_lng`) VALUES
+(1, 'imperioinca', 'Imperio Inca', 'rgba(32, 102, 5, 0.6)', 'El Imperio Inca, llamado Tahuantinsuyo, fue el imperio más grande de la América precolombina, que se extendió desde Ecuador hasta Chile y Argentina entre los siglos XV y XVI, con su centro en la ciudad de Cusco.', 'Imperio Precolombino', 'etiqueta-precolombino', '/img/banderas/estandarte-inca.svg', 'Economía basada en la agricultura, el comercio y el tributo.', 'Sistema de gobierno centralizado con un emperador (Sapa Inca)', 'Ubicación: Región andina de América del Sur, principalmente en Perú, Ecuador, Bolivia y partes de Chile y Argentina.', 'Siglo XV', '1533', NULL, '/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp', 1438, -13.531900, -71.967500),
+(2, 'imperioespañol', 'Imperio Español', 'rgba(188, 22, 42, 0.6)', 'El Imperio Español fue uno de los imperios más grandes de la historia, abarcando territorios en Europa, América, Asia y África desde el siglo XV hasta el siglo XIX.', 'Imperio Colonial', 'etiqueta-moderna', '/img/banderas/bandera-imperio-español.webp', 'Economía basada en la explotación de metales preciosos como oro y plata, el comercio transatlántico, la agricultura de plantación en América y el sistema de encomiendas.', 'Monarquía absoluta con un sistema de virreinatos y gobernadores para administrar los territorios coloniales.', 'Territorios en Europa (España, Portugal por unión dinástica), gran parte de América (desde México hasta el Cono Sur, además del Caribe), Filipinas y otras islas en Asia, así como enclaves en África.', '1492', '1898', NULL, '/img/moderna/fondo.webp', 1492, 12.000000, -60.000000),
+(3, 'reinochile', 'Reino de Chile', 'rgba(0, 80, 158, 0.6)', 'El Reino de Chile fue una entidad territorial del Imperio Español en América del Sur, establecida tras la conquista y consolidación de Pedro de Valdivia, gobernada por la Corona española desde la fundación de Santiago en 1541 hasta el proceso de independencia de Chile.', 'Reino Colonial', 'etiqueta-moderna', '/img/banderas/bandera-imperio-español.webp', 'Economía colonial basada en la agricultura, la ganadería, el trabajo de los indígenas en encomiendas y la extracción de oro y plata.', 'Colonia gobernada por un Gobernador y Capitán General nombrado por la Corona española, con la Real Audiencia como tribunal superior.', 'Territorio de la Capitanía General de Chile, que se extendía desde el desierto de Atacama hasta la frontera del río Biobío, limitando al sur con el territorio mapuche independiente.', '1541', '1818', '/img/moderna/descubrimiento-chile/pedro-valdivia.png', '/img/moderna/descubrimiento-chile/fundacionsantiago.webp', 1541, -33.450000, -70.660000),
+(4, 'peru', 'Perú', 'rgba(217, 16, 40, 0.6)', 'Perú es una república de la costa occidental de América del Sur, sucesora del Virreinato del Perú e independiente desde 1821, heredera de la herencia cultural del Tahuantinsuyo.', 'República', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en minería, agricultura, pesca y servicios.', 'República democrática con gobierno presidencialista.', 'Perú: costa del Pacífico, sierra andina y Amazonía.', '1821', 'Actualidad', NULL, '/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp', 1821, -12.046400, -77.042800),
+(5, 'chile', 'Chile', 'rgba(0, 57, 166, 0.6)', 'Chile es una república de América del Sur que se extiende entre la cordillera de los Andes y el océano Pacífico, independiente desde 1818 y sucesora del Reino de Chile colonial.', 'República', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en la minería del cobre, agricultura, industria y servicios.', 'República democrática con régimen presidencial.', 'Chile continental, desde la región de Arica y Parinacota hasta la Patagonia.', '1818', 'Actualidad', NULL, '/img/moderna/descubrimiento-chile/fundacionsantiago.webp', 1818, -33.448900, -70.669300),
+(6, 'españa', 'España', 'rgba(170, 21, 21, 0.6)', 'España es un Estado europeo de la península ibérica, heredero de los reinos cristianos y del antiguo Imperio Español, con una monarquía parlamentaria desde 1978.', 'Estado Moderno', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en servicios, turismo, industria y agricultura.', 'Monarquía parlamentaria con sistema democrático.', 'España peninsular, islas Baleares y Canarias.', '1978', 'Actualidad', NULL, '/img/moderna/fondo.webp', 1978, 40.416800, -3.703800),
+(7, 'ecuador', 'Ecuador', 'rgba(255, 221, 0, 0.6)', 'Ecuador es una república ubicada en la línea ecuatorial de América del Sur, independiente desde 1830, con territorios en la costa, la sierra y la Amazonía.', 'República', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en petróleo, agricultura, banano y servicios.', 'República democrática presidencialista.', 'Ecuador: costa del Pacífico, sierra andina y Amazonía.', '1830', 'Actualidad', NULL, '/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp', 1830, -0.180700, -78.467800),
+(8, 'bolivia', 'Bolivia', 'rgba(213, 43, 30, 0.6)', 'Bolivia es un país andino de América del Sur, independiente desde 1825, conocido por su diversidad étnica y cultural y por ser el corazón del antiguo territorio incaico.', 'República', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en gas natural, minería y agricultura.', 'República democrática plurinacional.', 'Bolivia: altiplano andino, valles y llanuras orientales.', '1825', 'Actualidad', NULL, '/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp', 1825, -16.500000, -68.150000),
+(9, 'argentina', 'Argentina', 'rgba(117, 170, 219, 0.6)', 'Argentina es una república de América del Sur, independiente desde 1816, con un vasto territorio que se extiende desde los Andes hasta el Atlántico.', 'República', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en agricultura, ganadería, industria y servicios.', 'República democrática federal presidencialista.', 'Argentina: desde el altiplano y Cuyo hasta la Patagonia y Tierra del Fuego.', '1816', 'Actualidad', NULL, '/img/moderna/fondo.webp', 1816, -34.603700, -58.381600),
+(10, 'colombia', 'Colombia', 'rgba(255, 204, 0, 0.6)', 'Colombia es una república de América del Sur, independiente desde 1810, con costas en el Pacífico y el Caribe y un territorio andino diverso.', 'República', 'etiqueta-moderna', '/assets/icons/bandera.svg', 'Economía basada en café, petróleo, flores y servicios.', 'República democrática presidencialista.', 'Colombia: Andes, Caribe, Pacífico, Orinoquía y Amazonía.', '1810', 'Actualidad', NULL, '/img/moderna/fondo.webp', 1810, 4.711000, -74.072100);
 
 -- --------------------------------------------------------
 
@@ -397,7 +407,28 @@ INSERT INTO `paises_logros` (`id`, `pais_id`, `orden`, `texto`, `icono`, `imagen
 (6, 2, 3, 'Difusión de la lengua española, el cristianismo y la cultura europea en América y Asia.', '/assets/icons/corona.png', '/img/moderna/Lorrain.seaport.webp'),
 (7, 3, 1, 'Fundación de Santiago del Nuevo Extremo en 1541 y consolidación de la conquista.', '/assets/icons/bandera.svg', NULL),
 (8, 3, 2, 'Organización colonial con instituciones como la Real Audiencia y el sistema de encomiendas.', '/assets/icons/gobierno.svg', NULL),
-(9, 3, 3, 'Resistencia en la Guerra de Arauco y defensa de la frontera del río Biobío frente al territorio mapuche.', '/assets/icons/arma.svg', NULL);
+(9, 3, 3, 'Resistencia en la Guerra de Arauco y defensa de la frontera del río Biobío frente al territorio mapuche.', '/assets/icons/arma.svg', NULL),
+(10, 4, 1, 'Independencia proclamada en 1821 y consolidación republicana.', '/assets/icons/bandera.svg', NULL),
+(11, 4, 2, 'Recuperación del legado cultural y arqueológico del Tahuantinsuyo.', '/assets/icons/inca.svg', NULL),
+(12, 4, 3, 'Crecimiento económico sostenido basado en minería y servicios.', '/assets/icons/moneda.svg', NULL),
+(13, 5, 1, 'Independencia de Chile en 1818 y consolidación del Estado nacional.', '/assets/icons/bandera.svg', NULL),
+(14, 5, 2, 'Expansión territorial hacia el sur y el norte durante el siglo XIX.', '/assets/icons/subway--world-1.svg', NULL),
+(15, 5, 3, 'Modernización económica con la minería del cobre.', '/assets/icons/moneda.svg', NULL),
+(16, 6, 1, 'Constitución democrática de 1978 y transición a la democracia.', '/assets/icons/gobierno.svg', NULL),
+(17, 6, 2, 'Integración europea y apertura económica.', '/assets/icons/subway--world-1.svg', NULL),
+(18, 6, 3, 'Difusión de la lengua y la cultura hispánicas en el mundo.', '/assets/icons/corona.png', NULL),
+(19, 7, 1, 'Independencia en 1830 y creación de la República del Ecuador.', '/assets/icons/bandera.svg', NULL),
+(20, 7, 2, 'Rica biodiversidad en Galápagos y la Amazonía.', '/assets/icons/trigo.svg', NULL),
+(21, 7, 3, 'Economía petrolera y agrícola.', '/assets/icons/moneda.svg', NULL),
+(22, 8, 1, 'Independencia en 1825 y nacimiento del Estado plurinacional.', '/assets/icons/bandera.svg', NULL),
+(23, 8, 2, 'Herencia cultural del altiplano y el antiguo Tahuantinsuyo.', '/assets/icons/inca.svg', NULL),
+(24, 8, 3, 'Recursos naturales como el gas y la minería.', '/assets/icons/moneda.svg', NULL),
+(25, 9, 1, 'Independencia en 1816 y organización federal.', '/assets/icons/bandera.svg', NULL),
+(26, 9, 2, 'Consolidación agrícola y ganadera de la pampa.', '/assets/icons/trigo.svg', NULL),
+(27, 9, 3, 'Desarrollo industrial y cultural del siglo XX.', '/assets/icons/gobierno.svg', NULL),
+(28, 10, 1, 'Independencia en 1810 y consolidación republicana.', '/assets/icons/bandera.svg', NULL),
+(29, 10, 2, 'Producción mundial de café y flores.', '/assets/icons/trigo.svg', NULL),
+(30, 10, 3, 'Diversidad geográfica entre Andes, Caribe y Pacífico.', '/assets/icons/subway--world-1.svg', NULL);
 
 -- --------------------------------------------------------
 
@@ -421,6 +452,60 @@ INSERT INTO `paises_acontecimientos` (`id`, `pais_id`, `orden`, `texto`) VALUES
 (2, 2, 1, 'Termino'),
 (3, 3, 0, 'Fundación de Santiago del Nuevo Extremo'),
 (4, 3, 1, 'Proceso de independencia de Chile');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `paises_territorios`
+--
+
+CREATE TABLE `paises_territorios` (
+  `id` int NOT NULL,
+  `pais_id` int NOT NULL,
+  `iso` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `orden` tinyint NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `paises_territorios`
+--
+
+INSERT INTO `paises_territorios` (`id`, `pais_id`, `iso`, `orden`) VALUES
+(1, 1, 'PE', 1),
+(2, 1, 'EC', 2),
+(3, 1, 'BO', 3),
+(4, 1, 'CL', 4),
+(5, 1, 'AR', 5),
+(6, 1, 'CO', 6),
+(7, 2, 'ES', 1),
+(8, 2, 'MX', 2),
+(9, 2, 'GT', 3),
+(10, 2, 'SV', 4),
+(11, 2, 'HN', 5),
+(12, 2, 'NI', 6),
+(13, 2, 'CR', 7),
+(14, 2, 'PA', 8),
+(15, 2, 'CO', 9),
+(16, 2, 'VE', 10),
+(17, 2, 'EC', 11),
+(18, 2, 'PE', 12),
+(19, 2, 'BO', 13),
+(20, 2, 'CL', 14),
+(21, 2, 'AR', 15),
+(22, 2, 'UY', 16),
+(23, 2, 'PY', 17),
+(24, 2, 'CU', 18),
+(25, 2, 'DO', 19),
+(26, 2, 'PR', 20),
+(27, 2, 'PH', 21),
+(28, 3, 'CL', 1),
+(29, 4, 'PE', 1),
+(30, 5, 'CL', 1),
+(31, 6, 'ES', 1),
+(32, 7, 'EC', 1),
+(33, 8, 'BO', 1),
+(34, 9, 'AR', 1),
+(35, 10, 'CO', 1);
 
 -- --------------------------------------------------------
 
@@ -625,6 +710,14 @@ ALTER TABLE `paises_logros`
   ADD KEY `pais_id` (`pais_id`);
 
 --
+-- Indices de la tabla `paises_territorios`
+--
+ALTER TABLE `paises_territorios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pais_iso` (`pais_id`,`iso`),
+  ADD KEY `pais_id` (`pais_id`);
+
+--
 -- Indices de la tabla `articulos`
 --
 ALTER TABLE `articulos`
@@ -725,7 +818,7 @@ ALTER TABLE `personalidades`
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `paises_acontecimientos`
@@ -737,7 +830,13 @@ ALTER TABLE `paises_acontecimientos`
 -- AUTO_INCREMENT de la tabla `paises_logros`
 --
 ALTER TABLE `paises_logros`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de la tabla `paises_territorios`
+--
+ALTER TABLE `paises_territorios`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
@@ -856,6 +955,12 @@ ALTER TABLE `paises_acontecimientos`
 --
 ALTER TABLE `paises_logros`
   ADD CONSTRAINT `paises_logros_ibfk_1` FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `paises_territorios`
+--
+ALTER TABLE `paises_territorios`
+  ADD CONSTRAINT `paises_territorios_ibfk_1` FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `xp_historial`

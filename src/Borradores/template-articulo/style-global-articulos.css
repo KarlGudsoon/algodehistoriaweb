@@ -2574,6 +2574,40 @@ li:hover ul#submenu {
 
 .titulo-pais {
   display: flex;
+  align-items: center;
+}
+
+.capsula-pais-flecha {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.75rem;
+  user-select: none;
+}
+
+.capsula-pais-flecha.oculto {
+  display: none;
+}
+
+.capsula-pais-territorio {
+  margin-top: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  color: white;
+  font: 600 0.9rem Roboto;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.capsula-pais-territorio:hover {
+  background-color: rgba(255, 255, 255, 0.28);
 }
 
 .capsula-pais .fecha-periodo h1 {
