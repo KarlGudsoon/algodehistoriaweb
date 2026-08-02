@@ -162,6 +162,12 @@ function construirCartaDesdeFila(array $row): array
   if ($row['origen'] !== null) {
     $carta['origen'] = (int) $row['origen'];
   }
+  if ($row['nacimiento'] !== null) {
+    $carta['nacimiento'] = (int) $row['nacimiento'];
+  }
+  if ($row['fallecimiento'] !== null) {
+    $carta['fallecimiento'] = (int) $row['fallecimiento'];
+  }
   if ($row['lugar'] !== null) {
     $carta['lugar'] = $row['lugar'];
   }

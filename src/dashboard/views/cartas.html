@@ -1,0 +1,111 @@
+<div class="px-8 py-4 flex-1 flex flex-col gap-4">
+  <h1>Mi Colección de Cartas</h1>
+  <div class="contenedor-infocards" id="resumenProgresoCartas">
+    <div class="infocards items-center skeleton">
+      <img class="icon" src="/assets/icons/cards.svg" alt="" />
+      <div class="contenido">
+        <h3>Cartas coleccionadas</h3>
+        <div class="infocards-progreso">
+          <span id="cartasObtenidas" class="bold"></span>/<span
+            id="cartasTotales"
+          ></span>
+        </div>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <div class="icon !bg-yellow-500 !size-4"></div>
+      <div class="contenido">
+        <h3>Oro</h3>
+        <div class="infocards-progreso">
+          <span id="cartasOro" class="bold">
+        </div>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <div class="icon !bg-gray-400 !size-4"></div>
+      <div class="contenido">
+        <h3>Plata</h3>
+        <div class="infocards-progreso">
+          <span id="cartasPlata" class="bold">
+        </div>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <div class="icon !bg-amber-700 !size-4"></div>
+      <div class="contenido">
+        <h3>Bronce</h3>
+        <div class="infocards-progreso">
+          <span id="cartasBronce" class="bold">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="vista-coleccion flex flex-col flex-1 bg-white shadow-lg rounded-2xl p-6 border border-solid border-black border-opacity-10"
+  >
+    <div class="controles-coleccion">
+      <div class="buscador">
+        <input
+          type="text"
+          id="buscadorCartas"
+          class="buscador"
+          placeholder="Buscar personaje..."
+          autocomplete="off"
+        />
+      </div>
+      <div class="filtros-cartas">
+        <select id="filtroPeriodo">
+          <option value="">Todos los periodos</option>
+        </select>
+        <select id="filtroRareza">
+          <option value="">Todas las rarezas</option>
+        </select>
+        <select id="filtroOrden">
+          <option value="periodo">Por periodo</option>
+          <option value="recientes">Más recientes</option>
+          <option value="nacimiento">Año de nacimiento</option>
+          <option value="nombre">Nombre A-Z</option>
+        </select>
+        <button
+          type="button"
+          id="toggleSoloObtenidas"
+          class="toggle-solo-obtenidas"
+        >
+          Solo obtenidas
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-1 content-start" id="coleccionCartas">
+      <div class="flex flex-1 flex-col items-center justify-center">
+        <svg
+          class="animate-spin"
+          xmlns="http://www.w3.org/2000/svg"
+          width="3rem"
+          height="3rem"
+          viewBox="0 0 24 24"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <circle
+            cx="12"
+            cy="12"
+            r="9"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            opacity=".1"
+          />
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="3"
+            d="M12 3a8.96 8.96 0 0 0-6.225 2.5"
+          />
+        </svg>
+        <p>Cargando cartas</p>
+      </div>
+    </div>
+    <div id="coleccionPaises"></div>
+  </div>
+</div>

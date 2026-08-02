@@ -1,6 +1,9 @@
 // Variables a nivel de módulo, para reutilizar sin volver a pedir la API
 let catalogoCartasActual = {};
 let slugsObtenidosActual = [];
+let fechaObtenidaPorSlug = new Map();
+let filtroBusqueda = "";
+let soloObtenidas = false;
 
 async function inicializarColeccion() {
   try {
@@ -11,27 +14,46 @@ async function inicializarColeccion() {
 
     catalogoCartasActual = catalogoCartas;
     slugsObtenidosActual = datos.cartas.map((c) => c.carta_slug);
+    fechaObtenidaPorSlug = new Map(
+      datos.cartas.map((c) => [c.carta_slug, c.fecha_obtenida]),
+    );
 
-    renderizarColeccionCartas(datos.cartas, catalogoCartas);
-    renderizarColeccionPaises(datos.paises);
+    inicializarFiltrosCartas();
+    aplicarFiltrosYOrden();
+    renderizarResumenProgresoCartas(datos);
 
-    activarBuscadorCartas(); // <-- nuevo
+    activarBuscadorCartas();
   } catch (error) {
     console.error("Error al cargar la colección:", error);
   }
+}
+
+function renderizarResumenProgresoCartas(progresoCartas) {
+  const contenedor = document.getElementById("resumenProgresoCartas");
+
+  document.getElementById("cartasObtenidas").textContent =
+    progresoCartas.cartas_obtenidas;
+  document.getElementById("cartasTotales").textContent =
+    progresoCartas.cartas_totales;
+
+  document.getElementById("cartasOro").textContent = progresoCartas.cartas_oro;
+  document.getElementById("cartasPlata").textContent =
+    progresoCartas.cartas_plata;
+  document.getElementById("cartasBronce").textContent =
+    progresoCartas.cartas_bronce;
+
+  contenedor.querySelectorAll(".infocards").forEach((card) => {
+    card.classList.remove("skeleton");
+  });
 }
 
 function renderizarColeccionCartas(cartasUsuario, catalogo) {
   const contenedor = document.getElementById("coleccionCartas");
   const slugsObtenidos = cartasUsuario.map((c) => c.carta_slug);
 
-  const entradasOrdenadas = Object.entries(catalogo).sort((a, b) => {
-    const periodoA = a[1].periodo ?? 0;
-    const periodoB = b[1].periodo ?? 0;
-    return periodoA - periodoB;
-  });
+  const entradas = Object.entries(catalogo);
 
-  if (entradasOrdenadas.length === 0) {
+  if (entradas.length === 0) {
     contenedor.innerHTML = `<p class="sin-resultados">No se encontraron personajes.</p>`;
     activarTiltEnNuevasCartas();
     activarTippyEnNuevasCartas();
@@ -39,7 +61,7 @@ function renderizarColeccionCartas(cartasUsuario, catalogo) {
     return;
   }
 
-  contenedor.innerHTML = entradasOrdenadas
+  contenedor.innerHTML = entradas
     .map(([slug, carta]) => renderizarCartaHtml(slug, carta, slugsObtenidos))
     .join("");
 
@@ -64,7 +86,7 @@ function renderizarCartaHtml(slug, carta, slugsObtenidos) {
   }
 
   return `
-    <div class="carta-placeholder">
+    <div class="carta-placeholder aparecer">
       ${
         obtenida
           ? `
@@ -358,17 +380,122 @@ function activarBuscadorCartas() {
   if (!input) return;
 
   input.addEventListener("input", () => {
-    const termino = input.value.trim().toLowerCase();
-
-    const catalogoFiltrado = Object.fromEntries(
-      Object.entries(catalogoCartasActual).filter(([slug, carta]) =>
-        carta.titulo.toLowerCase().includes(termino),
-      ),
-    );
-
-    renderizarColeccionCartas(
-      slugsObtenidosActual.map((slug) => ({ carta_slug: slug })), // mismo formato que espera la función
-      catalogoFiltrado,
-    );
+    filtroBusqueda = input.value.trim().toLowerCase();
+    aplicarFiltrosYOrden();
   });
+}
+
+function inicializarFiltrosCartas() {
+  const selectPeriodo = document.getElementById("filtroPeriodo");
+  const selectRareza = document.getElementById("filtroRareza");
+  if (!selectPeriodo && !selectRareza) return;
+
+  const periodos = new Map();
+  const rarezas = new Set();
+
+  Object.values(catalogoCartasActual).forEach((carta) => {
+    const categoria = carta.categoria && carta.categoria[0];
+    if (categoria && categoria.periodo != null && categoria.nombre) {
+      periodos.set(categoria.periodo, categoria.nombre);
+    }
+    if (carta.rareza) {
+      rarezas.add(carta.rareza);
+    }
+  });
+
+  [...periodos.entries()]
+    .sort((a, b) => a[0] - b[0])
+    .forEach(([orden, nombre]) => {
+      const opcion = document.createElement("option");
+      opcion.value = String(orden);
+      opcion.textContent = nombre;
+      selectPeriodo.appendChild(opcion);
+    });
+
+  [...rarezas]
+    .sort((a, b) => a.localeCompare(b, "es"))
+    .forEach((rareza) => {
+      const opcion = document.createElement("option");
+      opcion.value = rareza;
+      opcion.textContent = rareza.charAt(0).toUpperCase() + rareza.slice(1);
+      selectRareza.appendChild(opcion);
+    });
+
+  [selectPeriodo, selectRareza, document.getElementById("filtroOrden")]
+    .filter(Boolean)
+    .forEach((select) =>
+      select.addEventListener("change", aplicarFiltrosYOrden),
+    );
+
+  const toggle = document.getElementById("toggleSoloObtenidas");
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      soloObtenidas = !soloObtenidas;
+      toggle.classList.toggle("activo", soloObtenidas);
+      toggle.setAttribute("aria-pressed", String(soloObtenidas));
+      aplicarFiltrosYOrden();
+    });
+  }
+}
+
+function aplicarFiltrosYOrden() {
+  const periodo = document.getElementById("filtroPeriodo")?.value || "";
+  const rareza = document.getElementById("filtroRareza")?.value || "";
+  const orden = document.getElementById("filtroOrden")?.value || "periodo";
+
+  const entradas = Object.entries(catalogoCartasActual).filter(
+    ([slug, carta]) => {
+      if (soloObtenidas && !slugsObtenidosActual.includes(slug)) {
+        return false;
+      }
+      if (
+        filtroBusqueda &&
+        !carta.titulo.toLowerCase().includes(filtroBusqueda)
+      ) {
+        return false;
+      }
+      if (
+        periodo &&
+        String(
+          carta.categoria && carta.categoria[0] && carta.categoria[0].periodo,
+        ) !== periodo
+      ) {
+        return false;
+      }
+      if (rareza && carta.rareza !== rareza) {
+        return false;
+      }
+      return true;
+    },
+  );
+
+  const comparadores = {
+    periodo: ([, a], [, b]) =>
+      ((a.categoria && a.categoria[0] && a.categoria[0].periodo) || 0) -
+      ((b.categoria && b.categoria[0] && b.categoria[0].periodo) || 0),
+    recientes: ([slugA], [slugB]) => {
+      const fechaA = fechaObtenidaPorSlug.get(slugA) || null;
+      const fechaB = fechaObtenidaPorSlug.get(slugB) || null;
+      if (fechaA && fechaB) {
+        if (fechaA > fechaB) return -1;
+        if (fechaA < fechaB) return 1;
+        return 0;
+      }
+      if (fechaA) return -1;
+      if (fechaB) return 1;
+      return 0;
+    },
+    nacimiento: ([, a], [, b]) =>
+      (a.nacimiento ?? Number.MAX_SAFE_INTEGER) -
+      (b.nacimiento ?? Number.MAX_SAFE_INTEGER),
+    nombre: ([, a], [, b]) =>
+      a.titulo.localeCompare(b.titulo, "es", { sensitivity: "base" }),
+  };
+
+  entradas.sort(comparadores[orden] || comparadores.periodo);
+
+  renderizarColeccionCartas(
+    slugsObtenidosActual.map((slug) => ({ carta_slug: slug })),
+    Object.fromEntries(entradas),
+  );
 }

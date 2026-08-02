@@ -3,11 +3,11 @@
 
 window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   const estilos = getComputedStyle(document.documentElement);
-  const COLOR_OCEANO = estilos.getPropertyValue("--red").trim() || "#e92a41";
-  const COLOR_PAIS = estilos.getPropertyValue("--yellow").trim() || "#ffa218";
-  const COLOR_OSCURO = opciones.colorOscuro || "#8c1726";
-  const COLOR_RESALTADO = opciones.colorResaltado || "#ffffff";
-  const ALTURA_BASE = opciones.alturaBase ?? 0.007;
+  const COLOR_OCEANO = estilos.getPropertyValue("--red").trim() || "#fce7e8";
+  const COLOR_PAIS = estilos.getPropertyValue("--yellow").trim() || "#e92a41";
+  const COLOR_OSCURO = opciones.colorOscuro || "#e92a41";
+  const COLOR_RESALTADO = opciones.colorResaltado || "#ffa218";
+  const ALTURA_BASE = opciones.alturaBase ?? 0.003;
 
   let paisSobrevolado = null;
   let isosDestacados = opciones.isosDestacados || new Set();
@@ -46,7 +46,7 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     .polygonsTransitionDuration(250)
     .polygonAltitude(ALTURA_BASE)
     .polygonCapColor(colorPoligono)
-    .polygonSideColor(() => "#8c1726")
+    .polygonSideColor(() => "#e92a41")
     .polygonStrokeColor(colorBordePoligono)
     .polygonLabel(({ properties: d }) => `<b>${d.nameES}</b>`)
     .onPolygonHover((poligono) => {

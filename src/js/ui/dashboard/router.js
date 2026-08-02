@@ -4,8 +4,8 @@ const rutasDashboard = {
     html: "/dashboard/views/estadisticas.html",
     init: () => inicializarEstadisticas(),
   },
-  coleccion: {
-    html: "/dashboard/views/coleccion.html",
+  cartas: {
+    html: "/dashboard/views/cartas.html",
     init: () => inicializarColeccion(),
   },
   paises: {

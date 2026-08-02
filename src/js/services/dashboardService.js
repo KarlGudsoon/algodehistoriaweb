@@ -69,6 +69,17 @@ async function obtenerCartaDestacada() {
   return data.carta;
 }
 
+async function obtenerPaisDestacado() {
+  const res = await fetch("/api/dashboard/pais_destacado.php", {
+    credentials: "include",
+  });
+  if (res.status === 401) throw new Error("No autenticado");
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data.error || "Error al obtener el país destacado");
+  return data.pais;
+}
+
 async function obtenerArticulosCompletados() {
   const res = await fetch("/api/dashboard/articulos_completados.php", {
     credentials: "include",

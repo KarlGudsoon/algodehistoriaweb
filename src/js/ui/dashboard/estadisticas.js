@@ -11,12 +11,14 @@ async function inicializarEstadisticas() {
     const datos = await obtenerEstadisticasDashboard();
     const nivelInfo = await obtenerNivelUsuario();
     const articulosC = await obtenerArticulosCompletados();
+    const paisDestacado = await obtenerPaisDestacado();
 
     renderizarUsuario(datosUsuario);
     renderizarNivel(nivelInfo);
     renderizarResumenProgreso(datos.progreso, totalCartas, totalPaises);
     renderizarArticuloReciente(articulosC[0]);
     renderizarCartaDestacada();
+    renderizarPaisDestacado(paisDestacado);
     // renderizarHistorialArticulos(datos.historial_articulos);
   } catch (error) {
     if (error.message === "No autenticado") {
@@ -68,13 +70,16 @@ function renderizarResumenProgreso(progreso, totalCartas, totalPaises) {
     progreso.paises_descubiertos;
   document.getElementById("paisesTotales").textContent = totalPaises;
 
-  document.querySelectorAll(".infocards").forEach((card) => {
+  contenedor.querySelectorAll(".infocards").forEach((card) => {
     card.classList.remove("skeleton");
+    card.classList.add("aparecer");
   });
 }
 
 function renderizarArticuloReciente(articulo) {
   const contenedor = document.getElementById("articuloReciente");
+
+  const fondo = document.getElementById("fondoArticuloReciente");
   if (!contenedor) return;
 
   console.log(articulo);
@@ -86,7 +91,7 @@ function renderizarArticuloReciente(articulo) {
   }
 
   if (articulo.fondo) {
-    contenedor.style.backgroundImage = `url(${articulo.fondo})`;
+    fondo.style.backgroundImage = `url(${articulo.fondo})`;
   }
 
   document.getElementById("urlArtReciente").href = articulo.url;
@@ -96,10 +101,8 @@ function renderizarArticuloReciente(articulo) {
 
   const nuevasCartas = document.querySelectorAll("[data-tilt]");
   VanillaTilt.init(nuevasCartas);
-
-  document.querySelectorAll(".infocards").forEach((card) => {
-    card.classList.remove("skeleton");
-  });
+  contenedor.classList.remove("skeleton");
+  contenedor.classList.add("aparecer");
 }
 
 async function renderizarCartaDestacada() {
@@ -112,8 +115,11 @@ async function renderizarCartaDestacada() {
   if (!carta) {
     contenedorCarta.innerHTML = `
       <div class="carta-placeholder"></div>
-    `
-    el("cartaDestacadaDesc", "Todavía no has desbloqueado ninguna carta de personaje, descúbrelas en cada artículo interactivo");
+    `;
+    el(
+      "cartaDestacadaDesc",
+      "Todavía no has desbloqueado ninguna carta de personaje, descúbrelas en cada artículo interactivo",
+    );
   }
 
   const esp = carta.especialidad.toLowerCase();
@@ -190,7 +196,7 @@ async function renderizarCartaDestacada() {
   </div>
   `;
 
-  el("badgeCartaDestacada", "Nueva")
+  el("badgeCartaDestacada", "Nueva");
   el("cartaDestacadaTitulo", carta.titulo);
   el("cartaDestacadaTiempo", carta.tiempo);
   el("cartaDestacadaDesc", carta.descripcion);
@@ -198,6 +204,36 @@ async function renderizarCartaDestacada() {
   activarTiltEnNuevasCartas();
   activarTippyEnNuevasCartas();
   activarExpandirEnNuevasCartas();
+  contenedor.classList.remove("skeleton");
+  contenedor.classList.add("aparecer");
+}
+
+function renderizarPaisDestacado(pais) {
+  const contenedor = document.getElementById("contenedorPaisDestacado");
+
+  contenedor.setAttribute(
+    "style",
+    "--color: " +
+      pais.colorFondo +
+      "; background-image: url(" +
+      pais.fondo +
+      ");",
+  );
+
+  console.log("Pais destacado:", pais);
+
+  if (!contenedor) return;
+
+  document.getElementById("badgePaisDestacado").className =
+    "bg-green-600 mb-2 px-2 rounded-xl";
+
+  el("badgePaisDestacado", "Nuevo");
+  el("paisDestacadoTitulo", pais.nombre);
+  el("paisDestacadoTiempo", `${pais.tiempo[0]} - ${pais.tiempo[1]}`);
+  el("paisDestacadoDesc", pais.descripcion);
+
+  contenedor.classList.remove("skeleton");
+  contenedor.classList.add("aparecer");
 }
 
 function renderizarHistorialArticulos(historial) {

@@ -1,5 +1,6 @@
 body {
   height: 100vh;
+  width: 100%;
   font-family: Roboto;
   background-color: var(--primary-color);
   padding: 0;
@@ -202,11 +203,12 @@ h1 {
   height: 10px;
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 1rem;
-  overflow: hidden;
 }
 
 .header .contenedor-nivel .progreso-nivel #barraNivel {
   height: 100%;
+  transition: 0.3s ease;
+  border-radius: 1rem;
   width: 0;
   background-color: var(--yellow-color);
 }
@@ -327,6 +329,52 @@ h1 {
   font-family: Roboto, sans-serif;
 }
 
+.controles-coleccion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.controles-coleccion .buscador {
+  flex: 1 1 220px;
+}
+
+.filtros-cartas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filtros-cartas select {
+  background-color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: Roboto, sans-serif;
+  color: #413f3f;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.filtros-cartas .toggle-solo-obtenidas {
+  background-color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: Roboto, sans-serif;
+  color: #413f3f;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.filtros-cartas .toggle-solo-obtenidas.activo {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 .contenedor-infocards {
   display: flex;
   flex-wrap: wrap;
@@ -335,12 +383,12 @@ h1 {
 }
 
 .contenedor-infocards .infocards {
-  flex: 1 auto;
-  min-height: 100px;
+  flex: 1 1 min(300px, 100%);
+  min-height: 50px;
   color: var(--primary-color);
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 1px 2px 5px rgba(233, 42, 65, 0.15);
+  outline: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   display: flex;
   padding: 1rem;
@@ -349,14 +397,40 @@ h1 {
   overflow: hidden;
 }
 
+.aparecer {
+  animation: infocard-aparecer 1s ease;
+}
+
+@keyframes infocard-aparecer {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.contenedor-infocards.destacados .infocards {
+  flex: 1 1 min(450px, 100%) !important;
+}
+
+.contenedor-infocards .skeleton {
+  box-shadow: none !important;
+  border: none;
+  outline: none;
+}
+
 .contenedor-infocards .skeleton::before {
   content: "";
   width: 100%;
   height: 100%;
-  background-color: rgb(245, 245, 245);
+  background: rgb(245, 245, 245) !important;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 99 !important;
 }
 
 .contenedor-infocards .skeleton::after {
@@ -367,18 +441,12 @@ h1 {
     rgba(255, 255, 255, 0.8) 50%,
     rgba(119, 119, 119, 0) 100%
   );
-  mask-image: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
   width: 50%;
-  height: 250%;
+  height: 100%;
   position: absolute;
-  top: -50%;
+  top: 0;
   left: -150%;
-  z-index: 1;
+  z-index: 9999;
   opacity: 0.5;
   transition: 0.2s ease;
   animation-direction: normal;
@@ -397,13 +465,14 @@ h1 {
 .contenedor-infocards .infocards .icon {
   background-color: var(--primary-color);
   padding: 1rem;
-  border-radius: 2rem;
-  height: 50px;
+  border-radius: 1.5rem;
+  height: stretch;
+  max-height: 35px;
 }
 
 .contenedor-infocards .infocards .contenido {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   flex-direction: column;
 }
 
@@ -421,7 +490,13 @@ h1 {
   font-size: 2rem;
 }
 
-#articuloReciente {
+#fondoArticuloReciente {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
   background-size: 100% 100%;
   background-position: center;
   animation: movimiento-fondo 20s infinite ease alternate;
@@ -432,6 +507,17 @@ h1 {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, var(--primary-color) 0%, transparent 75%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#contenedorPaisDestacado::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color) 25%, transparent 90%);
   position: absolute;
   top: 0;
   left: 0;
@@ -450,8 +536,6 @@ h1 {
 @media screen and (max-width: 768px) {
   body {
     flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
   }
   main {
     margin: 0 0 0 0;

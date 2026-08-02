@@ -1,4 +1,4 @@
-<div class="px-8 py-4 flex flex-col flex-1 gap-4">
+<div class="px-2 py-2 md:px-8 md:py-4 flex flex-col flex-1 gap-4">
   <div class="header flex-wrap">
     <div class="bienvenida">
       <div class="usuarioAvatar"></div>
@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <div class="contenedor-infocards">
+  <div class="contenedor-infocards" id="resumenProgreso">
     <div class="infocards items-center skeleton">
       <img class="icon" src="/assets/icons/cards.svg" alt="" />
       <div class="contenido">
@@ -94,18 +94,19 @@
     </div>
     <div class="infocards items-center skeleton"></div>
   </div>
-  <div class="contenedor-infocards flex-1 flex">
+  <div class="contenedor-infocards destacados flex-1">
     <div
       id="articuloReciente"
       class="infocards skeleton relative bg-cover !gap-0 !p-0 flex-col items-center"
     >
+      <div id="fondoArticuloReciente"></div>
       <div
-        class="flex gap-2 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
+        class="flex gap-2 z-10 px-4 py-4 bg-[--primary-color] text-white w-[stretch]"
       >
         <img src="/assets/icons/articulo.svg" alt="" />
         <h2 class="m-0">Artículo reciente</h2>
       </div>
-      <div class="flex gap-4 flex-1 p-4">
+      <div class="flex gap-4 z-10 flex-1 p-4">
         <div class="flex justify-center w-full max-w-40">
           <img
             class="relative w-full overflow-visible h-auto object-cover bottom-[-25px] left-0"
@@ -114,7 +115,7 @@
             alt=""
           />
         </div>
-        <div class="p-6 bg-black bg-opacity-35 rounded-xl">
+        <div class="p-6 z-10 bg-black bg-opacity-35 rounded-xl">
           <span id="badgeArticulo"></span>
           <h2 class="mt-0 text-white" id="tituloArtReciente"></h2>
           <p class="max-w-80 text-white" id="descArtReciente"></p>
@@ -123,7 +124,7 @@
       </div>
     </div>
     <div
-      class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
+      class="infocards !bg-[--primary-color] flex-col skeleton bg-cover bg-center relative !p-0 !gap-0"
       id="contenedorCartaDestacada"
     >
       <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
@@ -147,19 +148,16 @@
       </div>
     </div>
     <div
-      class="infocards !bg-[--primary-color] flex-col bg-cover bg-center relative !p-0 !gap-0"
-      id="contenedorPaisDestacada"
+      class="infocards !bg-[--color] skeleton flex-col bg-cover bg-center relative !p-0 !gap-0"
+      id="contenedorPaisDestacado"
     >
       <div class="flex z-10 gap-2 px-4 py-4 text-white w-[stretch]">
         <img src="/assets/icons/colorcards.svg" alt="" />
-        <h2 class="m-0 text-white">País descubierto</h2>
+        <h2 class="m-0 text-white">País destacado</h2>
       </div>
       <div class="flex mx-6 z-10 gap-2 flex-1 p-4 items-center">
         <div class="flex-1 text-white max-w-80" id="cartaNuevaDatos">
-          <span
-            class="bg-green-600 mb-2 px-2 rounded-xl"
-            id="badgeCartaDestacada"
-          ></span>
+          <span id="badgePaisDestacado"></span>
           <h2 class="mt-0" id="paisDestacadoTitulo"></h2>
           <span id="paisDestacadoTiempo"></span>
           <p id="paisDestacadoDesc"></p>
@@ -171,7 +169,7 @@
       </div>
     </div>
   </div>
-  <div class="contenedor-infocards flex-1 flex">
+  <div class="contenedor-infocards flex-1">
     <div class="infocards flex-1"></div>
   </div>
 
