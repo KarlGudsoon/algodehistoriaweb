@@ -524,6 +524,13 @@ h1 {
   z-index: 0;
 }
 
+.contenedor-lista-paises {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+
 @keyframes movimiento-fondo {
   0% {
     background-size: 100% 100%;

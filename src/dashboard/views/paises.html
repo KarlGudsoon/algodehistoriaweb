@@ -1,124 +1,168 @@
-<div class="vista-paises">
+<div class="vista-paises flex gap-4 flex-col px-2 py-2 md:px-8 md:py-4">
   <h2>Colección de países</h2>
-  <div id="globoPaises"></div>
-
-  <div class="contenedor-capsula-pais">
-    <div class="capsula-pais">
-      <div class="descripcion-pais">
-        <div class="titulo-pais">
-          <button
-            class="capsula-pais-flecha oculto"
-            id="capsula-pais-anterior"
-            type="button"
-          >
-            ←
-          </button>
-          <h2 id="capsula-pais-nombre"></h2>
-          <button
-            class="capsula-pais-flecha oculto"
-            id="capsula-pais-siguiente"
-            type="button"
-          >
-            →
-          </button>
+  <div class="contenedor-infocards" id="resumenProgresoCartas">
+    <div class="infocards items-center skeleton">
+      <img class="icon" src="/assets/icons/cards.svg" alt="" />
+      <div class="contenido">
+        <h3>Cartas coleccionadas</h3>
+        <div class="infocards-progreso">
+          <span id="cartasObtenidas" class="bold"></span>/<span
+            id="cartasTotales"
+          ></span>
         </div>
-        <p id="capsula-pais-descripcion">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque saepe
-          ullam magnam minus exercitationem sunt aliquid, ex iste eligendi earum
-          perspiciatis labore beatae similique doloribus velit officiis delectus
-          reiciendis provident.
-        </p>
-        <span id="capsula-pais-etiqueta">[Etiqueta del país]</span>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <div class="icon !bg-yellow-500 !size-4"></div>
+      <div class="contenido">
+        <h3>Oro</h3>
+        <div class="infocards-progreso">
+          <span id="cartasOro" class="bold">
+        </div>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <div class="icon !bg-gray-400 !size-4"></div>
+      <div class="contenido">
+        <h3>Plata</h3>
+        <div class="infocards-progreso">
+          <span id="cartasPlata" class="bold">
+        </div>
+      </div>
+    </div>
+    <div class="infocards items-center skeleton">
+      <div class="icon !bg-amber-700 !size-4"></div>
+      <div class="contenido">
+        <h3>Bronce</h3>
+        <div class="infocards-progreso">
+          <span id="cartasBronce" class="bold">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-1 gap-4 md:flex-row flex-col">
+    <div class="contenedor-lista-paises shadow-lg">
+      <div class="lista-paises">Hola</div>
+    </div>
+    <div class="flex-1 shadow-lg rounded-2xl " id="globoPaises"></div>
+  </div>
+</div>
+
+<div class="contenedor-capsula-pais">
+  <div class="capsula-pais">
+    <div class="descripcion-pais">
+      <div class="titulo-pais">
         <button
-          class="capsula-pais-territorio"
-          id="capsula-pais-territorio"
+          class="capsula-pais-flecha oculto"
+          id="capsula-pais-anterior"
           type="button"
         >
-          Territorio
+          ←
+        </button>
+        <h2 id="capsula-pais-nombre"></h2>
+        <button
+          class="capsula-pais-flecha oculto"
+          id="capsula-pais-siguiente"
+          type="button"
+        >
+          →
         </button>
       </div>
-      <div class="descripcion-pais">
-        <div
-          class="contenedor-fecha-periodo"
-          style="
-            margin: 0;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-          "
-        >
-          <div class="fecha-periodo">
-            <h3 class="fecha-inicio" id="capsula-pais-fecha-inicio">1535</h3>
-          </div>
-          <span class="separador-periodo"></span>
-          <div class="fecha-periodo">
-            <h3 class="fecha-termino" id="capsula-pais-fecha-termino">1537</h3>
-          </div>
-        </div>
-        <ul class="caracteristicas-pais">
-          <li>
-            <img src="/assets/icons/moneda.svg" /><span
-              id="capsula-economia-pais"
-              >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </span>
-          </li>
-          <li>
-            <img src="/assets/icons/gobierno.svg" /><span
-              id="capsula-gobierno-pais"
-              >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </span>
-          </li>
-          <li>
-            <img src="/assets/icons/subway--world-1.svg" /><span
-              id="capsula-territorio-pais"
-              >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </span>
-          </li>
-        </ul>
-      </div>
-      <div class="descripcion-pais">
-        <img
-          class="img-pais-personaje"
-          id="capsula-pais-personaje"
-          src="/img/otros/personajes-cartas/cristobal-colon.webp"
-          alt=""
-        />
-        <div class="capsula-pais-bandera">
-          <img
-            class="img-view"
-            id="capsula-pais-bandera"
-            src="/img/banderas/Flag_of_Germany_1867–1918.webp"
-          />
-        </div>
-        <img
-          id="capsula-pais-fondo"
-          src="/img/moderna/descubrimiento-chile/conquistademexico.webp"
-        />
-        <div class="capsula-pais-img">
-          <img
-            id="capsula-pais-img1"
-            data-logro-pais="logro1"
-            src="/img/moderna/descubrimiento-chile/00909c64-2d8e-464b-bcb6-e1013e2b5e7d (2).webp"
-          />
-          <img
-            id="capsula-pais-img2"
-            data-logro-pais="logro2"
-            src="/img/moderna/descubrimiento-chile/960px-StraitOfMagellan.webp"
-          />
-          <img
-            id="capsula-pais-img3"
-            data-logro-pais="logro3"
-            src="/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp"
-          />
-        </div>
-        <span id="capsula-pais-logros-exp"></span>
-        <ul class="logros-pais">
-          <li id="logros-pais-1" data-logro-pais="logro1"><img /></li>
-          <li id="logros-pais-2" data-logro-pais="logro2"><img /></li>
-          <li id="logros-pais-3" data-logro-pais="logro3"><img /></li>
-        </ul>
-      </div>
-      <div id="capsula-pais-cerrar">-</div>
+      <p id="capsula-pais-descripcion">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque saepe
+        ullam magnam minus exercitationem sunt aliquid, ex iste eligendi earum
+        perspiciatis labore beatae similique doloribus velit officiis delectus
+        reiciendis provident.
+      </p>
+      <span id="capsula-pais-etiqueta">[Etiqueta del país]</span>
+      <button
+        class="capsula-pais-territorio"
+        id="capsula-pais-territorio"
+        type="button"
+      >
+        Territorio
+      </button>
     </div>
+    <div class="descripcion-pais">
+      <div
+        class="contenedor-fecha-periodo"
+        style="
+          margin: 0;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+        "
+      >
+        <div class="fecha-periodo">
+          <h3 class="fecha-inicio" id="capsula-pais-fecha-inicio">1535</h3>
+        </div>
+        <span class="separador-periodo"></span>
+        <div class="fecha-periodo">
+          <h3 class="fecha-termino" id="capsula-pais-fecha-termino">1537</h3>
+        </div>
+      </div>
+      <ul class="caracteristicas-pais">
+        <li>
+          <img src="/assets/icons/moneda.svg" /><span id="capsula-economia-pais"
+            >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          </span>
+        </li>
+        <li>
+          <img src="/assets/icons/gobierno.svg" /><span
+            id="capsula-gobierno-pais"
+            >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          </span>
+        </li>
+        <li>
+          <img src="/assets/icons/subway--world-1.svg" /><span
+            id="capsula-territorio-pais"
+            >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="descripcion-pais">
+      <img
+        class="img-pais-personaje"
+        id="capsula-pais-personaje"
+        src="/img/otros/personajes-cartas/cristobal-colon.webp"
+        alt=""
+      />
+      <div class="capsula-pais-bandera">
+        <img
+          class="img-view"
+          id="capsula-pais-bandera"
+          src="/img/banderas/Flag_of_Germany_1867–1918.webp"
+        />
+      </div>
+      <img
+        id="capsula-pais-fondo"
+        src="/img/moderna/descubrimiento-chile/conquistademexico.webp"
+      />
+      <div class="capsula-pais-img">
+        <img
+          id="capsula-pais-img1"
+          data-logro-pais="logro1"
+          src="/img/moderna/descubrimiento-chile/00909c64-2d8e-464b-bcb6-e1013e2b5e7d (2).webp"
+        />
+        <img
+          id="capsula-pais-img2"
+          data-logro-pais="logro2"
+          src="/img/moderna/descubrimiento-chile/960px-StraitOfMagellan.webp"
+        />
+        <img
+          id="capsula-pais-img3"
+          data-logro-pais="logro3"
+          src="/img/moderna/descubrimiento-chile/9c7cecfd-5b8a-4916-82f4-34e3fb119004.webp"
+        />
+      </div>
+      <span id="capsula-pais-logros-exp"></span>
+      <ul class="logros-pais">
+        <li id="logros-pais-1" data-logro-pais="logro1"><img /></li>
+        <li id="logros-pais-2" data-logro-pais="logro2"><img /></li>
+        <li id="logros-pais-3" data-logro-pais="logro3"><img /></li>
+      </ul>
+    </div>
+    <div id="capsula-pais-cerrar">-</div>
   </div>
 </div>

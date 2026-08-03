@@ -156,6 +156,10 @@
   max-width: 24rem
 }
 
+.max-w-\[400px\] {
+  max-width: 400px
+}
+
 .flex-1 {
   flex: 1 1 0%
 }
@@ -311,6 +315,11 @@
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+}
+
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity, 1))
 }
 
 .bg-opacity-10 {
@@ -501,8 +510,42 @@
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
+.shadow-black {
+  --tw-shadow-color: #000;
+  --tw-shadow: var(--tw-shadow-colored)
+}
+
+.shadow-gray-400 {
+  --tw-shadow-color: #9ca3af;
+  --tw-shadow: var(--tw-shadow-colored)
+}
+
+.shadow-gray-100 {
+  --tw-shadow-color: #f3f4f6;
+  --tw-shadow: var(--tw-shadow-colored)
+}
+
+.shadow-gray-200 {
+  --tw-shadow-color: #e5e7eb;
+  --tw-shadow: var(--tw-shadow-colored)
+}
+
+.shadow-gray-500 {
+  --tw-shadow-color: #6b7280;
+  --tw-shadow: var(--tw-shadow-colored)
+}
+
+.shadow-slate-200 {
+  --tw-shadow-color: #e2e8f0;
+  --tw-shadow: var(--tw-shadow-colored)
+}
+
 .outline {
   outline-style: solid
+}
+
+.outline-black {
+  outline-color: #000
 }
 
 .\!ring {
@@ -591,6 +634,14 @@
 }
 
 @media (min-width: 768px) {
+  .md\:flex {
+    display: flex
+  }
+
+  .md\:flex-row {
+    flex-direction: row
+  }
+
   .md\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem
