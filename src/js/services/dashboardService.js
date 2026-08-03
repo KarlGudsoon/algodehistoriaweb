@@ -39,6 +39,17 @@ async function obtenerColeccionDashboard() {
   return data;
 }
 
+async function obtenerColeccionPaises() {
+  const res = await fetch("/api/paises/coleccion_pais.php", {
+    credentials: "include",
+  });
+  if (res.status === 401) throw new Error("No autenticado");
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data.error || "Error al obtener la colección de países");
+  return data.coleccion;
+}
+
 async function obtenerPerfilDashboard() {
   const res = await fetch("/api/dashboard/perfil.php", {
     credentials: "include",

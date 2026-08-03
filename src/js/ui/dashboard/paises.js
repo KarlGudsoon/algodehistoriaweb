@@ -3,14 +3,14 @@ let modoTerritorioActivo = false;
 
 async function inicializarPaises() {
   try {
-    const datos = await obtenerColeccionDashboard();
+    const datos = await obtenerColeccionPaises();
     const catalogo = await fetch("/api/paises/catalogo.php").then((r) =>
       r.json(),
     );
 
     catalogoPaisesActual = catalogo;
 
-    const obtenidos = new Set((datos.paises || []).map((p) => p.pais_slug));
+    const obtenidos = new Set((datos || []).map((p) => p.pais_slug));
     const isosObtenidos = new Set();
     const mapIsoEvoluciones = new Map();
 
