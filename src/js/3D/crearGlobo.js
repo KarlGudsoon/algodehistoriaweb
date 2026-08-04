@@ -3,29 +3,46 @@
 
 window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   const estilos = getComputedStyle(document.documentElement);
-  const COLOR_OCEANO = estilos.getPropertyValue("--red").trim() || "#fce7e8";
-  const COLOR_PAIS = estilos.getPropertyValue("--yellow").trim() || "#e92a41";
-  const COLOR_OSCURO = opciones.colorOscuro || "#e92a41";
-  const COLOR_RESALTADO = opciones.colorResaltado || "#ffa218";
+  const COLOR_OCEANO = estilos.getPropertyValue("--red").trim() || "#eff4f9";
+  const COLOR_PAIS = estilos.getPropertyValue("--yellow").trim() || "#7fb275";
+  const COLOR_OSCURO = opciones.colorOscuro || "#d6d3d4";
+  const COLOR_RESALTADO = opciones.colorResaltado || "#d6d5d7";
   const ALTURA_BASE = opciones.alturaBase ?? 0.003;
 
   let paisSobrevolado = null;
   let isosDestacados = opciones.isosDestacados || new Set();
   let isosResaltados = new Set();
+  let isosSeleccionados = new Set();
+  let colorSeleccionado = COLOR_PAIS;
 
-  function aclararColor(hex, factor = 0.1) {
-    const n = parseInt(hex.replace("#", ""), 16);
-    const r = (n >> 16) & 255;
-    const g = (n >> 8) & 255;
-    const b = n & 255;
+  function aclararColor(color, factor = 0.2) {
+    let r = 0,
+      g = 0,
+      b = 0;
+    if (color.startsWith("#")) {
+      const n = parseInt(color.replace("#", ""), 16);
+      r = (n >> 16) & 255;
+      g = (n >> 8) & 255;
+      b = n & 255;
+    } else {
+      const m = color.match(/[\d.]+/g);
+      if (!m || m.length < 3) return color;
+      r = Number(m[0]);
+      g = Number(m[1]);
+      b = Number(m[2]);
+    }
     return `rgb(${Math.round(r + (255 - r) * factor)}, ${Math.round(
       g + (255 - g) * factor,
     )}, ${Math.round(b + (255 - b) * factor)})`;
   }
 
   function colorBase(d) {
-    if (isosResaltados.has(d.properties.iso)) return COLOR_RESALTADO;
-    return isosDestacados.has(d.properties.iso) ? COLOR_PAIS : COLOR_OSCURO;
+    const iso = d.properties.iso;
+    if (isosResaltados.has(iso)) return COLOR_RESALTADO;
+    if (isosSeleccionados.size > 0) {
+      return isosSeleccionados.has(iso) ? colorSeleccionado : COLOR_OSCURO;
+    }
+    return isosDestacados.has(iso) ? COLOR_PAIS : COLOR_OSCURO;
   }
 
   function colorPoligono(d) {
@@ -33,7 +50,13 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   }
 
   function colorBordePoligono(d) {
-    return d === paisSobrevolado ? "" : COLOR_OCEANO;
+    return d === paisSobrevolado ? COLOR_OCEANO : COLOR_OCEANO;
+  }
+
+  function altitudPoligono(d) {
+    return d === paisSobrevolado
+      ? ALTURA_BASE + (opciones.alturaHover ?? 0.0035)
+      : ALTURA_BASE;
   }
 
   const mundo = Globe({
@@ -44,15 +67,16 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     .atmosphereAltitude(0.12)
     .showGraticules(false)
     .polygonsTransitionDuration(250)
-    .polygonAltitude(ALTURA_BASE)
+    .polygonAltitude(altitudPoligono)
     .polygonCapColor(colorPoligono)
-    .polygonSideColor(() => "#e92a41")
+    .polygonSideColor(() => "#eff3f8")
     .polygonStrokeColor(colorBordePoligono)
     .polygonLabel(({ properties: d }) => `<b>${d.nameES}</b>`)
     .onPolygonHover((poligono) => {
       paisSobrevolado = poligono || null;
       mundo.polygonCapColor(colorPoligono);
       mundo.polygonStrokeColor(colorBordePoligono);
+      mundo.polygonAltitude(altitudPoligono);
     })
     .onPolygonClick((poligono) => {
       if (poligono && opciones.onPaisClick) {
@@ -61,6 +85,15 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     })(contenedor);
 
   mundo.globeMaterial().color.set(COLOR_OCEANO);
+
+  // Iluminación más clara: refuerza la luz ambiental y suaviza la direccional
+  mundo.lights().forEach((luz) => {
+    if (luz.type === "AmbientLight") {
+      luz.intensity = opciones.intensidadLuzAmbiental ?? 5;
+    } else if (luz.type === "DirectionalLight") {
+      luz.intensity = opciones.intensidadLuzDireccional ?? 0;
+    }
+  });
 
   if (opciones.colorFondo) {
     mundo.backgroundColor(opciones.colorFondo);
@@ -77,19 +110,9 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   };
   mundo.pointOfView(focoInicial, 0);
 
-  // Un click sobre el globo (sin arrastrar) también detiene la rotación
-  let puntoInicial = null;
-  contenedor.addEventListener("pointerdown", (e) => {
-    puntoInicial = { x: e.clientX, y: e.clientY };
-  });
-  contenedor.addEventListener("pointerup", (e) => {
-    if (
-      puntoInicial &&
-      Math.hypot(e.clientX - puntoInicial.x, e.clientY - puntoInicial.y) < 5
-    ) {
-      mundo.controls().autoRotate = false;
-    }
-    puntoInicial = null;
+  // El globo deja de girar en cuanto el usuario lo toca (clic o arrastre)
+  contenedor.addEventListener("pointerdown", () => {
+    mundo.controls().autoRotate = false;
   });
 
   function cargarMapa(archivo) {
@@ -118,6 +141,12 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
 
   function resaltarIsos(isos) {
     isosResaltados = new Set(isos || []);
+    mundo.polygonCapColor(colorPoligono);
+  }
+
+  function seleccionarIsos(isos, color) {
+    isosSeleccionados = new Set(isos || []);
+    colorSeleccionado = color || COLOR_PAIS;
     mundo.polygonCapColor(colorPoligono);
   }
 
@@ -194,6 +223,7 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     cargarMapa,
     destacarIsos,
     resaltarIsos,
+    seleccionarIsos,
     focoEn,
     toggleRotacion,
     sincronizarBoton,

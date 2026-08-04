@@ -35,8 +35,8 @@ async function inicializarPaises() {
 
     const globo = crearGlobo(contenedor, {
       antialias: false,
-      alturaBase: 0.007,
-      colorFondo: "rgba(0 0 0 / 0)",
+      alturaBase: 0.005,
+      colorFondo: "rgba(255 255 255 / 1)",
       isosDestacados: isosObtenidos,
       focoInicial: { lat: -25, lng: -70, altitude: 2.4 },
       onPaisClick: (props) => {
@@ -49,6 +49,7 @@ async function inicializarPaises() {
 
     window.onCapsulaPaisAbierta = (pais) => {
       globo.focoEn(pais.foco);
+      globo.seleccionarIsos(pais.territorios || [], pais.colorFondo);
       if (modoTerritorioActivo) {
         globo.resaltarIsos(pais.territorios);
       } else {
@@ -67,6 +68,7 @@ async function inicializarPaises() {
 
     window.onCapsulaPaisCerrada = () => {
       modoTerritorioActivo = false;
+      globo.seleccionarIsos([]);
       globo.resaltarIsos([]);
     };
 
