@@ -7,7 +7,7 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   const COLOR_PAIS = estilos.getPropertyValue("--yellow").trim() || "#7fb275";
   const COLOR_OSCURO = opciones.colorOscuro || "#d6d3d4";
   const COLOR_RESALTADO = opciones.colorResaltado || "#d6d5d7";
-  const ALTURA_BASE = opciones.alturaBase ?? 0.003;
+  const ALTURA_BASE = opciones.alturaBase ?? 0.007;
 
   let paisSobrevolado = null;
   let isosDestacados = opciones.isosDestacados || new Set();

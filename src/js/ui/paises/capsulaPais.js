@@ -418,5 +418,10 @@
   window.abrirCapsulaPais = abrirCapsulaPais;
   window.abrirCapsulaConEvoluciones = abrirCapsulaConEvoluciones;
 
-  document.addEventListener("DOMContentLoaded", inicializarCapsulaPais);
+  // En el dashboard, la cápsula se inicializa vía el router al abrir la vista
+  // de países (inicializarPaises -> inicializarCapsulaPais). Solo auto-inicia
+  // en páginas que no tienen ese router (ej. artículos con .paises clickeables).
+  if (!document.getElementById("contenedor-principal")) {
+    document.addEventListener("DOMContentLoaded", inicializarCapsulaPais);
+  }
 })();

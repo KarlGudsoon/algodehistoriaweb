@@ -1,13 +1,15 @@
-<div class="vista-paises flex gap-4 flex-col px-2 py-2 md:px-8 md:py-4 overflow-auto">
+<div
+  class="vista-paises flex gap-4 flex-col px-2 py-2 md:px-8 md:py-4 overflow-auto"
+>
   <h2>Colección de países</h2>
-  <div class="contenedor-infocards" id="resumenProgresoCartas">
+  <div class="contenedor-infocards" id="resumenProgresoPaises">
     <div class="infocards items-center skeleton">
       <img class="icon" src="/assets/icons/cards.svg" alt="" />
       <div class="contenido">
         <h3>Cartas coleccionadas</h3>
         <div class="infocards-progreso">
-          <span id="cartasObtenidas" class="bold"></span>/<span
-            id="cartasTotales"
+          <span id="paisesObtenidos" class="bold"></span>/<span
+            id="paisesTotales"
           ></span>
         </div>
       </div>
@@ -17,7 +19,7 @@
       <div class="contenido">
         <h3>Oro</h3>
         <div class="infocards-progreso">
-          <span id="cartasOro" class="bold">
+          <span id="cartasOro" class="bold"></span>
         </div>
       </div>
     </div>
@@ -26,7 +28,7 @@
       <div class="contenido">
         <h3>Plata</h3>
         <div class="infocards-progreso">
-          <span id="cartasPlata" class="bold">
+          <span id="cartasPlata" class="bold"></span>
         </div>
       </div>
     </div>
@@ -35,17 +37,37 @@
       <div class="contenido">
         <h3>Bronce</h3>
         <div class="infocards-progreso">
-          <span id="cartasBronce" class="bold">
+          <span id="cartasBronce" class="bold"></span>
         </div>
       </div>
     </div>
   </div>
   <div class="flex flex-1 gap-4 md:flex-row flex-col">
-    <div class="contenedor-lista-paises shadow-lg">
-      <div class="lista-paises">Hola, Stefano</div>
+    <div
+      class="contenedor-lista-paises shadow-lg border border-solid border-black border-opacity-10"
+    >
+      <div class="lista-paises flex flex-col h-full">
+        <div class="lista-paises-header">
+          <h3>Lista de Paises</h3>
+          <div class="buscador">
+            <input
+              type="text"
+              id="buscadorPaises"
+              placeholder="Buscar país..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <ul
+          class="list-none h-full mt-0 p-0 flex flex-col gap-2 rounded-2xl overflow-hidden relative skeleton"
+          id="listaPaises"
+        >
+          <!-- Aquí se generarán los elementos de la lista de países -->
+        </ul>
+      </div>
     </div>
-    <div class="flex-1 shadow-lg rounded-2xl " id="globoPaises"></div>
-    <div class="contenedor-capsula-pais overflow-hidden">
+    <div class="flex-1 shadow-lg rounded-2xl" id="globoPaises"></div>
+    <div class="contenedor-capsula-pais">
       <div class="capsula-pais">
         <div class="descripcion-pais">
           <div class="titulo-pais">
@@ -66,10 +88,10 @@
             </button>
           </div>
           <p id="capsula-pais-descripcion">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque saepe
-            ullam magnam minus exercitationem sunt aliquid, ex iste eligendi earum
-            perspiciatis labore beatae similique doloribus velit officiis delectus
-            reiciendis provident.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque
+            saepe ullam magnam minus exercitationem sunt aliquid, ex iste
+            eligendi earum perspiciatis labore beatae similique doloribus velit
+            officiis delectus reiciendis provident.
           </p>
           <span id="capsula-pais-etiqueta">[Etiqueta del país]</span>
           <button
@@ -95,12 +117,15 @@
             </div>
             <span class="separador-periodo"></span>
             <div class="fecha-periodo">
-              <h3 class="fecha-termino" id="capsula-pais-fecha-termino">1537</h3>
+              <h3 class="fecha-termino" id="capsula-pais-fecha-termino">
+                1537
+              </h3>
             </div>
           </div>
           <ul class="caracteristicas-pais">
             <li>
-              <img src="/assets/icons/moneda.svg" /><span id="capsula-economia-pais"
+              <img src="/assets/icons/moneda.svg" /><span
+                id="capsula-economia-pais"
                 >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               </span>
             </li>
@@ -165,4 +190,3 @@
     </div>
   </div>
 </div>
-

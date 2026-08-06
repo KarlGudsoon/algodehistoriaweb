@@ -5,6 +5,10 @@ require __DIR__ . '/../middlewares/auth_check.php';
 
 header('Content-Type: application/json');
 
+$stmt = $pdo->prepare('SELECT COUNT(*) FROM paises');
+$stmt->execute();
+$totalPaises = $stmt->fetchColumn();
+
 $stmt = $pdo->prepare('
     SELECT p.slug AS pais_slug, up.fecha_obtenida
     FROM usuario_paises up
@@ -14,4 +18,8 @@ $stmt = $pdo->prepare('
 $stmt->execute([$_SESSION['user_id']]);
 $coleccion = $stmt->fetchAll();
 
-echo json_encode(['coleccion' => $coleccion]);
+echo json_encode([
+    'coleccion' => $coleccion,
+    'cantidad' => count($coleccion),
+    'total' => $totalPaises
+]);

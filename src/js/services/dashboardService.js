@@ -10,7 +10,7 @@ async function obtenerDatosUsuario() {
 }
 
 async function obtenerNivelUsuario() {
-  const res = await fetch("/api/dashboard/nivel.php", {
+  const res = await fetch("/api/user/nivel.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
@@ -20,7 +20,7 @@ async function obtenerNivelUsuario() {
 }
 
 async function obtenerEstadisticasDashboard() {
-  const res = await fetch("/api/dashboard/estadisticas.php", {
+  const res = await fetch("/api/user/estadisticas.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
@@ -30,7 +30,7 @@ async function obtenerEstadisticasDashboard() {
 }
 
 async function obtenerColeccionDashboard() {
-  const res = await fetch("/api/dashboard/coleccion.php", {
+  const res = await fetch("/api/user/coleccion.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
@@ -47,11 +47,11 @@ async function obtenerColeccionPaises() {
   const data = await res.json();
   if (!res.ok)
     throw new Error(data.error || "Error al obtener la colección de países");
-  return data.coleccion;
+  return data;
 }
 
 async function obtenerPerfilDashboard() {
-  const res = await fetch("/api/dashboard/perfil.php", {
+  const res = await fetch("/api/user/perfil.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
@@ -70,7 +70,7 @@ async function obtenerCatalogoCartas() {
 }
 
 async function obtenerCartaDestacada() {
-  const res = await fetch("/api/dashboard/carta_destacada.php", {
+  const res = await fetch("/api/user/carta_destacada.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
@@ -81,7 +81,7 @@ async function obtenerCartaDestacada() {
 }
 
 async function obtenerPaisDestacado() {
-  const res = await fetch("/api/dashboard/pais_destacado.php", {
+  const res = await fetch("/api/user/pais_destacado.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");
@@ -92,7 +92,7 @@ async function obtenerPaisDestacado() {
 }
 
 async function obtenerArticulosCompletados() {
-  const res = await fetch("/api/dashboard/articulos_completados.php", {
+  const res = await fetch("/api/user/articulos_completados.php", {
     credentials: "include",
   });
   if (res.status === 401) throw new Error("No autenticado");

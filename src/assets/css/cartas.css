@@ -1392,6 +1392,7 @@
   width: 0%;
   height: 100%;
   z-index: 999999999;
+  padding: 0;
   display: flex;
   position: relative;
   justify-content: center;
@@ -1399,7 +1400,9 @@
   opacity: 1;
   pointer-events: none;
   transition: 0.5s ease;
-  transition-delay: 0.3s;
+  transition-delay: 0.5s;
+  overflow: hidden;
+  border-radius: 1rem;
 }
 
 .contenedor-capsula-pais.active {
@@ -1424,7 +1427,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5);
   pointer-events: all;
   transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: 0s;
@@ -1433,7 +1435,7 @@
 .capsula-pais.active {
   opacity: 1;
   transform: translateY(0%);
-  transition-delay: 0.3s;
+  transition-delay: 0.5s;
 }
 
 .capsula-pais h2 {
@@ -1590,6 +1592,7 @@
   height: auto;
   display: flex;
   flex: 1;
+  gap: 0.5rem;
   flex-direction: column;
   justify-content: space-evenly;
   list-style: none;
@@ -1934,25 +1937,26 @@
   }
 
   .contenedor-capsula-pais.active {
-    backdrop-filter: blur(15px);
-    background-color: rgb(0 0 0 / 0.2);
+    width: 100%;
   }
 
   .capsula-pais {
-    width: 95%;
-    height: 90%;
     flex-direction: column;
-    bottom: -100%;
   }
 
   .capsula-pais.active {
     bottom: 0;
+    position: relative;
   }
 
   .capsula-pais .descripcion-pais {
     height: auto;
     padding: 1rem;
     flex: 1;
+  }
+  .capsula-pais .descripcion-pais:nth-child(3) {
+    border-radius: 0 0 1rem 1rem;
+    min-height: 200px;
   }
 
   #capsula-pais-fondo {

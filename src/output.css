@@ -178,6 +178,10 @@
   resize: both
 }
 
+.list-none {
+  list-style-type: none
+}
+
 .flex-col {
   flex-direction: column
 }
@@ -344,6 +348,10 @@
 
 .\!p-0 {
   padding: 0px !important
+}
+
+.p-0 {
+  padding: 0px
 }
 
 .p-2 {
