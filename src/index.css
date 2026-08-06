@@ -1,22 +1,20 @@
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #181818 !important;
-    --secondary-color: #1f1f1f !important;
-    --yellow-color: #e92a41 !important;
-  }
+html[data-theme="dark"] {
+  --primary-color: #181818 !important;
+  --secondary-color: #1f1f1f !important;
+  --yellow-color: #e92a41 !important;
+}
 
-  body {
-    background-color: var(--primary-color-dark) !important;
-    color: white;
-  }
+html[data-theme="dark"] body {
+  background-color: var(--primary-color-dark) !important;
+  color: white;
+}
 
-  .logo-dark {
-    display: block !important;
-  }
+html[data-theme="dark"] .logo-dark {
+  display: block !important;
+}
 
-  .logo {
-    display: none;
-  }
+html[data-theme="dark"] .logo {
+  display: none;
 }
 
 :root {

@@ -1,6 +1,7 @@
 :root {
   --primary-color: #e92a41;
-  --secondary-color: #c2283a;
+  --secondary-color: #f8f8f8;
+  --tertiary-color: white;
   --yellow-color: #ffff00;
   --primary-color-dark: #181818;
 
@@ -10,6 +11,26 @@
   --moderna: #f11c35;
   --contemporanea: #2e8b57;
   --d: #921929;
+}
+
+html[data-theme="dark"] {
+  --primary-color: #e92a41 !important;
+  --secondary-color: #181818 !important;
+  --tertiary-color: #1f1f1f !important;
+  --yellow-color: #ffff00 !important;
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--primary-color-dark) !important;
+  color: white;
+}
+
+html[data-theme="dark"] .logo-dark {
+  display: block !important;
+}
+
+html[data-theme="dark"] .logo {
+  display: none;
 }
 
 .etiqueta-prehistoria {

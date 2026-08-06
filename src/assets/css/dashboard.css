@@ -98,7 +98,6 @@ h1 {
   flex-direction: column;
   background-color: var(--primary-color);
   padding: 2rem 2rem;
-  border-radius: 2rem;
 }
 
 .nav-interno ul {
@@ -397,10 +396,10 @@ h1 {
 .contenedor-infocards .infocards {
   flex: 1 1 min(300px, 100%);
   min-height: 50px;
+  background-color: var(--tertiary-color);
   color: var(--primary-color);
-  background-color: white;
-  box-shadow: 1px 2px 5px rgba(233, 42, 65, 0.15);
-  outline: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   display: flex;
   padding: 1rem;
@@ -673,27 +672,52 @@ h1 {
   }
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #181818 !important;
-    --secondary-color: #1f1f1f !important;
-    --yellow-color: #e92a41 !important;
-  }
+html[data-theme="dark"] {
+  --primary-color: #e92a41 !important;
+  --secondary-color: #181818 !important;
+  --tertiary-color: #232323 !important;
+  --yellow-color: #ffff00 !important;
+}
 
-  body {
-    background-color: var(--primary-color) !important;
-    color: white;
-  }
+html[data-theme="dark"] body {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
 
-  #contenedor-principal {
-    background-color: var(--secondary-color);
-  }
+html[data-theme="dark"] .nav-interno {
+  background-color: var(--tertiary-color) !important;
+}
 
-  .logo-dark {
-    display: block !important;
-  }
+html[data-theme="dark"] #contenedor-principal {
+  background-color: var(--secondary-color);
+}
 
-  .logo {
-    display: none;
-  }
-} */
+html[data-theme="dark"] .logo-dark {
+  display: block !important;
+}
+
+html[data-theme="dark"] .logo {
+  display: none;
+}
+
+html[data-theme="dark"] .contenedor-lista-paises,
+html[data-theme="dark"] .contenedor-capsula-pais .capsula-pais,
+html[data-theme="dark"] .lista-paises-header input,
+html[data-theme="dark"] .contenedor-infocards .infocards {
+  background-color: #232323;
+  border-color: rgb(60, 60, 60);
+  color: white;
+}
+
+html[data-theme="dark"] .pais-item {
+  background-color: #232323;
+  color: white;
+}
+
+html[data-theme="dark"] .pais-item:hover {
+  background-color: rgb(60, 60, 60);
+}
+
+html[data-theme="dark"] .pais-item.no-obtenido:hover {
+  background-color: #232323;
+}

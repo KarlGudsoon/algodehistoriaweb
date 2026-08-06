@@ -325,6 +325,14 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
+.bg-\[var\(--tertiary-color\)\] {
+  background-color: var(--tertiary-color)
+}
+
+.bg-\[--tertiary-color\] {
+  background-color: var(--tertiary-color)
+}
+
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1
 }
