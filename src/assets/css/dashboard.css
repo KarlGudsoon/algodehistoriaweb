@@ -444,9 +444,9 @@ h1 {
   content: "";
   background: linear-gradient(
     90deg,
-    rgba(119, 119, 119, 0) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    rgba(119, 119, 119, 0) 100%
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
   );
   width: 50%;
   height: 100%;
@@ -700,6 +700,10 @@ html[data-theme="dark"] .logo {
   display: none;
 }
 
+html[data-theme="dark"] .skeleton::before {
+  background: rgb(30, 30, 30) !important;
+}
+
 html[data-theme="dark"] .contenedor-lista-paises,
 html[data-theme="dark"] .contenedor-capsula-pais .capsula-pais,
 html[data-theme="dark"] .lista-paises-header input,
@@ -707,6 +711,15 @@ html[data-theme="dark"] .contenedor-infocards .infocards {
   background-color: #232323;
   border-color: rgb(60, 60, 60);
   color: white;
+}
+
+html[data-theme="dark"] .contenedor-infocards .infocards .contenido h3,
+html[data-theme="dark"] .contenedor-infocards .infocards .contenido small {
+  color: white;
+}
+
+html[data-theme="dark"] .buscador {
+  background-color: var(--secondary-color);
 }
 
 html[data-theme="dark"] .pais-item {
