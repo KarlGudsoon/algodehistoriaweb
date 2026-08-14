@@ -37,7 +37,7 @@ header img {
 
 nav ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
   padding: 0;
@@ -47,7 +47,7 @@ nav ul {
 
 nav ul li {
   list-style: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 1rem;
   transition: 0.2s ease;
 }
@@ -59,7 +59,7 @@ nav ul li a {
 }
 
 nav ul li:hover {
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.75);
 }
 
 nav ul li:active {
@@ -79,12 +79,22 @@ nav ul li:active {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  padding: 0 !important;
   color: white;
   background: none;
+  box-shadow: none;
   border: 0;
   border-radius: 0.75rem;
   cursor: pointer;
   transition: 0.2s ease;
+}
+
+.btn-tema::after {
+  display: none;
+}
+
+.btn-tema::before {
+  display: none !important;
 }
 
 .btn-tema:hover {
@@ -96,15 +106,15 @@ nav ul li:active {
   height: 22px;
 }
 
-.icono-sol {
+.icono-luna {
   display: none;
 }
 
-html[data-theme="dark"] .icono-sol {
+html[data-theme="dark"] .icono-luna {
   display: block;
 }
 
-html[data-theme="dark"] .icono-luna {
+html[data-theme="dark"] .icono-sol {
   display: none;
 }
 
@@ -117,7 +127,7 @@ html[data-theme="dark"] header {
   height: 40px;
   border-radius: 50%;
   background-color: var(--yellow-color);
-  color: white;
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,7 +162,7 @@ html[data-theme="dark"] header {
   display: none;
   color: white;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--secondarycolor);
   border: 0;
   border-radius: 5px;
   padding: 5px 5px;
@@ -168,7 +178,7 @@ html[data-theme="dark"] header {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--yellow-color);
+  background-color: var(--primary-color);
   border: 0;
   border-radius: 5px;
   color: white;

@@ -40,6 +40,10 @@
   margin: 0px
 }
 
+.m-auto {
+  margin: auto
+}
+
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem
@@ -134,6 +138,10 @@
   min-height: 100vh
 }
 
+.w-\[80\%\] {
+  width: 80%
+}
+
 .w-\[stretch\] {
   width: -webkit-fill-available;
   width: -moz-available;
@@ -150,6 +158,10 @@
 
 .max-w-80 {
   max-width: 20rem
+}
+
+.max-w-\[1800px\] {
+  max-width: 1800px
 }
 
 .max-w-sm {
@@ -196,6 +208,10 @@
 
 .items-center {
   align-items: center
+}
+
+.justify-end {
+  justify-content: flex-end
 }
 
 .justify-center {

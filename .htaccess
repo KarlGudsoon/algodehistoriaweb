@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloquea directorios de desarrollo y datos
+    RewriteRule ^(\.git|node_modules|sql)(/|$) - [F,L]
+
+    # Bloquea archivos de configuración y herramientas
+    RewriteRule ^(package\.json|package-lock\.json|docker-compose\.yml|tailwind\.config\.js|\.gitignore|\.gitattributes|algodehistoriaweb\.code-workspace)$ - [F,L]
+</IfModule>

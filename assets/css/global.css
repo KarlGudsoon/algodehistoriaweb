@@ -261,6 +261,19 @@ html[data-theme="dark"] .logo {
   src: url("/assets/fonts/RobotoSlab-Regular.woff2") format("truetype");
 }
 
+.button-sencillo {
+  background: none;
+  border: none;
+}
+
+.button-sencillo::after {
+  display: none;
+}
+
+.button-sencillo::before {
+  display: none;
+}
+
 a {
   text-decoration: none;
   color: white;

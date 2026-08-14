@@ -20,6 +20,8 @@ async function initLayout() {
 
   await inicializarNav(); // ahora sí, navUserSection ya existe en el DOM
 
+  document.getElementById("actualYear").textContent = new Date().getFullYear();
+
   document.addEventListener("click", (e) => {
     if (e.target.id === "btn-menu-mobile") {
       document.querySelector(".menu-mobile")?.classList.toggle("active");

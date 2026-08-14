@@ -62,4 +62,4 @@ function inicializarRouterDashboard() {
   cargarVista(vistaInicial);
 }
 
-document.addEventListener("DOMContentLoaded", inicializarRouterDashboard);
+inicializarRouterDashboard();
