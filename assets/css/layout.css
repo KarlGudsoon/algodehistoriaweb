@@ -19,16 +19,20 @@
 }
 
 header {
-  height: 75px;
-  background-color: var(--fondopagina);
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
   top: 0;
   gap: 2rem;
-  padding: 0 2rem;
-  z-index: 9;
+  padding: 1rem 2rem;
+  z-index: 99999999;
+  backdrop-filter: blur(15px);
+  background-color: var(--fondopagina);
+  border-radius: 0 0 2rem 2rem;
+  margin: 0 1rem;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 header img {
@@ -429,6 +433,10 @@ footer {
   #btn-menu-mobile {
     display: block;
   }
+  header {
+    margin: 0;
+  }
+
   header nav {
     display: none;
   }

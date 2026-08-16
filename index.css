@@ -28,6 +28,8 @@ html[data-theme="dark"] .logo {
   --medieval: #f8b229;
   --moderna: #f11c35;
   --contemporanea: #2e8b57;
+
+  --fondopagina: #e92a41;
 }
 
 @view-transition {
