@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let startX;
     // Función para voltear la tarjeta
     const flipCard = () => {
-      var sonidoCarta = new Audio("/audio/carta.mp3");
+      var sonidoCarta = new Audio("/assets/audio/carta.mp3");
       sonidoCarta.volume = 0.3;
       sonidoCarta.preload = "auto";
       sonidoCarta.play();
@@ -89,7 +89,7 @@ contenedorPersonajes.addEventListener("click", function (event) {
 
 document.querySelectorAll(".personaje").forEach((personaje, index) => {
   personaje.addEventListener("click", () => {
-    var sonidoSobre = new Audio("/audio/arrastrar.mp3");
+    var sonidoSobre = new Audio("/assets/audio/arrastrar.mp3");
     sonidoSobre.volume = 0.5;
     sonidoSobre.preload = "auto";
     sonidoSobre.play();
@@ -732,9 +732,9 @@ containers.forEach(function (container) {
 // ABRIR SOBRE (2) / EXIT ANIMATION //
 
 var sobreCarta = document.querySelector(".sobre-carta");
-var sonidoSobre = new Audio("/audio/arrastrar.mp3");
-var sonidoMostrarCarta = new Audio("/audio/reluciente.mp3");
-var sonidoAbrir = new Audio("/audio/romperpapel.mp3");
+var sonidoSobre = new Audio("/assets/audio/arrastrar.mp3");
+var sonidoMostrarCarta = new Audio("/assets/audio/reluciente.mp3");
+var sonidoAbrir = new Audio("/assets/audio/romperpapel.mp3");
 
 sonidoAbrir.volume = 0.3;
 sonidoMostrarCarta.volume = 0.3;
@@ -795,7 +795,7 @@ function cerrarCarta() {
 }
 
 document.getElementById("carta-cerrar").addEventListener("click", function () {
-  var sonidoSobre = new Audio("/audio/arrastrar.mp3");
+  var sonidoSobre = new Audio("/assets/audio/arrastrar.mp3");
   sonidoSobre.volume = 0.5;
   sonidoSobre.preload = "auto";
   sonidoSobre.play();
@@ -1545,7 +1545,7 @@ function typeWriter(element, text, delay = 50) {
 // SONIDO DE SELECCIÓN
 
 function sonidoSeleccion() {
-  let sonido = new Audio("/audio/seleccion2.mp3");
+  let sonido = new Audio("/assets/audio/seleccion2.mp3");
   sonido.volume = 0.3;
   sonido.preload = "auto";
   sonido.play();

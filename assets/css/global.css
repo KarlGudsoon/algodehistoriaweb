@@ -253,7 +253,7 @@ html[data-theme="dark"] .logo {
 
 @font-face {
   font-family: BreeSerif;
-  src: url("/fonts/BreeSerif-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/BreeSerif-Regular.ttf") format("truetype");
 }
 
 @font-face {

@@ -29,7 +29,7 @@
 <style>
     @font-face {
     font-family: Roboto;
-    src: url("/fonts/RobotoSlab-Regular.ttf")
+    src: url("/assets/fonts/RobotoSlab-Regular.ttf")
       format("truetype");
     }
 

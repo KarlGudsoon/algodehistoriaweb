@@ -13,7 +13,7 @@
 
   if (typeof window.sonidoSeleccion !== "function") {
     window.sonidoSeleccion = function () {
-      let sonido = new Audio("/audio/seleccion2.mp3");
+      let sonido = new Audio("/assets/audio/seleccion2.mp3");
       sonido.volume = 0.3;
       sonido.preload = "auto";
       sonido.play();

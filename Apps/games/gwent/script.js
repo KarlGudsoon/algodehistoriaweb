@@ -513,7 +513,7 @@ async function generarOro(quien) {
     // mostrar flotante +n (opcional)
     mostrarFlotante(el, `+${nivel}💰`);
 
-    const coin = new Audio('/audio/drop-coin.mp3');
+    const coin = new Audio('/assets/audio/drop-coin.mp3');
     coin.play();
     coin.volume = 0.2;
 

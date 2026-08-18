@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Evento para detectar clic en una carta
     cartas.forEach(carta => {
         carta.addEventListener("click", function (event) {
-            const sonidoClick = new Audio("/audio/seleccion2.mp3");
+            const sonidoClick = new Audio("/assets/audio/seleccion2.mp3");
             sonidoClick.play();
             cartas.forEach(c => c.classList.remove("clickeada"));
             this.classList.add("clickeada");
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dadoBtn.disabled = true;
 
         let resultadoDado = Math.floor(Math.random() * 6) + 1;
-        const sonidoDado = new Audio("/audio/dado.mp3");
+        const sonidoDado = new Audio("/assets/audio/dado.mp3");
         sonidoDado.play();
 
         animarDado(resultadoDado, () => {
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (nuevaCasilla && nuevaCasilla.dataset.casilla === "situacion") {
                         const cartaAleatoria = cartasSituacion[Math.floor(Math.random() * cartasSituacion.length)];
                         cartaAleatoria.classList.add("active");
-                        const sonidoCarta = new Audio("/audio/carta.mp3");
+                        const sonidoCarta = new Audio("/assets/audio/carta.mp3");
                         sonidoCarta.play();
 
                         setTimeout(() => {
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
         billete.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("text", e.target.dataset.cantidad);
             e.target.classList.add("dragging");
-            const sonidoArrastrar2 = new Audio("/audio/seleccionpop.mp3");
+            const sonidoArrastrar2 = new Audio("/assets/audio/seleccionpop.mp3");
             sonidoArrastrar2.play();
             
         });
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         billete.addEventListener("click", function (e) {
-            const sonidoArrastrar = new Audio("/audio/seleccionpop.mp3");
+            const sonidoArrastrar = new Audio("/assets/audio/seleccionpop.mp3");
             sonidoArrastrar.play();
         });
     }
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
     depositoBilletes.addEventListener("drop", function (e) {
         e.preventDefault();
 
-        const sonidoDejar = new Audio("/audio/pop.mp3");
+        const sonidoDejar = new Audio("/assets/audio/pop.mp3");
         sonidoDejar.play();
 
         if (parseInt(dineroPorPagarSpan.textContent, 10) === 0) {
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return total + parseInt(billete.dataset.cantidad, 10);
         }, 0);
 
-        const sonidoPagar = new Audio("/audio/seleccion.mp3");
+        const sonidoPagar = new Audio("/assets/audio/seleccion.mp3");
         sonidoPagar.play();
 
 
@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function mover() {
             let siguientePosicion = actual + 1;
-            const sonidoPaso = new Audio("/audio/paso.mp3");
+            const sonidoPaso = new Audio("/assets/audio/paso.mp3");
             sonidoPaso.play();
 
             if (siguientePosicion > totalCasillas) {

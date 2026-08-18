@@ -349,7 +349,7 @@ function cerrarCartaExpandida(contenedor, clon, rectInicial) {
 // Flip genérico, reutilizable tanto en el grid como en el clon
 // ============================================================
 function flipCardGenerico(card) {
-  const sonidoCarta = new Audio("/audio/carta.mp3");
+  const sonidoCarta = new Audio("/assets/audio/carta.mp3");
   sonidoCarta.volume = 0.3;
   sonidoCarta.play();
 
@@ -369,7 +369,7 @@ function flipCardGenerico(card) {
 }
 
 function sonidoSeleccion() {
-  let sonido = new Audio("/audio/seleccion2.mp3");
+  let sonido = new Audio("/assets/audio/seleccion2.mp3");
   sonido.volume = 0.3;
   sonido.preload = "auto";
   sonido.play();

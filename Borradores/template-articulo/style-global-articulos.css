@@ -266,7 +266,7 @@ footer {
 
 @font-face {
   font-family: BreeSerif;
-  src: url("/fonts/BreeSerif-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/BreeSerif-Regular.ttf") format("truetype");
 }
 
 @view-transition {
@@ -275,7 +275,7 @@ footer {
 
 @font-face {
   font-family: Roboto;
-  src: url("/fonts/RobotoSlab-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/RobotoSlab-Regular.ttf") format("truetype");
 }
 
 .etiqueta-periodo {
