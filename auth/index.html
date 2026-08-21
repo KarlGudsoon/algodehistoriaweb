@@ -4,20 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iniciar sesión | Historia Interactiva</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/assets/icons/logo.svg" />
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/auth.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <script src="/js/ui/tema.js"></script>
+    <script src="/js/services/authService.js"></script>
+    <script src="/js/components.js"></script>
   </head>
-  <body class="bg-gray-100 min-h-screen flex flex-col">
-    <header id="header"></header>
-    <div id="navbarmobile"></div>
+  <body class="bg-secondary min-h-screen flex flex-col m-0 font-[roboto]">
+    <site-header></site-header>
+    <site-mobile-nav></site-mobile-nav>
 
     <main class="flex-1 flex items-center justify-center px-4 py-12">
       <form
         id="loginForm"
-        class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
+        class="bg-primary p-8 rounded-lg shadow-md w-full max-w-sm flex flex-col"
       >
-        <h1 class="text-2xl font-bold mb-1 text-gray-800">Iniciar sesión</h1>
-        <p class="text-sm text-gray-500 mb-6">
+        <h1 class="text-2xl font-bold mb-1 text-white">Iniciar sesión</h1>
+        <p class="text-sm text-white mb-6">
           Continúa tu recorrido por la historia
         </p>
 
@@ -26,28 +32,26 @@
           class="hidden bg-red-100 text-red-700 text-sm p-3 rounded mb-4"
         ></div>
 
-        <label for="email" class="block mb-1 text-sm font-medium text-gray-700"
+        <label for="email" class="block mb-1 text-sm font-medium text-white"
           >Correo electrónico</label
         >
         <input
           type="email"
           id="email"
           name="email"
-          class="w-full border border-gray-300 rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="bg-black/10 shadow-inner border font-[roboto] text-white border-solid border-white/25 rounded-lg p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-white"
           required
           autocomplete="email"
         />
 
-        <label
-          for="password"
-          class="block mb-1 text-sm font-medium text-gray-700"
+        <label for="password" class="block mb-1 text-sm font-medium text-white"
           >Contraseña</label
         >
         <input
           type="password"
           id="password"
           name="password"
-          class="w-full border border-gray-300 rounded p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="bg-black/10 shadow-inner border font-[roboto] text-white border-solid border-white/25 rounded-lg p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-white"
           required
           minlength="8"
           autocomplete="current-password"
@@ -61,20 +65,14 @@
           Ingresar
         </button>
 
-        <p class="text-sm text-center mt-4 text-gray-600">
+        <p class="text-sm text-center mt-4 text-white">
           ¿No tienes cuenta?
-          <a href="/auth/registro.html" class="text-blue-600 hover:underline"
-            >Regístrate</a
-          >
+          <a href="/auth/registro.html" class="hover:underline">Regístrate</a>
         </p>
       </form>
     </main>
 
-    <footer id="footer"></footer>
-
-    <script src="/js/services/authService.js"></script>
-    <script src="/js/ui/nav.js"></script>
-    <script src="/js/layout.js"></script>
+    <site-footer></site-footer>
 
     <script>
       document
@@ -93,7 +91,7 @@
 
           try {
             await login(email, password);
-            window.location.href = "/";
+            window.location.href = "/dashboard/";
           } catch (error) {
             errorBox.textContent = error.message;
             errorBox.classList.remove("hidden");

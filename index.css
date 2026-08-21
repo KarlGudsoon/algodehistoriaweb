@@ -4,11 +4,6 @@ html[data-theme="dark"] {
   --yellow-color: #e92a41 !important;
 }
 
-html[data-theme="dark"] body {
-  background-color: var(--primary-color-dark) !important;
-  color: white;
-}
-
 html[data-theme="dark"] .logo-dark {
   display: block !important;
 }

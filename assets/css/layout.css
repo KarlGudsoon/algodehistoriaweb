@@ -19,7 +19,6 @@
 }
 
 header {
-  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,7 +27,7 @@ header {
   padding: 1rem 2rem;
   z-index: 99999999;
   backdrop-filter: blur(15px);
-  background-color: var(--fondopagina);
+  background-color: var(--primary-color);
   border-radius: 0 0 2rem 2rem;
   margin: 0 1rem;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
@@ -251,10 +250,11 @@ html[data-theme="dark"] header {
   left: 0;
 }
 
-footer {
+site-footer {
   width: 100%;
   height: auto;
-  background-color: var(--red);
+  background-color: var(--primary-color);
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -441,7 +441,7 @@ footer {
     display: none;
   }
   .footer-container {
-    min-width: 100%;
+    min-width: auto;
   }
 
   .footer-1 {

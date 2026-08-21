@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/assets/css/output.css" />
     <link rel="stylesheet" href="/index.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
-
+    <script src="/js/services/authService.js"></script>
+    <script src="/js/components.js"></script>
     <script src="/js/ui/tema.js"></script>
     <meta
       name="viewport"
@@ -31,8 +32,8 @@
     />
   </head>
   <body>
-    <header id="header"></header>
-    <div id="navbarmobile"></div>
+    <site-header></site-header>
+    <site-mobile-nav></site-mobile-nav>
     <section class="contenedor-portada">
       <div class="contenedor-lateral-cartas">
         <div
@@ -194,7 +195,7 @@
             </p>
           </div>
           <div class="contenedor-app">
-            <a href="/Apps/mapas/mapa-interactivos.html">
+            <a href="/Apps/mapas/">
               <div class="aplicaciones">
                 <div class="app" id="mapas-interactivos">
                   <img src="/assets/icons/paisesdelmundo.png" />
@@ -232,30 +233,6 @@
                   <img src="/assets/icons/tareas.svg" />
                 </div>
                 <h1>Tareas</h1>
-              </div>
-            </a>
-            <a href="/Apps/guessthehistory/">
-              <div class="aplicaciones">
-                <div class="app" id="guessgame">
-                  <img src="/assets/icons/lupa.svg" />
-                </div>
-                <h1>Guess Game</h1>
-              </div>
-            </a>
-            <a href="/Apps/luminary/">
-              <div class="aplicaciones">
-                <div class="app" id="luminary">
-                  <img src="/assets/icons/master.svg" />
-                </div>
-                <h1>Luminary</h1>
-              </div>
-            </a>
-            <a href="/3D/globo3d.html">
-              <div class="aplicaciones">
-                <div class="app" id="globo-3d">
-                  <img src="/assets/icons/subway--world-1.svg" />
-                </div>
-                <h1>Globo 3D</h1>
               </div>
             </a>
             <a>
@@ -299,12 +276,9 @@
         </div>
       </section>
     </main>
-    <footer id="footer"></footer>
+    <site-footer></site-footer>
   </body>
 </html>
-<script src="/js/services/authService.js" defer></script>
-<script src="/js/ui/nav.js" defer></script>
-<script src="/js/ui/layout.js" defer></script>
 
 <script src="/js/ui/index.js"></script>
 <script type="text/javascript" src="/vanilla-tilt.min.js"></script>

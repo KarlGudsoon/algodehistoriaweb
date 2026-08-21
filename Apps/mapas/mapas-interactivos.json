@@ -1,52 +1,52 @@
 [
-    {
-      "id": "poblamiento_americano",
-      "titulo": "POBLAMIENTO AMERICANO",
-      "descripcion": "Es la teoría más aceptada. Postula que los primeros habitantes de América llegaron desde Asia atravesando un 'puente terrestre' que unió Siberia con  Alaska durante la última glaciación",
-      "periodo": "PREHISTORIA",
-      "clasePeriodo": "etiqueta-prehistoria",
-      "imagen": "/img/prehistoria/pixelcut-export (6).jpeg",
-      "srcMapa": "/maps/Prehistoria/prehistoria-globe.html",
-      "hrefMapa": "/Articulos/Prehistoria/template.html"
-    },
-    {
-      "id": "imperialismo_xix",
-      "titulo": "IMPERIALISMO SIGLO XIX",
-      "descripcion": "El imperialismo del siglo XIX fue un periodo en el que las potencias europeas, como Gran Bretaña, Francia, Alemania, Rusia, Holanda y Bélgica, conquistaron territorios en Asia, África y Oceanía.",
-      "periodo": "CONTEMPORÁNEA",
-      "clasePeriodo": "etiqueta-contemporanea",
-      "imagen": "/img/contemporanea/imperialismo/1820px-Alphonse_de_Neuville_-_The_defence_of_Rorke's_Drift_1879_-_Google_Art_Project-min.jpg",
-      "srcMapa": "/Apps/imperialismo/world.html",
-      "hrefMapa": "/Articulos/Contemporanea/revolucion-industrial.html"
-    },
-    {
-        "id": "primera_guerra_mundial",
-        "titulo": "PRIMERA GUERRA MUNDIAL",
-        "descripcion": "Con el imperialismo se fue desarrollando una creciente tensión entre las grandes potencias. Esto, entre otras circunstancias, conducirá a que en 1914 se desencadene la Gran Guerra o Primera Guerra Mundial. ",
-        "periodo": "CONTEMPORÁNEA",
-        "clasePeriodo": "etiqueta-contemporanea",
-        "imagen": "/img/contemporanea/primera-guerra-mundial/trincheras.jpg",
-        "srcMapa": "/Apps/mapas/1914/world.html",
-        "hrefMapa": "/Apps/imperialismo/world.html"
-    },
-    {
-      "id": "segunda_guerra_mundial",
-      "titulo": "SEGUNDA GUERRA MUNDIAL",
-      "descripcion": "La Segunda Guerra Mundial fue un conflicto militar que tuvo lugar entre 1939 y 1945, y que involucró a la mayoría de las naciones del mundo, incluidas todas las grandes potencias, organizadas en dos alianzas militares opuestas: los Aliados y el Eje.",
-      "periodo": "CONTEMPORÁNEA",
-      "clasePeriodo": "etiqueta-contemporanea",
-      "imagen": "/img/contemporanea/segunda-guerra-mundial/Sadae-Kasoaka-Testigo-del-bombardeo-de-Hiroshima-Informes.webp",
-      "srcMapa": "/Apps/mapas/segunda-guerra-mundial/world.html",
-      "hrefMapa": "/index.html"
-    },
-    {
-      "id": "descubrimiento_america",
-      "titulo": "DESCUBRIMIENTO DE AMÉRICA",
-      "descripcion": "El descubrimiento de América se refiere al proceso histórico que comenzó en 1492 con la llegada de Cristóbal Colón a América, y que tuvo un impacto profundo en la historia mundial.",
-      "periodo": "EDAD MODERNA",
-      "clasePeriodo": "etiqueta-moderna",
-      "imagen": "/img/moderna/fondo.webp",
-      "srcMapa": "/Apps/mapas/descubrimiento-america/world.html",
-      "hrefMapa": "/Articulos/Moderna/descubrimiento-america.html"
-    }
-  ]
+  {
+    "id": "poblamiento_americano",
+    "titulo": "POBLAMIENTO AMERICANO",
+    "descripcion": "Las teorías del poblamiento de América explican cómo los seres humanos llegaron al continente. La teoría más aceptada es la migración asiática a través del estrecho de Bering.",
+    "periodo": "Prehistoria",
+    "clasePeriodo": "etiqueta-prehistoria",
+    "imagen": "/img/prehistoria/pixelcut-export (6).jpeg",
+    "srcMapa": "/maps/Prehistoria/prehistoria-globe.html",
+    "hrefMapa": "/Articulos/Prehistoria/template.html"
+  },
+  {
+    "id": "imperialismo_xix",
+    "titulo": "IMPERIALISMO SIGLO XIX",
+    "descripcion": "El imperialismo del siglo XIX fue un periodo en el que las potencias europeas conquistaron territorios en Asia, África y Oceanía.",
+    "periodo": "Contemporánea",
+    "clasePeriodo": "etiqueta-contemporanea",
+    "imagen": "/img/contemporanea/imperialismo/1820px-Alphonse_de_Neuville_-_The_defence_of_Rorke's_Drift_1879_-_Google_Art_Project-min.jpg",
+    "srcMapa": "/Apps/imperialismo/world.html",
+    "hrefMapa": "/Articulos/Contemporanea/revolucion-industrial.html"
+  },
+  {
+    "id": "primera_guerra_mundial",
+    "titulo": "PRIMERA GUERRA MUNDIAL",
+    "descripcion": "Con el imperialismo se fue desarrollando una creciente tensión entre las grandes potencias. Esto junto a otras consecuencias conducirá a que se desencadene la Gran Guerra ",
+    "periodo": "Contemporánea",
+    "clasePeriodo": "etiqueta-contemporanea",
+    "imagen": "/img/contemporanea/primera-guerra-mundial/trincheras.jpg",
+    "srcMapa": "/Apps/mapas/1914/world.html",
+    "hrefMapa": "/Apps/imperialismo/world.html"
+  },
+  {
+    "id": "segunda_guerra_mundial",
+    "titulo": "SEGUNDA GUERRA MUNDIAL",
+    "descripcion": "La Segunda Guerra Mundial fue un conflicto militar que tuvo lugar entre 1939 y 1945 que enfrentaría a los Aliados y el Eje.",
+    "periodo": "Contemporánea",
+    "clasePeriodo": "etiqueta-contemporanea",
+    "imagen": "/img/contemporanea/segunda-guerra-mundial/Sadae-Kasoaka-Testigo-del-bombardeo-de-Hiroshima-Informes.webp",
+    "srcMapa": "/Apps/mapas/segunda-guerra-mundial/world.html",
+    "hrefMapa": "/index.html"
+  },
+  {
+    "id": "descubrimiento_america",
+    "titulo": "DESCUBRIMIENTO DE AMÉRICA",
+    "descripcion": "El descubrimiento de América se refiere al proceso histórico que comenzó en 1492 con la llegada de Cristóbal Colón a América, lo que cambiaría ambos mundos.",
+    "periodo": "Edad Moderna",
+    "clasePeriodo": "etiqueta-moderna",
+    "imagen": "/img/moderna/fondo.webp",
+    "srcMapa": "/Apps/mapas/descubrimiento-america/world.html",
+    "hrefMapa": "/Articulos/Moderna/descubrimiento-america.html"
+  }
+]

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapas Interactivos - Algo de Historia</title>
+    <link rel="stylesheet" href="/Apps/mapas/style.css" />
+  </head>
+  <body>
+    <section class="contenedor-mapa">
+      <div id="abrir-menu"><img src="/assets/icons/menu.svg" /></div>
+      <div class="contenedor-menu-mapa active" id="menu-mapa">
+        <div class="header-menu">
+          <a href="/index.html"><img src="/assets/icons/logo.svg" /></a>
+          <h1>MAPAS INTERACTIVOS</h1>
+          <span id="cerrar-menu"><img src="/assets/icons/close.svg" /></span>
+        </div>
+        <div class="buscador">
+          <input type="text" id="buscador" placeholder="Buscar cuestionario" />
+          <select id="periodo">
+            <option value="todos">Todos</option>
+            <option value="PREHISTORIA">Prehistoria</option>
+            <option value="edad-antigua">Edad Antigua</option>
+            <option value="edad-media">Edad Media</option>
+            <option value="edad-moderna">Edad Moderna</option>
+            <option value="CONTEMPORÁNEA">Edad Contemporanea</option>
+          </select>
+        </div>
+        <div class="contenedor-mapas-interactivos"></div>
+      </div>
+      <div class="contenedor-mapa-seleccionado">
+        <iframe id="mapa" src="/Apps/imperialismo/world.html"></iframe>
+      </div>
+    </section>
+  </body>
+
+  <script src="script.js"></script>
+</html>
