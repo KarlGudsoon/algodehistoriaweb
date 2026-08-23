@@ -46,14 +46,14 @@ async function cargarVista(nombreVista) {
 }
 
 function marcarBotonActivo(nombreVista) {
-  document.querySelectorAll(".nav-interno button").forEach((btn) => {
+  document.querySelectorAll(".nav button").forEach((btn) => {
     btn.classList.toggle("activo", btn.dataset.vista === nombreVista);
   });
 }
 
 function inicializarRouterDashboard() {
   // Conecta cada botón con su vista mediante data-vista
-  document.querySelectorAll(".nav-interno button").forEach((btn) => {
+  document.querySelectorAll(".nav button").forEach((btn) => {
     btn.addEventListener("click", () => cargarVista(btn.dataset.vista));
   });
 
