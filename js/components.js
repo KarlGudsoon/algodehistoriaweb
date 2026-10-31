@@ -157,6 +157,8 @@ class SiteHeader extends HTMLElement {
     const section = this.querySelector("#navUserSection");
     if (!section || typeof checkSession !== "function") return;
 
+    section.classList.add("skeleton");
+
     const user = await checkSession();
 
     if (user) {
@@ -169,8 +171,9 @@ class SiteHeader extends HTMLElement {
       `;
       section.querySelector("#logoutBtn")?.addEventListener("click", logout);
     } else {
-      section.innerHTML = `<a href="/auth/">Ingresar</a>`;
+      section.innerHTML = `<a class="btn-sesion" href="/auth/">Ingresar</a>`;
     }
+    section.classList.remove("skeleton");
   }
 }
 
