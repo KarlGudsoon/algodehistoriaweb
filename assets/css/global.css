@@ -399,6 +399,10 @@ a:hover {
   transition: 0.2s ease;
 }
 
+html[data-theme="dark"] .btn-sesion {
+  color: white;
+}
+
 .btn-sesion:hover {
   color: var(--primary-color);
   outline: 2px solid rgba(255, 255, 255, 0.75);
@@ -463,6 +467,10 @@ a:hover {
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
   font-family: roboto;
   font-weight: 400;
   border: none;
@@ -483,4 +491,11 @@ html[data-theme="dark"] .btn-auth-submit {
 
 .btn-auth-submit:active {
   scale: 0.98;
+}
+
+.separador-vertical {
+  width: 1px;
+  height: var(--height, auto);
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 8px;
 }

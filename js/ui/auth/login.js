@@ -55,7 +55,7 @@ loginForm.addEventListener("submit", async (e) => {
   }
 
   // Deshabilitar botón durante el proceso
-  setLoading(true);
+  setLoading(loginBtn, true, "Ingresando...", "Ingresar");
 
   try {
     // Intentar iniciar sesión
@@ -70,7 +70,7 @@ loginForm.addEventListener("submit", async (e) => {
     );
   } finally {
     // Restaurar botón si seguimos en esta página
-    setLoading(false);
+    setLoading(loginBtn, false, "Ingresando...", "Ingresar");
   }
 });
 
@@ -81,9 +81,18 @@ function showError(message) {
 }
 
 // Controlar estado del botón
-function setLoading(loading) {
-  loginBtn.disabled = loading;
-  loginBtn.textContent = loading ? "Ingresando..." : "Ingresar";
-}
 
-// Registro de usuario
+function setLoading(button, loading, loadingText, normalText) {
+  const img = button.querySelector("svg");
+  const text = button.querySelector("span");
+
+  button.disabled = loading;
+
+  if (img) {
+    img.classList.toggle("hidden", !loading);
+  }
+
+  if (text) {
+    text.textContent = loading ? loadingText : normalText;
+  }
+}

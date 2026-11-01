@@ -1,11 +1,9 @@
 const registerForm = document.getElementById("registerForm");
-const btnRegisterForm = document.getElementById("btn-register");
+const registerBtn = document.getElementById("btn-register");
 
 const nameInputRegister = document.getElementById("nameRegister");
 const emailInputRegister = document.getElementById("emailRegister");
 const passwordInputRegister = document.getElementById("passwordRegister");
-
-const registerBtn = document.getElementById("registerBtn");
 
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -40,7 +38,7 @@ registerForm.addEventListener("submit", async (e) => {
   }
 
   // Activar estado de carga
-  setLoading(true);
+  setLoading(registerBtn, true, "Registrando...", "Registrarse");
 
   try {
     // Registrar usuario

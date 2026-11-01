@@ -131,6 +131,10 @@
   height: 0.75rem
 }
 
+.h-5 {
+  height: 1.25rem
+}
+
 .h-\[100px\] {
   height: 100px
 }
@@ -145,6 +149,10 @@
 
 .min-h-screen {
   min-height: 100vh
+}
+
+.w-5 {
+  width: 1.25rem
 }
 
 .w-\[80\%\] {
@@ -296,6 +304,10 @@
   border-color: rgb(255 255 255 / 0.25)
 }
 
+.border-white\/90 {
+  border-color: rgb(255 255 255 / 0.9)
+}
+
 .border-opacity-10 {
   --tw-border-opacity: 0.1
 }
@@ -338,10 +350,6 @@
 
 .bg-\[var\(--primary-color\)\] {
   background-color: var(--primary-color)
-}
-
-.bg-\[var\(--secondary-color\)\] {
-  background-color: var(--secondary-color)
 }
 
 .bg-black {

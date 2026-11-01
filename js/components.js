@@ -60,6 +60,7 @@ const HEADER_HTML = `
         />
       </svg>
     </button>
+    <div class="separador-vertical"></div>
     <div id="navUserSection"></div>
   </div>
 </header>

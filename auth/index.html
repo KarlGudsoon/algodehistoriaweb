@@ -34,8 +34,8 @@
         </div>
         <div
           id="errorMessage"
-          class="hidden bg-red-100 text-red-700 text-sm p-3 rounded mb-4"
-        ></div>
+          class=" bg-black/10 text-white text-sm p-3 rounded mb-4 border border-solid border-white/25 hidden"
+        >dsadasdasdad</div>
         <form id="loginForm" class="rounded-lg w-full max-w-sm flex flex-col">
           
           <label for="email" class="block mb-1 text-sm font-medium text-white"
@@ -70,7 +70,13 @@
             id="loginBtn"
             class="btn-auth-submit"
           >
-            Ingresar
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden animate-spin" width="1em" height="1em" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path fill="var(--primary-color)" d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z" opacity=".5" />
+              <path fill="var(--primary-color)" d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z">
+              </path>
+            </svg>
+            <span>Ingresar</span>
           </button>
           
         </form>
@@ -108,7 +114,13 @@
             id="btn-register"
             class="btn-auth-submit"
           >
-            Registrarse
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden animate-spin" width="1em" height="1em" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path fill="var(--primary-color)" d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z" opacity=".5" />
+              <path fill="var(--primary-color)" d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z">
+              </path>
+            </svg>
+            <span>Registrarse</span>
           </button>
         </form>
         <button

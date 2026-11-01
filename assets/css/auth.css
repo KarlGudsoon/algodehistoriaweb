@@ -11,3 +11,18 @@ html[data-theme="dark"] body {
 html[data-theme="dark"] form {
   background-color: var(--primary-color) !important;
 }
+
+html[data-theme="dark"] input[type="text"],
+html[data-theme="dark"] input[type="email"],
+html[data-theme="dark"] input[type="password"] {
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
+  border: 1px solid var(--yellow-color) !important;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+html[data-theme="dark"] #errorMessage {
+  background-color: rgba(233, 42, 64, 0.2) !important;
+  color: #e92a41 !important;
+  border: 1px solid #e92a41 !important;
+}
