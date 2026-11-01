@@ -49,6 +49,11 @@
   margin-right: 1.5rem
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem
+}
+
 .mb-1 {
   margin-bottom: 0.25rem
 }
@@ -112,6 +117,10 @@
 
 .h-1 {
   height: 0.25rem
+}
+
+.h-16 {
+  height: 4rem
 }
 
 .h-2 {
@@ -331,6 +340,10 @@
   background-color: var(--primary-color)
 }
 
+.bg-\[var\(--secondary-color\)\] {
+  background-color: var(--secondary-color)
+}
+
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))
@@ -399,6 +412,10 @@
   padding: 0px
 }
 
+.p-1 {
+  padding: 0.25rem
+}
+
 .p-2 {
   padding: 0.5rem
 }
@@ -417,14 +434,6 @@
 
 .p-8 {
   padding: 2rem
-}
-
-.p-1 {
-  padding: 0.25rem
-}
-
-.p-10 {
-  padding: 2.5rem
 }
 
 .px-2 {
@@ -610,13 +619,47 @@
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1)
 }
 
+.btn-auth {
+  cursor: pointer;
+  border-radius: 1rem;
+  border-width: 0px;
+  background-color: transparent;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: roboto;
+  color: rgb(255 255 255 / 0.35);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms
+}
+
+.btn-auth:hover {
+  --tw-brightness: brightness(.9);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
+
+.btn-auth:active {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-brightness: brightness(.75);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
+
+.btn-auth.active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1))
+}
+
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1))
-}
-
-.hover\:underline:hover {
-  text-decoration-line: underline
 }
 
 .focus\:outline-none:focus {
@@ -633,14 +676,6 @@
 .focus\:ring-white:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity, 1))
-}
-
-.disabled\:cursor-not-allowed:disabled {
-  cursor: not-allowed
-}
-
-.disabled\:opacity-50:disabled {
-  opacity: 0.5
 }
 
 @media (min-width: 768px) {
