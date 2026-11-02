@@ -1,5 +1,22 @@
 // Inicio de sesión
 
+const sesion = async () => {
+  try {
+    const res = await fetch("/api/auth/me.php", { credentials: "include" });
+
+    console.log("Sesión actual:", res);
+
+    if (res.ok) {
+      window.location.assign("/dashboard/");
+    }
+  } catch (error) {
+    console.error("Error al verificar la sesión:", error);
+  }
+  document.body.style.visibility = "visible";
+};
+
+sesion();
+
 const loginForm = document.getElementById("loginForm");
 const emailInput = document.getElementById("emailLogin");
 const passwordInput = document.getElementById("passwordLogin");

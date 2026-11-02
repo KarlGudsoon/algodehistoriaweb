@@ -14,5 +14,5 @@
 }
 
 .btn-auth.active {
-  @apply bg-white text-black;
+  @apply bg-white shadow-md text-black;
 }

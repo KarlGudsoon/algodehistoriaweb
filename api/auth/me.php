@@ -3,6 +3,7 @@ require __DIR__ . '/../config/session_config.php';
 require __DIR__ . '/../config/csrf.php';
 
 header('Content-Type: application/json');
+header('Cache-Control: no-store');
 
 session_start();
 

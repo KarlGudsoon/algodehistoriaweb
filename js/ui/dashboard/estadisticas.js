@@ -13,6 +13,8 @@ async function inicializarEstadisticas() {
     const articulosC = await obtenerArticulosCompletados();
     const paisDestacado = await obtenerPaisDestacado();
 
+    console.log(articulosC);
+
     renderizarUsuario(datosUsuario);
     renderizarNivel(nivelInfo);
     renderizarResumenProgreso(datos.progreso, totalCartas, totalPaises);
@@ -78,16 +80,31 @@ function renderizarResumenProgreso(progreso, totalCartas, totalPaises) {
 
 function renderizarArticuloReciente(articulo) {
   const contenedor = document.getElementById("articuloReciente");
+  const personajeArticulo = document.getElementById("personajeArtReciente");
+
+  if (!articulo) {
+    contenedor.classList.remove("skeleton");
+    contenedor.classList.add("aparecer");
+
+    document.getElementById("urlArtReciente").href = "/#articulos";
+    el("urlArtReciente", "Ver artículos interactivos");
+
+    el(
+      "descArtReciente",
+      "Todavía no has completado ningún artículo, ¡descúbrelos en la sección de artículos interactivos!",
+    );
+    personajeArticulo.src = "/assets/icons/logo.svg";
+    personajeArticulo.style.opacity = "0.2";
+    return;
+  }
 
   const fondo = document.getElementById("fondoArticuloReciente");
   if (!contenedor) return;
 
-  console.log(articulo);
-
-  const personajeArticulo = document.getElementById("personajeArtReciente");
-
   if (articulo.personaje) {
     personajeArticulo.src = articulo.personaje;
+  } else {
+    personajeArticulo.src = "/assets/icons/logo.svg";
   }
 
   if (articulo.fondo) {
