@@ -62,17 +62,37 @@ function obtenerNota($puntaje) {
 }
 
 $nota = obtenerNota($cantidadCorrectas);
+if ($nota === null) {
+    $nota = 0;
+}
 $aprobado = $nota >= 4 ? 1 : 0;
 
+// Guardamos el último intento: si ya existe un registro para este usuario y
+// artículo lo actualizamos; si no, lo insertamos.
 $stmt = $pdo->prepare('
-    INSERT INTO articulo_completado (user_id, articulo_id, nota, aprobado)
-    VALUES (?, ?, ?, ?)
-    ON DUPLICATE KEY UPDATE 
-        nota = VALUES(nota), 
-        aprobado = VALUES(aprobado),
-        fecha_completado = CURRENT_TIMESTAMP
+    SELECT id
+    FROM articulo_completado
+    WHERE user_id = ? AND articulo_id = ?
+    ORDER BY fecha_completado DESC, id DESC
+    LIMIT 1
 ');
-$stmt->execute([$_SESSION['user_id'], $articuloId, $nota, $aprobado]);
+$stmt->execute([$_SESSION['user_id'], $articuloId]);
+$registroExistente = $stmt->fetch();
+
+if ($registroExistente) {
+    $stmt = $pdo->prepare('
+        UPDATE articulo_completado
+        SET nota = ?, aprobado = ?, fecha_completado = CURRENT_TIMESTAMP
+        WHERE id = ?
+    ');
+    $stmt->execute([$nota, $aprobado, $registroExistente['id']]);
+} else {
+    $stmt = $pdo->prepare('
+        INSERT INTO articulo_completado (user_id, articulo_id, nota, aprobado)
+        VALUES (?, ?, ?, ?)
+    ');
+    $stmt->execute([$_SESSION['user_id'], $articuloId, $nota, $aprobado]);
+}
 
 $correctasPorOrden = [];
 foreach ($preguntasCorrectas as $p) {

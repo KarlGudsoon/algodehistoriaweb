@@ -115,6 +115,21 @@
   height: 1rem !important
 }
 
+.size-2 {
+  width: 0.5rem;
+  height: 0.5rem
+}
+
+.\!size-2 {
+  width: 0.5rem !important;
+  height: 0.5rem !important
+}
+
+.\!size-1 {
+  width: 0.25rem !important;
+  height: 0.25rem !important
+}
+
 .h-0 {
   height: 0px
 }
@@ -202,6 +217,22 @@
   flex: 1 1 0%
 }
 
+.flex-auto {
+  flex: 1 1 auto
+}
+
+.flex-\[auto\] {
+  flex: auto
+}
+
+.\!flex-\[auto\] {
+  flex: auto !important
+}
+
+.\!flex-auto {
+  flex: 1 1 auto !important
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
@@ -222,6 +253,10 @@
 
 .list-none {
   list-style-type: none
+}
+
+.flex-row {
+  flex-direction: row
 }
 
 .flex-col {
@@ -246,6 +281,10 @@
 
 .justify-center {
   justify-content: center
+}
+
+.justify-between {
+  justify-content: space-between
 }
 
 .justify-around {
@@ -403,10 +442,6 @@
   --tw-bg-opacity: 0.1
 }
 
-.bg-opacity-35 {
-  --tw-bg-opacity: 0.35
-}
-
 .bg-cover {
   background-size: cover
 }
@@ -467,11 +502,6 @@
   padding-right: 1rem
 }
 
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem
-}
-
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem
@@ -508,6 +538,10 @@
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem
+}
+
+.font-black {
+  font-weight: 900
 }
 
 .font-bold {
@@ -717,8 +751,17 @@
 }
 
 @media (min-width: 768px) {
+  .md\:block {
+    display: block
+  }
+
   .md\:hidden {
     display: none
+  }
+
+  .md\:\!size-4 {
+    width: 1rem !important;
+    height: 1rem !important
   }
 
   .md\:flex-row {
@@ -737,5 +780,15 @@
   .md\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem
   }
 }

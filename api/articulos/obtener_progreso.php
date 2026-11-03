@@ -24,6 +24,8 @@ $stmt = $pdo->prepare('
     SELECT nota, aprobado, fecha_completado 
     FROM articulo_completado 
     WHERE user_id = ? AND articulo_id = ?
+    ORDER BY fecha_completado DESC, id DESC
+    LIMIT 1
 ');
 $stmt->execute([$_SESSION['user_id'], $articulo['id']]);
 $resultado = $stmt->fetch();
@@ -46,7 +48,7 @@ foreach ($preguntasCorrectas as $p) {
 
 echo json_encode([
     'resultado' => [
-        'nota' => $resultado['nota'],
+        'nota' => (float) $resultado['nota'],
         'aprobado' => (bool) $resultado['aprobado'],
         'fecha_completado' => $resultado['fecha_completado'],
         'respuestas_correctas' => $correctasPorOrden,

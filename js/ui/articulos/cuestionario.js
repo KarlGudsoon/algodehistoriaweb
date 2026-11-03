@@ -20,7 +20,7 @@ async function inicializarCuestionario(articuloSlug) {
   try {
     const resultadoPrevio = await obtenerResultadoCuestionario(articuloSlug);
 
-    if (resultadoPrevio && resultadoPrevio.aprobado) {
+    if (resultadoPrevio?.aprobado) {
       document.getElementById("grafico-cuestionario").innerHTML =
         generarMedidor(resultadoPrevio.nota);
       mostrarResumenFinal(
@@ -81,33 +81,53 @@ async function inicializarCuestionario(articuloSlug) {
     checkAllQuestionsAnswered(questions, submitButton);
   };
 
-  document
-    .getElementById("finalizar-cuestionario-final")
-    .addEventListener("click", async () => {
-      try {
-        const resultado = await corregirCuestionario(
-          articuloSlug,
-          opcion_elegida,
-        );
-        mostrarNotificacionXP(resultado.xp_ganado, "¡Artículo completado!");
-        document.getElementById("grafico-cuestionario").innerHTML =
-          generarMedidor(resultado.nota);
+  submitButton.addEventListener("click", async () => {
+    if (Object.keys(opcion_elegida).length < preguntasActuales.length) {
+      mostrarErrorCuestionario(
+        "Debes responder todas las preguntas antes de enviar el cuestionario.",
+      );
+      return;
+    }
 
-        if (resultado.aprobado) {
-          mostrarResumenFinal(
-            preguntasActuales,
-            resultado.respuestas_correctas,
-          );
-          marcarAprobado();
-        } else {
-          document
-            .getElementById("reintentar-cuestionario")
-            .classList.add("active");
-        }
-      } catch (error) {
-        console.error("Error al corregir el cuestionario:", error.message);
+    submitButton.disabled = true;
+    submitButton.style.pointerEvents = "none";
+    ocultarErrorCuestionario();
+
+    try {
+      const resultado = await corregirCuestionario(
+        articuloSlug,
+        opcion_elegida,
+      );
+
+      document.getElementById("grafico-cuestionario").innerHTML =
+        generarMedidor(resultado.nota);
+      document.querySelector(".container-preguntas").style.display = "none";
+      document
+        .querySelector(".resultado-cuestionario-final")
+        .classList.add("active");
+
+      if (resultado.aprobado) {
+        mostrarNotificacionXP(resultado.xp_ganado, "¡Artículo completado!");
+        mostrarResumenFinal(
+          preguntasActuales,
+          resultado.respuestas_correctas,
+        );
+        marcarAprobado();
+      } else {
+        document
+          .getElementById("reintentar-cuestionario")
+          .classList.add("active");
       }
-    });
+    } catch (error) {
+      console.error("Error al corregir el cuestionario:", error.message);
+      mostrarErrorCuestionario(
+        "No se pudo guardar tu resultado. " + error.message,
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.style.pointerEvents = "auto";
+    }
+  });
 
   document
     .getElementById("reintentar-cuestionario")
@@ -175,6 +195,28 @@ function checkAllQuestionsAnswered(questions, submitButton) {
     : "brightness(80%)";
 }
 
+function mostrarErrorCuestionario(mensaje) {
+  const contenedor = document.querySelector(".datos");
+  if (!contenedor) return;
+
+  let error = document.getElementById("error-cuestionario");
+  if (!error) {
+    error = document.createElement("p");
+    error.id = "error-cuestionario";
+    error.style.cssText =
+      "color:#eb3b3b;font-size:0.9rem;margin:0.5rem 0 0;text-align:center;";
+    contenedor.appendChild(error);
+  }
+
+  error.textContent = mensaje;
+  error.hidden = false;
+}
+
+function ocultarErrorCuestionario() {
+  const error = document.getElementById("error-cuestionario");
+  if (error) error.hidden = true;
+}
+
 function marcarAprobado() {
   const WidgetCuestionario = document.querySelector(".widget-cuestionario");
   const WidgetProgresoPagina = document.querySelector(
@@ -183,6 +225,7 @@ function marcarAprobado() {
   const ArticuloCompletadoTitulo = document.querySelector(
     ".texto-inicio-pagina",
   );
+  const submitButton = document.getElementById("finalizar-cuestionario-final");
 
   WidgetCuestionario.querySelector("img").src = "/assets/icons/check-white.svg";
   WidgetProgresoPagina.setAttribute(
@@ -199,6 +242,9 @@ function marcarAprobado() {
   document.querySelector(
     ".progreso-cuestionario-final .progreso-completado",
   ).style.display = "block";
+
+  if (submitButton) submitButton.style.display = "none";
+  ocultarErrorCuestionario();
 
   document.getElementById("reintentar-cuestionario").classList.remove("active");
 }
@@ -281,19 +327,9 @@ function generarMedidor(promedio) {
 
 let cerrarCuestionario = document.querySelector(".cerrar-contenedor");
 
-cerrarCuestionario.addEventListener("click", function () {
-  this.parentElement.classList.remove("active");
-  document.body.classList.remove("no-scroll");
-});
-
-let enviarCuestionario = document.getElementById(
-  "finalizar-cuestionario-final",
-);
-
-enviarCuestionario.addEventListener("click", function () {
-  const preguntas = document.querySelector(".container-preguntas");
-  const resultado = document.querySelector(".resultado-cuestionario-final");
-
-  preguntas.style.display = "none";
-  resultado.classList.add("active");
-});
+if (cerrarCuestionario) {
+  cerrarCuestionario.addEventListener("click", function () {
+    this.parentElement.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+  });
+}

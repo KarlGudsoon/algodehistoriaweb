@@ -1,3 +1,66 @@
+html[data-theme="dark"] {
+  --primary-color: #e92a41 !important;
+  --secondary-color: #181818 !important;
+  --tertiary-color: #232323 !important;
+  --yellow-color: #ffff00 !important;
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+html[data-theme="dark"] .nav-interno {
+  background-color: var(--tertiary-color) !important;
+}
+
+html[data-theme="dark"] #contenedor-principal {
+  background-color: var(--secondary-color);
+}
+
+html[data-theme="dark"] .logo-dark {
+  display: block !important;
+}
+
+html[data-theme="dark"] .logo {
+  display: none;
+}
+
+html[data-theme="dark"] .skeleton::before {
+  background: rgb(30, 30, 30) !important;
+}
+
+html[data-theme="dark"] .contenedor-lista-paises,
+html[data-theme="dark"] .contenedor-capsula-pais .capsula-pais,
+html[data-theme="dark"] .lista-paises-header input,
+html[data-theme="dark"] .contenedor-infocards .infocards {
+  background-color: #232323;
+  border-color: rgb(60, 60, 60);
+  color: white;
+}
+
+html[data-theme="dark"] .contenedor-infocards .infocards .contenido h3,
+html[data-theme="dark"] .contenedor-infocards .infocards .contenido small {
+  color: white;
+}
+
+html[data-theme="dark"] .buscador {
+  background-color: var(--secondary-color);
+}
+
+html[data-theme="dark"] .pais-item {
+  background-color: #232323;
+  color: white;
+}
+
+html[data-theme="dark"] .pais-item:hover {
+  background-color: rgb(60, 60, 60);
+}
+
+html[data-theme="dark"] .pais-item.no-obtenido:hover {
+  background-color: #232323;
+}
+
 body,
 html {
   height: 100dvh; /* en vez de 100vh */
@@ -606,6 +669,14 @@ h1 {
   animation: movimiento-fondo 20s infinite ease alternate;
 }
 
+.articulo-reciente-info {
+  position: relative;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 #contenedorCartaDestacada::before {
   content: "";
   width: 100%;
@@ -729,67 +800,4 @@ h1 {
     width: auto;
     max-width: none;
   }
-}
-
-html[data-theme="dark"] {
-  --primary-color: #e92a41 !important;
-  --secondary-color: #181818 !important;
-  --tertiary-color: #232323 !important;
-  --yellow-color: #ffff00 !important;
-}
-
-html[data-theme="dark"] body {
-  background-color: var(--primary-color) !important;
-  color: white !important;
-}
-
-html[data-theme="dark"] .nav-interno {
-  background-color: var(--tertiary-color) !important;
-}
-
-html[data-theme="dark"] #contenedor-principal {
-  background-color: var(--secondary-color);
-}
-
-html[data-theme="dark"] .logo-dark {
-  display: block !important;
-}
-
-html[data-theme="dark"] .logo {
-  display: none;
-}
-
-html[data-theme="dark"] .skeleton::before {
-  background: rgb(30, 30, 30) !important;
-}
-
-html[data-theme="dark"] .contenedor-lista-paises,
-html[data-theme="dark"] .contenedor-capsula-pais .capsula-pais,
-html[data-theme="dark"] .lista-paises-header input,
-html[data-theme="dark"] .contenedor-infocards .infocards {
-  background-color: #232323;
-  border-color: rgb(60, 60, 60);
-  color: white;
-}
-
-html[data-theme="dark"] .contenedor-infocards .infocards .contenido h3,
-html[data-theme="dark"] .contenedor-infocards .infocards .contenido small {
-  color: white;
-}
-
-html[data-theme="dark"] .buscador {
-  background-color: var(--secondary-color);
-}
-
-html[data-theme="dark"] .pais-item {
-  background-color: #232323;
-  color: white;
-}
-
-html[data-theme="dark"] .pais-item:hover {
-  background-color: rgb(60, 60, 60);
-}
-
-html[data-theme="dark"] .pais-item.no-obtenido:hover {
-  background-color: #232323;
 }

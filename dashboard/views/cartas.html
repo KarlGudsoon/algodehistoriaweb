@@ -1,7 +1,7 @@
-<div class="px-8 py-4 flex-1 flex flex-col gap-4">
+<div class="px-2 py-2 md:px-8 md:py-4 flex-1 flex flex-col gap-4">
   <h1>Mi Colección de Cartas</h1>
   <div class="contenedor-infocards" id="resumenProgresoCartas">
-    <div class="infocards items-center skeleton">
+    <div class="infocards !flex-auto items-center skeleton">
       <img class="icon" src="/assets/icons/cards.svg" alt="" />
       <div class="contenido">
         <h3>Cartas coleccionadas</h3>
@@ -12,30 +12,32 @@
         </div>
       </div>
     </div>
-    <div class="infocards items-center skeleton">
-      <div class="icon !bg-yellow-500 !size-4"></div>
-      <div class="contenido">
-        <h3>Oro</h3>
-        <div class="infocards-progreso">
-          <span id="cartasOro" class="bold">
+    <div class="flex flex-auto gap-4 flex-row">
+      <div class="infocards !flex-[auto] items-center skeleton">
+        <div class="icon !bg-yellow-500 hidden md:block md:!size-4"></div>
+        <div class="contenido">
+          <h3 class="text-sm md:text-base">Oro</h3>
+          <div class="infocards-progreso">
+            <span id="cartasOro" class="bold">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="infocards items-center skeleton">
-      <div class="icon !bg-gray-400 !size-4"></div>
-      <div class="contenido">
-        <h3>Plata</h3>
-        <div class="infocards-progreso">
-          <span id="cartasPlata" class="bold">
+      <div class="infocards !flex-[auto] items-center skeleton">
+        <div class="icon !bg-gray-400 hidden md:block md:!size-4"></div>
+        <div class="contenido">
+          <h3 class="text-sm md:text-base">Plata</h3>
+          <div class="infocards-progreso">
+            <span id="cartasPlata" class="bold">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="infocards items-center skeleton">
-      <div class="icon !bg-amber-700 !size-4"></div>
-      <div class="contenido">
-        <h3>Bronce</h3>
-        <div class="infocards-progreso">
-          <span id="cartasBronce" class="bold">
+      <div class="infocards !flex-[auto] items-center skeleton">
+        <div class="icon !bg-amber-700 hidden md:block md:!size-4"></div>
+        <div class="contenido">
+          <h3 class="text-sm md:text-base">Bronce</h3>
+          <div class="infocards-progreso">
+            <span id="cartasBronce" class="bold">
+          </div>
         </div>
       </div>
     </div>

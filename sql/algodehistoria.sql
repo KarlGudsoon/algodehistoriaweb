@@ -728,6 +728,7 @@ ALTER TABLE `articulos`
 --
 ALTER TABLE `articulo_completado`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uniq_user_articulo` (`user_id`,`articulo_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `articulo_id` (`articulo_id`);
 

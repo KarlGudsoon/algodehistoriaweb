@@ -93,6 +93,9 @@ function renderizarArticuloReciente(articulo) {
       "descArtReciente",
       "Todavía no has completado ningún artículo, ¡descúbrelos en la sección de artículos interactivos!",
     );
+    document
+      .querySelector(".articulo-reciente-info")
+      .classList.remove("articulo-reciente-info");
     personajeArticulo.src = "/assets/icons/logo.svg";
     personajeArticulo.style.opacity = "0.2";
     return;
@@ -133,10 +136,15 @@ async function renderizarCartaDestacada() {
     contenedorCarta.innerHTML = `
       <div class="carta-placeholder"></div>
     `;
+    document.getElementById("badgeCartaDestacada").remove();
+    document.getElementById("cartaDestacadaTitulo").remove();
     el(
       "cartaDestacadaDesc",
       "Todavía no has desbloqueado ninguna carta de personaje, descúbrelas en cada artículo interactivo",
     );
+    contenedor.classList.remove("skeleton");
+    contenedor.classList.add("aparecer");
+    return;
   }
 
   const esp = carta.especialidad.toLowerCase();
@@ -228,6 +236,24 @@ async function renderizarCartaDestacada() {
 function renderizarPaisDestacado(pais) {
   const contenedor = document.getElementById("contenedorPaisDestacado");
 
+  if (!pais) {
+    document.getElementById("badgePaisDestacado").remove();
+    document.getElementById("paisDestacadoTitulo").remove();
+    el(
+      "paisDestacadoDesc",
+      "Todavía no has desbloqueado ningún país, descúbrelos en cada artículo interactivo",
+    );
+    const segundoContenedor = document.getElementById("paisDestacado");
+    const placeholder = document.createElement("div");
+    placeholder.classList.add("carta-placeholder");
+    segundoContenedor.innerHTML = "";
+    segundoContenedor.appendChild(placeholder);
+
+    contenedor.classList.remove("skeleton");
+    contenedor.classList.add("aparecer");
+    return;
+  }
+
   contenedor.setAttribute(
     "style",
     "--color: " +
@@ -237,12 +263,10 @@ function renderizarPaisDestacado(pais) {
       ");",
   );
 
-  console.log("Pais destacado:", pais);
-
   if (!contenedor) return;
 
   document.getElementById("badgePaisDestacado").className =
-    "bg-green-600 mb-2 px-2 rounded-xl";
+    "bg-green-600 mb-2 px-2 rounded-xl inline-block";
 
   el("badgePaisDestacado", "Nuevo");
   el("paisDestacadoTitulo", pais.nombre);
@@ -283,7 +307,7 @@ function renderizarArticulos(articulo) {
 
   contenedor.innerHTML = "";
 
-  console.log(articulo);
+  // console.log(articulo);
 
   const Articulo = document.createElement("a");
   const InnerArticulo = document.createElement("div");

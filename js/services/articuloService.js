@@ -1,19 +1,4 @@
-async function guardarResultadoCuestionario(articuloSlug, nota) {
-  const res = await fetch("/api/articulos/guardar_resultado.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRF-Token": window.csrfToken || "",
-    },
-    credentials: "include",
-    body: JSON.stringify({ articulo_slug: articuloSlug, nota }),
-  });
-  if (res.status === 401) throw new Error("No autenticado");
-  if (res.status === 403) throw new Error("Token CSRF inválido");
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || "Error al guardar el resultado");
-  return data;
-}
+// js/services/articuloService.js
 
 async function obtenerResultadoCuestionario(articuloSlug) {
   const res = await fetch(
@@ -25,5 +10,6 @@ async function obtenerResultadoCuestionario(articuloSlug) {
   if (res.status === 401) throw new Error("No autenticado");
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Error al obtener el resultado");
-  return data;
+  // El backend responde { resultado: {...} | null }
+  return data.resultado ?? null;
 }
