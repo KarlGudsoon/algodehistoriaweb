@@ -115,21 +115,6 @@
   height: 1rem !important
 }
 
-.size-2 {
-  width: 0.5rem;
-  height: 0.5rem
-}
-
-.\!size-2 {
-  width: 0.5rem !important;
-  height: 0.5rem !important
-}
-
-.\!size-1 {
-  width: 0.25rem !important;
-  height: 0.25rem !important
-}
-
 .h-0 {
   height: 0px
 }
@@ -213,24 +198,20 @@
   max-width: 24rem
 }
 
-.flex-1 {
-  flex: 1 1 0%
-}
-
-.flex-auto {
-  flex: 1 1 auto
-}
-
-.flex-\[auto\] {
-  flex: auto
-}
-
 .\!flex-\[auto\] {
   flex: auto !important
 }
 
 .\!flex-auto {
   flex: 1 1 auto !important
+}
+
+.flex-1 {
+  flex: 1 1 0%
+}
+
+.flex-auto {
+  flex: 1 1 auto
 }
 
 .transform {
@@ -297,6 +278,10 @@
 
 .gap-2 {
   gap: 0.5rem
+}
+
+.gap-3 {
+  gap: 0.75rem
 }
 
 .gap-4 {
@@ -772,6 +757,14 @@
     flex-direction: column
   }
 
+  .md\:gap-4 {
+    gap: 1rem
+  }
+
+  .md\:p-6 {
+    padding: 1.5rem
+  }
+
   .md\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem
@@ -780,11 +773,6 @@
   .md\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem
-  }
-
-  .md\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem
   }
 
   .md\:text-base {

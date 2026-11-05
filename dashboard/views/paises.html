@@ -1,7 +1,10 @@
 <div
   class="vista-paises flex gap-4 flex-col px-2 py-2 md:px-8 md:py-4 overflow-auto"
 >
-  <h2>Colección de países</h2>
+  <div class="px-2">
+    <h1 class="titulo-vista">Mi Colección de Países</h1>
+    <p class="m-0">Administra tu colección de países y sigue tu progreso.</p>
+  </div>
   <div class="contenedor-infocards" id="resumenProgresoPaises">
     <div class="infocards items-center skeleton">
       <img class="icon" src="/assets/icons/cards.svg" alt="" />
@@ -14,9 +17,9 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="flex flex-auto gap-3 md:gap-4 flex-row">
       <div class="infocards items-center skeleton">
-        <div class="icon !bg-yellow-500 !size-4"></div>
+        <div class="icon !bg-yellow-500 hidden md:block !size-4"></div>
         <div class="contenido">
           <h3>Oro</h3>
           <div class="infocards-progreso">
@@ -25,7 +28,7 @@
         </div>
       </div>
       <div class="infocards items-center skeleton">
-        <div class="icon !bg-gray-400 !size-4"></div>
+        <div class="icon !bg-gray-400 hidden md:block !size-4"></div>
         <div class="contenido">
           <h3>Plata</h3>
           <div class="infocards-progreso">
@@ -34,7 +37,7 @@
         </div>
       </div>
       <div class="infocards items-center skeleton">
-        <div class="icon !bg-amber-700 !size-4"></div>
+        <div class="icon !bg-amber-700 hidden md:block !size-4"></div>
         <div class="contenido">
           <h3>Bronce</h3>
           <div class="infocards-progreso">
