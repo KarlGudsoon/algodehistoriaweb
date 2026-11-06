@@ -70,8 +70,6 @@ html[data-theme="dark"] .pais-item.no-obtenido:hover {
 }
 
 html[data-theme="dark"] .filtros-cartas select {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: white;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -92,7 +90,8 @@ html[data-theme="dark"] .filtros-cartas .toggle-solo-obtenidas {
 
 body,
 html {
-  height: 100dvh; /* en vez de 100vh */
+  height: 100vh; /* fallback para navegadores sin soporte de dvh */
+  height: 100dvh;
 }
 
 body {
@@ -389,9 +388,15 @@ h1 {
   overflow: hidden;
 }
 
+/* Contiene la lista y el mapa: debe poder encogerse para repartir el alto */
+.contenedor-vistas-paises {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
 #globoPaises {
-  flex: 1 auto;
-  min-height: 320px;
+  flex: 1 1 0;
+  min-height: 0;
   position: relative;
   overflow: hidden;
 }
@@ -527,33 +532,21 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  flex: 1 1 480px;
 }
 
-.filtros-cartas select {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
-  padding: 0.75rem 1rem;
-  flex: 1;
-  font-size: 1rem;
-  font-family: Roboto, sans-serif;
-  color: #413f3f;
-  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
-  transition: filter 0.2s ease;
-  cursor: pointer;
-}
-
-.filtros-cartas select:hover {
-  filter: brightness(95%);
+.filtros-cartas .select-campo,
+.filtros-cartas .toggle-solo-obtenidas {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .filtros-cartas .toggle-solo-obtenidas {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
-  flex: 1 auto;
   font-family: Roboto, sans-serif;
   color: #413f3f;
   box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
@@ -763,11 +756,19 @@ h1 {
 
 .contenedor-lista-paises {
   overflow: auto;
-  padding: 1rem;
   border-radius: 1rem;
-  background-color: white;
   width: 100%;
   max-width: 450px;
+  background-color: transparent;
+}
+
+.lista-paises {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: white;
 }
 
 .lista-paises-header {
@@ -828,6 +829,51 @@ h1 {
   background-color: white;
 }
 
+.contenedor-botones-vista {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 300px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  position: relative;
+  border-radius: 2rem;
+}
+
+#mark-vista {
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+  transition: 0.3s ease;
+  border-radius: 2rem;
+}
+
+#mark-vista.activo {
+  left: 50%;
+}
+
+.btn-vista-paises {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+  border: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  width: 100%;
+  max-width: 175px;
+  font-size: 1rem;
+  font-family: Roboto, sans-serif;
+  transition: 0.3s ease;
+  z-index: 9;
+}
+
+.btn-vista-paises.activo {
+  color: white;
+}
+
 @media screen and (max-width: 768px) {
   body {
     flex-direction: column;
@@ -857,6 +903,14 @@ h1 {
   .contenedor-lista-paises {
     width: auto;
     max-width: none;
+    flex: 1 1 0;
+    min-height: 0;
+  }
+  #vista-paises-titulo:not(.activo),
+  #resumenProgresoPaises:not(.activo),
+  .contenedor-lista-paises:not(.activo),
+  #globoPaises:not(.activo) {
+    display: none;
   }
 }
 
@@ -883,11 +937,14 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     width: 100%;
+    flex: 1 1 100%;
   }
 
+  .filtros-cartas .select-campo,
   .filtros-cartas select,
   .filtros-cartas .toggle-solo-obtenidas {
     width: 100%;
     min-width: 0;
+    font-size: 14px;
   }
 }

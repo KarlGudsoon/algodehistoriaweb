@@ -396,7 +396,10 @@ function inicializarFiltrosCartas() {
   Object.values(catalogoCartasActual).forEach((carta) => {
     const categoria = carta.categoria && carta.categoria[0];
     if (categoria && categoria.periodo != null && categoria.nombre) {
-      periodos.set(categoria.periodo, categoria.nombre);
+      periodos.set(categoria.periodo, {
+        nombre: categoria.nombre,
+        clase: categoria.clase || "",
+      });
     }
     if (carta.rareza) {
       rarezas.add(carta.rareza);
@@ -405,10 +408,11 @@ function inicializarFiltrosCartas() {
 
   [...periodos.entries()]
     .sort((a, b) => a[0] - b[0])
-    .forEach(([orden, nombre]) => {
+    .forEach(([orden, { nombre, clase }]) => {
       const opcion = document.createElement("option");
       opcion.value = String(orden);
       opcion.textContent = nombre;
+      opcion.dataset.periodo = clase.replace("etiqueta-", "");
       selectPeriodo.appendChild(opcion);
     });
 
@@ -418,6 +422,7 @@ function inicializarFiltrosCartas() {
       const opcion = document.createElement("option");
       opcion.value = rareza;
       opcion.textContent = rareza.charAt(0).toUpperCase() + rareza.slice(1);
+      opcion.dataset.rareza = rareza.toLowerCase();
       selectRareza.appendChild(opcion);
     });
 
@@ -494,8 +499,43 @@ function aplicarFiltrosYOrden() {
 
   entradas.sort(comparadores[orden] || comparadores.periodo);
 
+  actualizarEstiloPeriodo();
+  actualizarEstiloRareza();
+
   renderizarColeccionCartas(
     slugsObtenidosActual.map((slug) => ({ carta_slug: slug })),
     Object.fromEntries(entradas),
   );
+}
+
+function actualizarEstiloPeriodo() {
+  const select = document.getElementById("filtroPeriodo");
+  const campo = select?.closest(".select-campo");
+  if (!select || !campo) return;
+
+  const periodo = select.value
+    ? select.selectedOptions[0]?.dataset.periodo
+    : "";
+
+  if (periodo) {
+    campo.dataset.periodo = periodo;
+  } else {
+    delete campo.dataset.periodo;
+  }
+}
+
+function actualizarEstiloRareza() {
+  const select = document.getElementById("filtroRareza");
+  const campo = select?.closest(".select-campo");
+  if (!select || !campo) return;
+
+  const rareza = select.value
+    ? select.selectedOptions[0]?.dataset.rareza
+    : "";
+
+  if (rareza) {
+    campo.dataset.rareza = rareza;
+  } else {
+    delete campo.dataset.rareza;
+  }
 }

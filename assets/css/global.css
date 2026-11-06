@@ -4,6 +4,7 @@
   --tertiary-color: white;
   --yellow-color: #ffff00;
   --primary-color-dark: #181818;
+  --color-texto: #000000;
 
   --prehistoria: #f86d31;
   --antigua: #30a5e8;
@@ -17,6 +18,7 @@ html[data-theme="dark"] {
   --primary-color: #181818 !important;
   --secondary-color: #232323 !important;
   --yellow-color: #e92a41 !important;
+  --color-texto: #ffffff !important;
 }
 
 html[data-theme="dark"] .logo-dark {
@@ -510,4 +512,235 @@ html[data-theme="dark"] .btn-auth-submit {
   height: var(--height, auto);
   background-color: rgba(255, 255, 255, 0.5);
   margin: 0 8px;
+}
+
+/* SELECT */
+
+:root {
+  --select-background: white;
+}
+
+html[data-theme="dark"] {
+  --select-background: rgb(46 46 46);
+}
+
+.select-1 {
+  background-color: var(--select-background);
+  color: var(--color-texto);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: Roboto, sans-serif;
+  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
+  transition: filter 0.2s ease;
+  cursor: pointer;
+}
+
+.select-1,
+::picker(select) {
+  appearance: base-select;
+}
+
+.select-1::picker(select) {
+  background-color: var(--secondary-color);
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.select-1:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.select-1 option {
+  background-color: var(--select-background);
+  color: var(--color-texto);
+  font-family: Roboto;
+  font-weight: 300;
+  height: 100%;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.select-1 option:hover {
+  filter: brightness(95%);
+}
+
+.select-1 option:checked {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.select-1::picker-icon {
+  appearance: none;
+  color: transparent;
+  width: 15px;
+  background-image: url("/assets/icons/arrow.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: invert(1);
+  transform: rotate(270deg);
+}
+
+/* Envoltorio para select con icono de categoría a la izquierda */
+.select-campo {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.select-campo:hover {
+  filter: brightness(95%);
+}
+
+.select-campo .select-1 {
+  width: 100%;
+  padding-left: 2.6rem;
+}
+
+.select-campo .select-icono {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  transform: translateY(-50%);
+  background-color: #413f3f;
+  pointer-events: none;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  mask-mode: alpha;
+  -webkit-mask-mode: alpha;
+}
+
+html[data-theme="dark"] .select-campo .select-icono {
+  background-color: #fff;
+}
+
+.select-icono-periodo {
+  -webkit-mask-image: url("/svg/tiempo.svg");
+  mask-image: url("/svg/tiempo.svg");
+}
+
+.select-icono-rareza {
+  -webkit-mask-image: url("/svg/ribbon.svg");
+  mask-image: url("/svg/ribbon.svg");
+}
+
+.select-icono-orden {
+  -webkit-mask-image: url("/assets/icons/select-orden.svg");
+  mask-image: url("/assets/icons/select-orden.svg");
+}
+
+/* Color del select según el periodo histórico elegido */
+.select-campo[data-periodo="prehistoria"] {
+  --periodo-bg: var(--prehistoria);
+  --periodo-fg: #fff;
+}
+
+.select-campo[data-periodo="antigua"] {
+  --periodo-bg: var(--antigua);
+  --periodo-fg: #fff;
+}
+
+.select-campo[data-periodo="medieval"] {
+  --periodo-bg: var(--medieval);
+  --periodo-fg: #fff;
+}
+
+.select-campo[data-periodo="moderna"] {
+  --periodo-bg: var(--moderna);
+  --periodo-fg: #fff;
+}
+
+.select-campo[data-periodo="contemporanea"] {
+  --periodo-bg: var(--contemporanea);
+  --periodo-fg: #fff;
+}
+
+.select-campo[data-periodo="precolombino"] {
+  --periodo-bg: #475936;
+  --periodo-fg: #fff;
+}
+
+.select-campo[data-periodo] .select-1 {
+  background-color: var(--periodo-bg);
+  color: var(--periodo-fg);
+  border-color: transparent;
+}
+
+.select-campo[data-periodo] .select-1::selectedcontent {
+  color: inherit;
+}
+
+.select-campo[data-periodo] .select-icono {
+  background-color: var(--periodo-fg);
+}
+
+.select-campo[data-periodo="prehistoria"] .select-1::picker-icon,
+.select-campo[data-periodo="antigua"] .select-1::picker-icon,
+.select-campo[data-periodo="medieval"] .select-1::picker-icon,
+.select-campo[data-periodo="moderna"] .select-1::picker-icon,
+.select-campo[data-periodo="contemporanea"] .select-1::picker-icon,
+.select-campo[data-periodo="precolombino"] .select-1::picker-icon {
+  filter: none;
+}
+
+/* Color del select según la rareza elegida */
+.select-campo[data-rareza="oro"] {
+  background: linear-gradient(133deg, #b28405, #f9db5c, #b28405);
+  animation: gradient-animation 3s linear infinite;
+  border-radius: 1rem;
+  background-size: 100% 100%;
+  animation-play-state: paused;
+  text-shadow: rgb(0 0 0 / 25%) 1px 1px 2px;
+  --rareza-fg: #fff;
+}
+
+.select-campo[data-rareza="plata"] {
+  background: linear-gradient(133deg, #525151, #a8a8a8, #525151);
+  background-size: 100% 100%;
+  border-radius: 1rem;
+  animation: gradient-animation 4s linear infinite;
+  text-shadow: rgb(0 0 0 / 25%) 1px 1px 2px;
+  animation-play-state: paused;
+  --rareza-fg: #fff;
+}
+
+.select-campo[data-rareza="bronce"] {
+  background: linear-gradient(133deg, #603512, #d37528, #603512);
+  background-size: 100% 100%;
+  animation: gradient-animation 5s linear infinite;
+  border-radius: 1rem;
+  animation-play-state: paused;
+  text-shadow: rgb(0 0 0 / 25%) 1px 1px 2px;
+  --rareza-fg: #fff;
+}
+
+.select-campo[data-rareza] .select-1 {
+  background-color: var(--rareza-bg);
+  color: var(--rareza-fg);
+  border-color: transparent;
+}
+
+.select-campo[data-rareza] .select-icono {
+  background-color: var(--rareza-fg);
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }

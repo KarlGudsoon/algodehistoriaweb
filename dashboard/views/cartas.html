@@ -59,18 +59,36 @@
         />
       </div>
       <div class="filtros-cartas">
-        <select id="filtroPeriodo">
-          <option value="">Todos los periodos</option>
-        </select>
-        <select id="filtroRareza">
-          <option value="">Todas las rarezas</option>
-        </select>
-        <select id="filtroOrden">
-          <option value="periodo">Por periodo</option>
-          <option value="recientes">Más recientes</option>
-          <option value="nacimiento">Año de nacimiento</option>
-          <option value="nombre">Nombre A-Z</option>
-        </select>
+        <div class="select-campo">
+          <span
+            class="select-icono select-icono-periodo"
+            aria-hidden="true"
+          ></span>
+          <select class="select-1" id="filtroPeriodo">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <div class="select-campo">
+          <span
+            class="select-icono select-icono-rareza"
+            aria-hidden="true"
+          ></span>
+          <select class="select-1" id="filtroRareza">
+            <option value="">Todas</option>
+          </select>
+        </div>
+        <div class="select-campo">
+          <span
+            class="select-icono select-icono-orden"
+            aria-hidden="true"
+          ></span>
+          <select class="select-1" id="filtroOrden">
+            <option value="periodo">Por periodo</option>
+            <option value="recientes">Más recientes</option>
+            <option value="nacimiento">Año de nacimiento</option>
+            <option value="nombre">Nombre A-Z</option>
+          </select>
+        </div>
         <button
           type="button"
           id="toggleSoloObtenidas"

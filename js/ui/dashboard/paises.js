@@ -1,5 +1,6 @@
 let catalogoPaisesActual = {};
 let modoTerritorioActivo = false;
+let globoPaisesActual = null;
 
 async function inicializarPaises() {
   try {
@@ -39,7 +40,7 @@ async function inicializarPaises() {
     const contenedor = document.getElementById("globoPaises");
     if (!contenedor) return;
 
-    const globo = crearGlobo(contenedor, {
+    globoPaisesActual = crearGlobo(contenedor, {
       antialias: false,
       alturaBase: 0.007,
       colorFondo: "rgba(255 255 255 / 1)",
@@ -52,6 +53,8 @@ async function inicializarPaises() {
         }
       },
     });
+
+    const globo = globoPaisesActual;
 
     window.onCapsulaPaisAbierta = (pais) => {
       globo.focoEn(pais.foco);
@@ -169,4 +172,43 @@ async function renderizarListaPaises(datosColeccion, catalogo) {
       error,
     );
   }
+
+  document.querySelectorAll(".btn-vista-paises").forEach((boton) => {
+    boton.addEventListener("click", () => {
+      document
+        .querySelectorAll(".btn-vista-paises")
+        .forEach((b) => b.classList.remove("activo"));
+      boton.classList.add("activo");
+
+      const vista = boton.dataset.vista;
+      const contenedorLista = document.querySelector(
+        ".contenedor-lista-paises",
+      );
+      const contenedorMapa = document.querySelector("#globoPaises");
+      const resumenProgresoPaises = document.getElementById(
+        "resumenProgresoPaises",
+      );
+      const tituloVista = document.getElementById("vista-paises-titulo");
+
+      document
+        .getElementById("mark-vista")
+        .classList.toggle("activo", vista === "mapa");
+
+      if (vista === "lista") {
+        contenedorLista.classList.add("activo");
+        resumenProgresoPaises.classList.add("activo");
+        contenedorMapa.classList.remove("activo");
+      } else if (vista === "mapa") {
+        contenedorMapa.classList.add("activo");
+        contenedorLista.classList.remove("activo");
+        resumenProgresoPaises.classList.remove("activo");
+
+        // El globo se crea mientras el contenedor está oculto; al mostrarlo
+        // hay que recalcular el tamaño del canvas con el espacio ya asignado.
+        requestAnimationFrame(() => {
+          globoPaisesActual?.redimensionar?.();
+        });
+      }
+    });
+  });
 }

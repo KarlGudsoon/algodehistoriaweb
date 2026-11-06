@@ -227,6 +227,7 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     focoEn,
     toggleRotacion,
     sincronizarBoton,
+    redimensionar: programarDimensionar,
     destruir,
   };
 };
