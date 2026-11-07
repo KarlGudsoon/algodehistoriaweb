@@ -24,6 +24,10 @@
   position: relative
 }
 
+.bottom-0 {
+  bottom: 0px
+}
+
 .bottom-\[-25px\] {
   bottom: -25px
 }
@@ -32,28 +36,12 @@
   left: 0px
 }
 
-.top-0 {
-  top: 0px
-}
-
-.bottom-0 {
-  bottom: 0px
-}
-
 .isolate {
   isolation: isolate
 }
 
 .z-10 {
   z-index: 10
-}
-
-.z-50 {
-  z-index: 50
-}
-
-.z-\[9999\] {
-  z-index: 9999
 }
 
 .m-0 {
@@ -154,20 +142,16 @@
   height: 100px
 }
 
+.h-\[80dvh\] {
+  height: 80dvh
+}
+
 .h-auto {
   height: auto
 }
 
 .h-full {
   height: 100%
-}
-
-.h-\[90dvh\] {
-  height: 90dvh
-}
-
-.h-\[80dvh\] {
-  height: 80dvh
 }
 
 .min-h-screen {
@@ -269,10 +253,6 @@
 
 .items-center {
   align-items: center
-}
-
-.\!justify-start {
-  justify-content: flex-start !important
 }
 
 .justify-end {

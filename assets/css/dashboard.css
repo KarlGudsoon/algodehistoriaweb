@@ -394,14 +394,19 @@ h1 {
   min-height: 0;
 }
 
-#globoPaises {
+.contenedor-mapa-paises {
   flex: 1 1 0;
   min-height: 0;
   position: relative;
   overflow: hidden;
 }
 
-#globoPaises::before {
+#globoPaises {
+  position: absolute;
+  inset: 0;
+}
+
+.contenedor-mapa-paises::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -418,6 +423,78 @@ h1 {
   inset: 0;
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Capa transparente sobre el mapa pequeño: cualquier toque lo amplía */
+.overlay-preview-mapa {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border: 0;
+  border-radius: inherit;
+  padding: 0;
+  appearance: none;
+  background: transparent;
+  cursor: zoom-in;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hint-ampliar-mapa {
+  position: absolute;
+  left: 50%;
+  bottom: 0.75rem;
+  transform: translateX(-50%);
+  z-index: 11;
+  pointer-events: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 0.8rem;
+  font-family: Roboto, sans-serif;
+  white-space: nowrap;
+}
+
+.btn-cerrar-mapa {
+  position: absolute;
+  top: calc(0.75rem + env(safe-area-inset-top));
+  right: 0.75rem;
+  z-index: 12;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-cerrar-mapa.oculto {
+  display: none;
+}
+
+#contenedorMapaPaises.mapa-expandido {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh; /* fallback */
+  height: 100dvh;
+  z-index: 10000; /* por encima del nav móvil (9999) */
+  border-radius: 0;
+  background-color: white;
+}
+
+#contenedorMapaPaises.mapa-expandido::before {
+  border: 0;
+  border-radius: 0;
+}
+
+#contenedorMapaPaises.mapa-expandido .overlay-preview-mapa,
+#contenedorMapaPaises.mapa-expandido .hint-ampliar-mapa {
+  display: none;
 }
 
 #coleccionCartas {
@@ -829,52 +906,15 @@ h1 {
   background-color: white;
 }
 
-.contenedor-botones-vista {
-  display: flex;
-  gap: 0.5rem;
-  max-width: 300px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.05);
-  position: relative;
-  border-radius: 2rem;
+.overlay-preview-mapa {
+  display: none;
 }
 
-#mark-vista {
-  width: 50%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-  background-color: var(--primary-color);
-  border-radius: 1rem;
-  transition: 0.3s ease;
-  border-radius: 2rem;
+.hint-ampliar-mapa {
+  display: none;
 }
 
-#mark-vista.activo {
-  left: 50%;
-}
-
-.btn-vista-paises {
-  background-color: transparent;
-  color: rgba(0, 0, 0, 0.7);
-  border: 0;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  width: 100%;
-  max-width: 175px;
-  font-size: 1rem;
-  font-family: Roboto, sans-serif;
-  transition: 0.3s ease;
-  z-index: 9;
-}
-
-.btn-vista-paises.activo {
-  color: white;
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767.98px) {
   body {
     flex-direction: column;
   }
@@ -900,17 +940,48 @@ h1 {
     display: none;
   }
 
-  .contenedor-lista-paises {
-    width: auto;
-    max-width: none;
-    flex: 1 1 0;
-    min-height: 0;
+  /* Vista única: título, resumen, mapa y lista (en ese orden) con scroll */
+  .contenedor-vistas-paises {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
-  #vista-paises-titulo:not(.activo),
-  #resumenProgresoPaises:not(.activo),
-  .contenedor-lista-paises:not(.activo),
-  #globoPaises:not(.activo) {
-    display: none;
+
+  .contenedor-vistas-paises > .contenedor-lista-paises {
+    display: contents;
+  }
+
+  #vista-paises-titulo {
+    order: 1;
+  }
+
+  #resumenProgresoPaises {
+    order: 2;
+  }
+
+  .contenedor-vistas-paises > .contenedor-mapa-paises {
+    order: 3;
+    flex: 0 0 auto;
+    height: clamp(260px, 42vh, 400px);
+  }
+
+  .contenedor-lista-paises .lista-paises {
+    order: 4;
+    flex: 0 0 auto;
+  }
+
+  #listaPaises {
+    height: auto;
+    overflow: visible;
+  }
+
+  .overlay-preview-mapa {
+    display: block;
+  }
+
+  .hint-ampliar-mapa {
+    display: block;
   }
 }
 

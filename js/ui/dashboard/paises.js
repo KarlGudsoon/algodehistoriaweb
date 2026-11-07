@@ -83,6 +83,39 @@ async function inicializarPaises() {
 
     globo.cargarMapa("countries.geojson");
 
+    const contenedorMapa = document.getElementById("contenedorMapaPaises");
+    const btnAmpliarMapa = document.getElementById("btn-ampliar-mapa");
+    const btnCerrarMapa = document.getElementById("btn-cerrar-mapa");
+
+    const alternarMapaExpandido = (expandir) => {
+      if (!contenedorMapa) return;
+      contenedorMapa.classList.toggle("mapa-expandido", expandir);
+      btnCerrarMapa?.classList.toggle("oculto", !expandir);
+      btnAmpliarMapa?.setAttribute("aria-expanded", String(expandir));
+      requestAnimationFrame(() => {
+        globoPaisesActual?.redimensionar?.();
+      });
+    };
+
+    btnAmpliarMapa?.addEventListener("click", () =>
+      alternarMapaExpandido(true),
+    );
+
+    btnCerrarMapa?.addEventListener("click", (evento) => {
+      evento.stopPropagation();
+      alternarMapaExpandido(false);
+    });
+
+    document.addEventListener("keydown", (evento) => {
+      if (!document.body.contains(contenedorMapa)) return;
+      if (
+        evento.key === "Escape" &&
+        contenedorMapa.classList.contains("mapa-expandido")
+      ) {
+        alternarMapaExpandido(false);
+      }
+    });
+
     if (typeof inicializarCapsulaPais === "function") {
       await inicializarCapsulaPais();
     }
@@ -172,43 +205,4 @@ async function renderizarListaPaises(datosColeccion, catalogo) {
       error,
     );
   }
-
-  document.querySelectorAll(".btn-vista-paises").forEach((boton) => {
-    boton.addEventListener("click", () => {
-      document
-        .querySelectorAll(".btn-vista-paises")
-        .forEach((b) => b.classList.remove("activo"));
-      boton.classList.add("activo");
-
-      const vista = boton.dataset.vista;
-      const contenedorLista = document.querySelector(
-        ".contenedor-lista-paises",
-      );
-      const contenedorMapa = document.querySelector("#globoPaises");
-      const resumenProgresoPaises = document.getElementById(
-        "resumenProgresoPaises",
-      );
-      const tituloVista = document.getElementById("vista-paises-titulo");
-
-      document
-        .getElementById("mark-vista")
-        .classList.toggle("activo", vista === "mapa");
-
-      if (vista === "lista") {
-        contenedorLista.classList.add("activo");
-        resumenProgresoPaises.classList.add("activo");
-        contenedorMapa.classList.remove("activo");
-      } else if (vista === "mapa") {
-        contenedorMapa.classList.add("activo");
-        contenedorLista.classList.remove("activo");
-        resumenProgresoPaises.classList.remove("activo");
-
-        // El globo se crea mientras el contenedor está oculto; al mostrarlo
-        // hay que recalcular el tamaño del canvas con el espacio ya asignado.
-        requestAnimationFrame(() => {
-          globoPaisesActual?.redimensionar?.();
-        });
-      }
-    });
-  });
 }
