@@ -43,7 +43,6 @@ async function inicializarPaises() {
     globoPaisesActual = crearGlobo(contenedor, {
       antialias: false,
       alturaBase: 0.007,
-      colorFondo: "rgba(255 255 255 / 1)",
       isosDestacados: isosObtenidos,
       focoInicial: { lat: -25, lng: -70, altitude: 2.4 },
       onPaisClick: (props) => {

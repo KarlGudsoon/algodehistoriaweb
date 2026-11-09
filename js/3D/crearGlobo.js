@@ -3,9 +3,13 @@
 
 window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   const estilos = getComputedStyle(document.documentElement);
-  const COLOR_OCEANO = estilos.getPropertyValue("--red").trim() || "#eff4f9";
+  let COLOR_OCEANO =
+    estilos.getPropertyValue("--globo-oceano").trim() || "#eff4f9";
   const COLOR_PAIS = estilos.getPropertyValue("--yellow").trim() || "#7fb275";
-  const COLOR_OSCURO = opciones.colorOscuro || "#d6d3d4";
+  let COLOR_OSCURO =
+    opciones.colorOscuro ||
+    estilos.getPropertyValue("--globo-pais-no-resaltado").trim() ||
+    "#d6d3d4";
   const COLOR_RESALTADO = opciones.colorResaltado || "#d6d5d7";
   const ALTURA_BASE = opciones.alturaBase ?? 0.007;
 
@@ -50,7 +54,25 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   }
 
   function colorBordePoligono(d) {
-    return d === paisSobrevolado ? COLOR_OCEANO : COLOR_OCEANO;
+    return COLOR_OCEANO;
+  }
+
+  function actualizarColoresTema() {
+    const estilosActualizados = getComputedStyle(document.documentElement);
+    COLOR_OCEANO =
+      estilosActualizados.getPropertyValue("--globo-oceano").trim() ||
+      COLOR_OCEANO;
+    if (!opciones.colorOscuro) {
+      COLOR_OSCURO =
+        estilosActualizados
+          .getPropertyValue("--globo-pais-no-resaltado")
+          .trim() || COLOR_OSCURO;
+    }
+
+    mundo.globeMaterial().color.set(COLOR_OCEANO);
+    mundo.atmosphereColor(COLOR_OCEANO);
+    mundo.polygonCapColor(colorPoligono);
+    mundo.polygonStrokeColor(colorBordePoligono);
   }
 
   function altitudPoligono(d) {
@@ -60,16 +82,19 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
   }
 
   const mundo = Globe({
-    rendererConfig: { antialias: opciones.antialias ?? false },
+    rendererConfig: {
+      antialias: opciones.antialias ?? false,
+      alpha: true,
+    },
   })
-    .showAtmosphere(true)
+    .showAtmosphere(false)
     .atmosphereColor(COLOR_OCEANO)
     .atmosphereAltitude(0.12)
     .showGraticules(false)
     .polygonsTransitionDuration(250)
     .polygonAltitude(altitudPoligono)
     .polygonCapColor(colorPoligono)
-    .polygonSideColor(() => "#eff3f8")
+    .polygonSideColor(() => COLOR_OSCURO)
     .polygonStrokeColor(colorBordePoligono)
     .polygonLabel(({ properties: d }) => `<b>${d.nameES}</b>`)
     .onPolygonHover((poligono) => {
@@ -86,6 +111,12 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
 
   mundo.globeMaterial().color.set(COLOR_OCEANO);
 
+  const observadorTema = new MutationObserver(actualizarColoresTema);
+  observadorTema.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
   // Iluminación más clara: refuerza la luz ambiental y suaviza la direccional
   mundo.lights().forEach((luz) => {
     if (luz.type === "AmbientLight") {
@@ -95,9 +126,7 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     }
   });
 
-  if (opciones.colorFondo) {
-    mundo.backgroundColor(opciones.colorFondo);
-  }
+  mundo.backgroundColor(opciones.colorFondo ?? "rgba(0, 0, 0, 0)");
 
   // Rotación automática suave cuando no se interactúa
   mundo.controls().autoRotate = true;
@@ -216,6 +245,7 @@ window.crearGlobo = function crearGlobo(contenedor, opciones = {}) {
     } else {
       window.removeEventListener("resize", programarDimensionar);
     }
+    observadorTema.disconnect();
   }
 
   return {

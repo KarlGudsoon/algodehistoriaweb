@@ -48,6 +48,11 @@ async function cargarVista(nombreVista) {
 function marcarBotonActivo(nombreVista) {
   document.querySelectorAll(".nav button").forEach((btn) => {
     btn.classList.toggle("activo", btn.dataset.vista === nombreVista);
+    btn.setAttribute(
+      "aria-current",
+      btn.dataset.vista === nombreVista ? "page" : "false",
+    );
+    btn.disabled = btn.dataset.vista === nombreVista;
   });
 }
 

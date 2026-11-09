@@ -30,8 +30,9 @@ html[data-theme="dark"] .skeleton::before {
   background: rgb(30, 30, 30) !important;
 }
 
-html[data-theme="dark"] .contenedor-lista-paises,
 html[data-theme="dark"] .contenedor-capsula-pais .capsula-pais,
+html[data-theme="dark"] .contenedor-mapa-paises,
+html[data-theme="dark"] .lista-paises,
 html[data-theme="dark"] .lista-paises-header input,
 html[data-theme="dark"] .contenedor-infocards .infocards {
   background-color: #232323;
@@ -399,23 +400,14 @@ h1 {
   min-height: 0;
   position: relative;
   overflow: hidden;
+  background-color: white;
+  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #globoPaises {
   position: absolute;
   inset: 0;
-}
-
-.contenedor-mapa-paises::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  inset: 0;
-  pointer-events: none;
-  z-index: 9;
 }
 
 #globoPaises canvas {
@@ -832,8 +824,6 @@ h1 {
 }
 
 .contenedor-lista-paises {
-  overflow: auto;
-  border-radius: 1rem;
   width: 100%;
   max-width: 450px;
   background-color: transparent;

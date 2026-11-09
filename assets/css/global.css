@@ -5,6 +5,8 @@
   --yellow-color: #ffff00;
   --primary-color-dark: #181818;
   --color-texto: #000000;
+  --globo-oceano: #eff4f9;
+  --globo-pais-no-resaltado: #d6d3d4;
 
   --prehistoria: #f86d31;
   --antigua: #30a5e8;
@@ -19,6 +21,8 @@ html[data-theme="dark"] {
   --secondary-color: #232323 !important;
   --yellow-color: #e92a41 !important;
   --color-texto: #ffffff !important;
+  --globo-oceano: #243244;
+  --globo-pais-no-resaltado: #566477;
 }
 
 html[data-theme="dark"] .logo-dark {
